@@ -1,0 +1,239 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+    <form [formGroup]="HeaderData" >
+        <div class="kt-portlet kt-portlet--responsive-mobile">
+            <div class="kt-portlet__head bg-light">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        <b>Place Order Request
+
+                            <span class=" ml-4">Credit Limit:<span class="kt-font-bold mr-3">
+                                    {{ this.CreditLimit}}</span></span>
+                            <span>Available Credit Limit:<span class="kt-font-bold mr-3">
+                                    {{ this.AvailableCreditLimit}}</span></span>
+                        </b>
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="kt-form">
+                    <div class="row">
+                        <div class="col-12">
+                            <div *ngIf="this.Lock==false" class="form-group row">
+                                <label class="col-md-2 kt-font-boldest label-first">Customer *</label>
+                                <div class="col-md-4 mb-1 mb-md-0">
+                                    <select class=" form-control" (change)="getCustomerData($event.target.value)">
+
+                                        <option value="0">Select Customer</option>
+                                        <option *ngFor="let Customer of Customers" value={{Customer?.CustCodevtxt}}>
+                                            {{Customer?.CustCodevtxt}} - {{Customer?.CustNamevtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">Search Customer</label>
+                                <div class="col-md-4">
+                                    <input  class=" form-control"  type="text" (change)="Customerfilerchange($event.target.value)">
+                                </div>
+                            </div>
+                            <div *ngIf="this.Lock==true" class="form-group row">
+
+
+
+                                <label class="col-md-2 kt-font-boldest">Selected Customer</label>
+                                <div class="col-md-9 mb-1 mb-md-0">
+                                    <label> {{CustCodevtxt}} - {{CustNamevtxt}} </label>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest label-first">Web Order No</label>
+                                <div class="col-md-4 mb-1 mb-md-0">
+                                    {{this.OrderInfo?.ReqOrderNo}}
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">Web Order Date</label>
+                                <div class="col-md-4">
+                                    {{this.OrderInfo?.OrderDatedate | date :'dd/MM/yyyy'}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest">PO No</label>
+                                <div class="col-md-4 mb-1 mb-md-0">
+                                    <input type="text" class=" form-control" (change)="updatePono($event.target.value)"
+                                        value="{{Pono}}">
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">PO Date</label>
+                                <div class="col-md-4">
+
+                                    <mat-form-field appearance="outline">
+
+                                        <mat-label>Select Date</mat-label>
+                                        <input matInput autocomplete="off" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="PoDate" [matDatepicker]="picker1">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest">Ship to Name *</label>
+                                <div class="col-md-4 mb-1 mb-md-0">
+                                    <select class=" form-control" (change)="getShipToNameData($event.target.value)">
+
+                                        <option value="0">Select Ship To Name</option>
+                                        <option *ngFor="let ShiptoAddress of ShiptoAddresss"
+                                            value={{ShiptoAddress?.ShipToCodevtxt}}>
+                                            {{ShiptoAddress?.ShipToNamevtxt}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">Ship to Address</label>
+                                <div class="col-md-4">
+                                    {{this.Addressvtxt}}
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest">Item *</label>
+                                <div class="col-md-4 mb-1 mb-md-0">
+                                    <select class=" form-control form-control-sm text-right"
+                                        (change)="AddDataInItemMaster($event.target.value)">
+                                        <option value="0">Select Item</option>
+                                        <option *ngFor="let Item of AllItemMasterDate" value={{Item?.ItemCodevtxt}}>
+                                            {{Item?.ItemCodevtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">UOM *</label>
+                                <div class="col-md-4">
+                                    <select class=" form-control mat-input-element1 form-control-sm"
+                                        (change)="updateUOM($event.target.value)">
+                                        <option value="0">Select UOM</option>
+                                        <option *ngFor="let UOM of UOMs" value="{{UOM?.IDint}}">
+                                            {{UOM?.AlternativeUnit}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+
+                                <label class="col-md-2 kt-font-boldest">Quantity *</label>
+                                <div class="col-md-4">
+                                    <input type="number" autocomplete="off" onlyNumber matInput class="
+                                    mat-input-element1 form-control form-control-sm mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored "
+                                        (change)="updateTotal($event.target.value)" value="{{TotalQuantity}}">
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">Delivery Address</label>
+                                <div class="col-md-4">
+                                    <textarea class=" form-control" type="text"
+                                        (change)="updateAddress($event.target.value)"
+                                        value="{{DeliveryAddress}}"></textarea>
+                                </div>
+                            </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 kt-font-boldest">Quantity in MT</label>
+                                <div class="col-md-4">
+                                    {{this.TotalMT}}
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">Quantity in Kgs</label>
+                                <div class="col-md-4">
+                                    {{this.TotalKgs}}
+                                </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 kt-font-boldest">Vehicle Type *</label>
+                            <div class="col-md-4">
+                                <select (change)="updateTrans($event.target.value)" class="form-control"
+                                    name="anyNameplant">
+                                    <option value="null">
+                                        Select Vehicle Type
+                                    </option>
+                                    <option value="TRUK">
+                                        TRUK
+                                    </option>
+                                    <option value="BULK">
+                                        BULK
+                                    </option>
+                                </select>
+                            </div>
+                            <label class="col-md-2 kt-font-boldest">Suppling  Plant *
+
+                            </label>
+                            <div class="col-md-3">
+                                <select (change)="updatePlant($event.target.value)" class="form-control"
+                                    name="anyNameplant">
+                                <option value="null">
+                                        Select Suppling  Plants
+                                    </option>
+                                    <option *ngFor="let Plant of SpPlant" value="{{Plant.Plantcodevtxt}}">
+                                        {{Plant?.Plantcodevtxt}} - {{Plant?.PlantNamevtxt}}
+                                    </option>
+                                </select>
+
+                            </div>
+                            <div class="col-md-1">
+                                <a class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                (click)="getPlantData()"><i class=" fa fa-eye"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="form-group-last row">
+                            <div class="col-md-auto">
+                                <b> Payment Terms :</b> {{PaymentTerms1vtxt}}
+                            </div>
+                            <div class="col-md-auto">
+                                <b> Delivery Terms :</b> {{DeliveryTermsvtxt}}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <br>
+                <div  class=" table table-responsive">
+                    <table class="table table-striped mt-2">
+                        <thead style="background-color: #CDCDCD;">
+                            <tr>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">SrNo</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Plant Code</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Plant Name</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Storage Code</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Storage Name</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Material</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Data of PlantData; index as i">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{Data?.PLANT}}</td>
+                                <td>{{Data?.PLANT_DESC}}</td>
+                                <td>{{Data?.STORAGE_LOC}}</td>
+                                <td>{{Data?.STROAGE_DESC}}</td>
+                                <td>{{Data?.MATERIAL}}</td>
+                                <td>{{Data?.UNRESTRICTED}}</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h4 *ngIf="this.PlantData[0]==null">No Data Available for stock</h4>
+            </div>
+        </div>
+        <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+            <div>
+            <a type="Submit" (click)="onSubmit('PosttoSAP')" Class="btn mr-2 btn-brand btn-sm">Post to SAP</a>
+                <a type="Submit" (click)="onSubmit('Pending')" Class="btn ml-2 btn-brand btn-sm">Save</a>
+
+                <a (click)="ReloadData()" Class="btn ml-2 btn-brand btn-sm">Cancel</a>
+                <a [routerLink]="['/SP/PendingOrders']" Class="btn mr-2 btn-brand btn-sm ml-2">Go to pending order
+                    list</a>
+            </div>
+        </div>
+</div>
+</form>
+</div>

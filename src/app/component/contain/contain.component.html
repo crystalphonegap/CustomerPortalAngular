@@ -1,0 +1,10 @@
+<div  *ngIf="Content!=null"     class=" p-2 mb-3 kt-portlet  text-center text-dark font-weight-bold bold col-md-12 bg-red" >
+    <div class="row">
+        <div class=" col-md-1"><img src="../../../assets/media/app_images/Announcement1.png" ></div>
+        <div class=" col-md-11">
+            <marquee class=" text-danger row  font-weight-bold"  *ngIf="this.Content!=''"  width="100%" direction="left" scrollamount="7">
+                <h5 class="row"> <b>{{Content}}</b></h5>
+            </marquee>
+        </div>
+    </div>
+</div>

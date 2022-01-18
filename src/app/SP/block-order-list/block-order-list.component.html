@@ -1,0 +1,125 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title text-dark">
+                    <b>
+                        Block Order List
+                    </b>
+                    <small>
+                        <span class="kt-font-brand kt-font-bold mr-3">({{this.FromDate}}) - ({{this.Todate}})</span>
+
+                    </small>
+                </h3>
+            </div>
+          
+        </div>
+        
+        <form [formGroup]="SearchFilter" (ngSubmit)="ChangeFilter()">
+            <div class="p-4 bg-light border-top border-bottom">
+                <!--begin: Search Form -->
+                <div class="kt-form kt-form--label-right ">
+                    <div class="row align-items-center">
+
+                        <div class="col-xl-12 order-2 order-xl-1">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>From Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('From')"
+                                                formControlName="FromDate" [matDatepicker]="picker1">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>To Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('To')"
+                                                formControlName="Todate" [matDatepicker]="picker2">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Type To Search...</mat-label>
+                                        <input formControlName="search" matInput placeholder="Placeholder">
+                                        <mat-icon matSuffix>search</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-dark btn-sm" type="submit" title="bigger"><i
+                                            class="fa fa-search ml-2 ml-md-0"></i><span
+                                            class="d-none d-md-inline-block ml-2">Search</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--end: Search Form -->
+            </div>
+        </form>
+        <div class="kt-portlet__body">
+            <div>
+                <div *ngFor="let Order of Orders" class="custom-list-view row border shadow-sm p-3 mb-3">
+                   
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Sold To Party:<span class="kt-font-bold">{{Order?.SoldToPartyCodevtxt}} -
+                                    {{Order?.SoldTopPartyNamevtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Ship To Party:<span class="kt-font-bold">{{Order?.ShipToPartyCodevtxt}} -
+                                    {{Order?.ShipToPartyNamevtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Sales Order No:<span class="kt-font-bold">{{Order?.SalesOrderNumbervtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Date:<span class="kt-font-bold">{{Order?.CreatedOndatetime | date :'dd/MM/yyyy'}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Total Order Quantity In MT:<span class="kt-font-bold">{{Order?.OrderQuantityint}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Material Code <span class="kt-font-bold">{{Order?.MaterialCodevtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            Remark <span class="kt-font-bold">{{Order?.OrderBlockListDescvtxt}}</span>
+                            </div>
+                        </div>
+                </div>
+                <h4 *ngIf="this.Orders[0]==null">No Data Available</h4>
+
+                <div *ngIf="Orders[0]!=null" class="kt-pagination kt-pagination--brand">
+                    <ul class="kt-pagination__links">
+                        <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                            class="kt-pagination__link--prev">
+                            <a (click)="showPrevOrders()"
+                                [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-left kt-font-brand"></i></a></li>
+                        <li *ngFor="let page of pageField;let i=index">
+                            <a [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''" (click)="showOrdersByPageNumber(page,i)" style="cursor: pointer;">{{page}}</a>
+                        </li>
+                        <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                            class="kt-pagination__link--next"><a (click)="showNextOrders()"
+                                [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-right kt-font-brand"></i></a> </li>
+                    </ul>
+                    <div class="kt-pagination__toolbar">
+                        <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of
+                            <span class="kt-font-bold">{{paginationService.exactPageList}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

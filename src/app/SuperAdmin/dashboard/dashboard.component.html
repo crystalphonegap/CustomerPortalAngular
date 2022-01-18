@@ -1,0 +1,71 @@
+<!--begin:: Widgets/Finance Summary-->
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title"> Users (Total: {{totalUsersCount}})
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+            <div class="table-responsive">
+                <div *ngFor="let User of Users" class="customerusers-list border shadow-sm p-3 mb-3">
+                    <div class="row no-gutters">
+                        <div class="col-10 col-md ">
+                            <div class="row">
+                                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                    User Code :
+                                    <span class="kt-font-bold">{{ User?.UserCodetxt }}</span>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                    UserName :
+                                    <span class="kt-font-bold">{{ User?.UserNametxt }}</span>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                    UserType :
+                                    <span class="kt-font-bold">{{ User?.UserTypetxt }}</span>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                    Division :
+                                    <span class="kt-font-bold">{{ User?.Divisionvtxt }}</span>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                    Mobile :
+                                    <span class="kt-font-bold">{{ User?.Mobilevtxt }}</span>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                    Email :
+                                    <span class="kt-font-bold">{{ User?.Emailvtxt }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2 col-md-auto">
+                            <div class="text-right">
+                                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="pass(this.User?.Idbint)"><i class="fa fa-pen"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container mw-100">
+                    <div class="row">
+                        <div *ngIf="Users[0] !=null" class="col-md-12">
+                            <ul class="pagination justify-content-center">
+                                <li *ngIf="totalUsersCount > this.UsersPerPage" class="page-item">
+                                    <a (click)="showPrevUsers()" class="btn btn-sm btn-brand" [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'page-link'">Prev</a></li>
+                                <li *ngFor="let page of pageField;let i=index" class="page-item">
+                                    <a (click)="showUsersByPageNumber(page,i)" class="btn btn-sm btn-brand" [ngClass]="pageNumber[i]?'pageColor':'page-link'">{{page}}</a>
+                                </li>
+                                <li *ngIf="totalUsersCount > this.UsersPerPage" class="page-item"><a (click)="showNextUsers()" class="btn btn-sm btn-brand" [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'page-link'">Next</a> </li>
+                            </ul>
+                            <div style="text-align: center;">
+                                Page {{currentPage}} of {{paginationService.exactPageList}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--end:: Widgets/Finance Summary-->

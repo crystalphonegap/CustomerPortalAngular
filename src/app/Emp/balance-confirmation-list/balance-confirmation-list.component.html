@@ -1,0 +1,80 @@
+<div class="kt-container  kt-container--fluid ">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title text-dark">
+                 <b>Balance Confirmation List</b>  
+                </h3>
+            </div>
+          
+        </div>
+        <div class="p-4 bg-light border-top border-bottom">
+            <!--begin: Search Form -->
+            <div class="kt-form kt-form--label-right ">
+                <div class="row align-items-center">
+                    <div class="col-xl-12 order-2 order-xl-1">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                <div class="kt-input-icon kt-input-icon--left">
+                                    <input type="text" class="form-control form-control-sm" [(ngModel)]="search" placeholder="Type To Search...">
+                                    <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                  <span><i class="la la-search"></i></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-dark btn-sm" (click)="ngOnInit()" title="bigger"><i
+                                        class="fa fa-search ml-2 ml-md-0"></i><span
+                                        class="d-none d-md-inline-block ml-2">Search</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--end: Search Form -->
+        </div>
+        <div class="kt-portlet__body ">
+            <div>
+                <div *ngFor="let BC of BalanceConfirmation" class="customerBalanceConfirmation-list border row shadow-sm p-3 mb-3">
+                   
+                    <div class="row col-md-11">
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            Request No :<span class="kt-font-bold">{{BC?.RequestNovtxt}}</span>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            From Date :{{BC?.FromDatedatetime | date :'dd/MM/yyyy'}} 
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            To Date :<span class="kt-font-bold">{{BC?.ToDatedatetime | date :'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                            Expiry Date :<span class="kt-font-bold">{{BC?.ExpiryDatedatetime | date :'dd/MM/yyyy'}}</span>
+                        </div>
+                    </div>
+                    <div class="row  col-md-1">
+                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="pass(BC?.IDbint)"><i class="fa fa-eye"></i></button>
+                </div>
+                </div>
+                <h4 *ngIf="this.BalanceConfirmation[0]==null">No Data Available</h4>
+                <div *ngIf="BalanceConfirmation[0]!=null" class="kt-pagination kt-pagination--brand">
+                    <ul class="kt-pagination__links">
+                        <li *ngIf="this.pageField.length > BalanceConfirmationPerPage" class="kt-pagination__link--prev">
+                            <a (click)="showPrevBalanceConfirmation()" [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-left kt-font-brand"></i></a></li>
+                        <li *ngFor="let page of pageField;let i=index">
+                            <a [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''" (click)="showBalanceConfirmationByPageNumber(page,i)" style="cursor: pointer;">{{page}}</a>
+                        </li>
+                        <li *ngIf="this.pageField.length > BalanceConfirmationPerPage" class="kt-pagination__link--next"><a (click)="showNextBalanceConfirmation()" [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-right kt-font-brand"></i></a> </li>
+                    </ul>
+                    <div class="kt-pagination__toolbar">
+                        <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of 
+                            <span class="kt-font-bold">{{paginationService.exactPageList}}</span></div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>

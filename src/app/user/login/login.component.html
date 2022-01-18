@@ -1,0 +1,59 @@
+<div class="kt-grid kt-grid--ver kt-grid--root kt-page" style="min-height: 100vh;">
+    <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v6 kt-login--signin" id="kt_login">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--desktop kt-grid--ver-desktop kt-grid--hor-tablet-and-mobile">
+            <div class="kt-grid__item  kt-grid__item--order-tablet-and-mobile-2  kt-grid kt-grid--hor kt-login__aside">
+                <div class="kt-login__wrapper">
+                    <div class="kt-login__container">
+                        <div class="kt-login__body">
+                            <div class="kt-login__logo">
+                                <img src="assets/media/app_images/johnson-logo.png" class="img-fluid" />
+                            </div>
+                            <div class="kt-login__signin">
+                                <div class="kt-login__head">
+                                    <h3 class="kt-login__title">Sign In</h3>
+                                </div>
+                                <form [formGroup]="loginForm"  autocomplete="off">
+                                    <div class="kt-login__form">
+                                        <div class="kt-form">
+                                            <div class="form-group">
+                                                <input class="form-control" formControlName="UserCodetxt" *ngIf="Mobile" placeholder="User Code" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="password" formControlName="Passwordvtxt" *ngIf="Mobile" class="form-control" placeholder="Password">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="OTP" formControlName="Otptxt" *ngIf="OTP" class="form-control" placeholder="Enter OTP" required>
+                                            </div>
+
+                                            <div class="kt-login__extra">
+
+                                                <a  [routerLink]="['/user/PasswordEmailSend']" >Forget Password ?</a>
+
+                                            </div>
+                                            <div class="kt-login__actions"  >
+                                                <button  (click)="LoginWithOtp()" *ngIf="Mobile" class="btn btn-brand btn-pill btn-elevate" [disabled]="this.loginForm.invalid">Login With OTP</button>
+                                                <button  (click)="onSubmit()" *ngIf="Mobile" class="btn btn-brand btn-pill btn-elevate" [disabled]="this.loginForm.invalid">Login</button>
+                                              </div>
+
+                                            <div class="kt-login__actions" >
+                                              <button  (click)="SubmitOTP()" *ngIf="OTP"  class="btn btn-brand btn-pill btn-elevate" [disabled]="this.loginForm.invalid">Login</button>
+                                              <button  (click)="Cancel()" *ngIf="OTP" class="btn btn-brand btn-pill btn-elevate" >Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="kt-login__account">
+                                <a id="kt_login_signup" [routerLink]="['/user/Verification']" class="kt-login__account-link">Register</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content" style="background-image: url(assets/media/app_images/login-bg.jpg);">
+
+            </div>
+        </div>
+    </div>
+</div>

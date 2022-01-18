@@ -1,0 +1,69 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <!--Begin::App-->
+    <div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop">
+        <!--Begin:: App Content-->
+        <div class="kt-grid__item kt-grid__item--fluid">
+            <div class="row">
+                <div class="col-12">
+                    <!--begin:: Widgets/Finance Summary-->
+                    <div class="kt-portlet kt-portlet--height-fluid">
+                        <div class="kt-portlet__head">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title">Personal Information
+                                </h3>
+                            </div>
+                            <div  class=" kt-portlet__head-toolbar">
+                                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="pass(this.User?.Idbint)"><i class="fa fa-pen"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="kt-portlet__body">
+                            <div class="kt-widget12">
+                                <div class="kt-widget12__content">
+                                    <div class="kt-widget12__item">
+                                        <div class="kt-widget12__info">
+                                            <span class="kt-widget12__value">UserCode</span>
+                                            <span class="kt-widget12__desc">{{this.User?.UserCodetxt}}</span>
+                                            
+                                        </div>
+                                        <div class="kt-widget12__info">
+                                            <span class="kt-widget12__value">UserName</span>
+                                            <span class="kt-widget12__desc">{{this.User?.UserNametxt}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget12__item">
+                                        <div class="kt-widget12__info">
+                                            <span class="kt-widget12__value">User Type</span>
+                                            <span class="kt-widget12__desc">{{this.User?.UserTypetxt}}</span>
+                                        </div>
+                                        <div class="kt-widget12__info">
+                                            <span class="kt-widget12__value">Division</span>
+                                            <span class="kt-widget12__desc">{{this.User?.Divisionvtxt}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="kt-widget12__item">
+                                        <div class="kt-widget12__info">
+                                            <span class="kt-widget12__value">Mobile No</span>
+                                            <span class="kt-widget12__desc">{{this.User?.Mobilevtxt}}</span>
+                                        </div>
+                                        <div class="kt-widget12__info">
+                                            <span class="kt-widget12__value">Email</span>
+                                            <span class="kt-widget12__desc">{{this.User?.Emailvtxt}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--end:: Widgets/Finance Summary-->
+                </div>
+            </div>
+        </div>
+
+        <!--End:: App Content-->
+    </div>
+
+    <!--End::App-->
+</div>

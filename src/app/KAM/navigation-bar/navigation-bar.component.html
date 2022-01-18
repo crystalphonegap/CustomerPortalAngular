@@ -1,0 +1,28 @@
+<!-- begin:: Header -->
+<div id="kt_header" class="kt-header kt-grid__item kt-header--fixed">
+    <!-- begin: Header Menu -->
+    <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i
+            class="la la-close"></i></button>
+    <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
+        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
+            <ul class="kt-menu__nav ">
+                <li class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']" aria-haKAMopup="false"><a [routerLink]="['/KAM/Profile']" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-profile"></i><span class="kt-menu__link-text">My Profile</span></a></li>
+                <li class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"  aria-haKAMopup="true"><a [routerLink]="['/KAM/ChangePassword']" class="kt-menu__link" data-toggle="modal"><i class="kt-menu__link-icon la la-key"></i><span class="kt-menu__link-text">Change Password</span></a></li>
+                <li class="kt-menu__item" id="logoutClick" aria-haKAMopup="false"><a (click)="onLogout()" class="kt-menu__link "><i
+                            class="kt-menu__link-icon flaticon-logout"></i><span class="kt-menu__link-text">Log
+                            Out</span></a></li>
+            </ul>
+            <!-- begin: Custom User-->
+            <div class="kt-custom-user">
+                <div class="kt-header-custom-user">
+                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
+                    <span class="kt-header__topbar-username">{{UserName}}
+                        <!-- ( {{UserType}} ) -->
+                    </span>
+                </div>
+            </div>
+            <!-- end: Custom User-->
+        </div>
+    </div>
+    <!-- end: Header Menu -->
+</div>

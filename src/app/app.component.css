@@ -1,0 +1,130 @@
+
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+    height: 100%;
+}
+.z-index-2{
+  z-index: 2 !important;
+}
+
+
+.Side_Nav{
+    overflow: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2e2828;
+  }
+
+
+main {
+    padding: 10px;
+}
+.spinner_overlay {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    opacity: 0.6;
+    z-index: 1000;
+}
+
+/* for sidenav to take a whole page */
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover,
+a:active {
+    color: red;
+}
+
+.navigation-items {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+mat-toolbar {
+    background-color: white;
+    border-radius: 3px;
+}
+
+@media(max-width: 959px) {
+    mat-toolbar {
+        border-radius: 0px;
+    }
+}
+
+.custom-logo {
+    padding-top: 15px;
+    padding-bottom: 10px;
+    width: 200px;
+    ;
+    height: min-content;
+}
+
+.Mob-btn {
+    display: none;
+}
+
+.topnav {
+    width: 160px;
+}
+
+@media(max-width: 680px) {
+    .top-nava {
+        display: none;
+    }
+    .Mob-btn {
+        position: absolute;
+        right: 0;
+        margin-left: 5px;
+        margin-right: 5px;
+        align-content: center;
+        flex-wrap: wrap;
+        display: flex;
+    }
+}
+
+.rotate-img {
+    width:20px;
+    height:20px;
+    box-sizing:border-box;
+    padding-left: 200px;
+    /*width of the image*/
+    background: url(../assets/media/app_images/rotate.png) left top no-repeat;
+  }

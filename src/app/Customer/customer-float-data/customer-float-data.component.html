@@ -1,0 +1,82 @@
+<div class="kt-portlet">
+    <div class="kt-portlet__body">
+        <div class="row">
+            <div class="col-12 col-md-6 col-xl-4 mb-1 mb-md-0">
+                <div class="row">
+                    <div class="col-md-4 d-inline-flex justify-content-md-between">
+                        <span class="kt-font-bold">Customer</span>
+                        <span>&nbsp;:</span>
+                    </div>
+                    <div class=" col-md-8">
+                        <span>{{this.CustomerData?.CustCodevtxt}} - {{this.CustomerData?.CustNamevtxt}}</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 mb-1 mb-md-0">
+                <div class="row">
+                    <div class="col-md-5 d-inline-flex justify-content-md-between">
+                        <span class="kt-font-bold">Address</span>
+                        <span>&nbsp;:</span>
+                    </div>
+                    <div class=" col-md-7">
+                        <span>{{this.CustomerData?.Address1vtxt}}
+                            {{this.CustomerData?.Address2vtxt}} {{this.CustomerData?.CityCdvtxt}}
+                             {{this.CustomerData?.PostalCodevtxt}}</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 mb-1 mb-md-0">
+                <div class="row">
+                    <div class="col-md-5 d-inline-flex justify-content-md-between">
+                        <span class="kt-font-bold" >{{promoter}}</span>
+                        <span>&nbsp;:</span>
+                        <!-- Sales Promoter1 -->
+                    </div>
+                    <div class=" col-md-7">
+                        <span>{{this.CustomerData?.Spcodevtxt }} -
+                            {{this.CustomerData?.Spnamevtxt }}</span></div>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 mb-1 mb-md-0">
+                <div class="row">
+                    <div class="col-md-4 d-inline-flex justify-content-md-between">
+                        <span class="kt-font-bold">Sales Office</span>
+                        <span>&nbsp;:</span>
+
+                    </div>
+                    <div class=" col-md-8">
+                        <span>{{this.CustomerData?.SalesOfficeDescvtxt }}</span>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 mb-1 mb-md-0">
+                <div class="row">
+                    <div class="col-md-5 d-inline-flex justify-content-md-between">
+                        <span class="kt-font-bold">Contact Person</span>
+                        <span>&nbsp;:</span>
+                    </div>
+                    <div class=" col-md-7">
+                        <span>{{this.CustomerData?.Contactpersonvtxt }}</span>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-md-6 col-xl-4 mb-1 mb-md-0">
+                <div class="row">
+                    <div class="col-md-5 d-inline-flex justify-content-md-between">
+                        <span class="kt-font-bold">Contact Person No</span>
+                        <span>&nbsp;:</span>
+                    </div>
+                    <div class=" col-md-7">
+                        <span>{{this.CustomerData?.ContactpersonMobilevtxt }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

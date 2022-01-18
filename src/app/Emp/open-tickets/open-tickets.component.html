@@ -1,0 +1,154 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title text-dark">
+                    <b>
+                        Ticket Status
+                    </b>
+
+                    <small>
+                        <span class="kt-font-brand kt-font-bold mr-3">({{this.FromDate}}) - ({{this.Todate}})</span>
+                        <span>Open : <span class="kt-font-info kt-font-bold mr-3">{{Open}}</span></span>
+                        <span>InProcess : <span class="kt-font-brand kt-font-bold mr-3">{{InProcess}}</span></span>
+                        <span>Resolved : <span class="kt-font-success kt-font-bold mr-3">{{Resolved}}</span></span>
+                        <span>Closed : <span class="kt-font-success kt-font-bold mr-3">{{Closed}}</span></span>
+                    </small>
+                </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <button class="btn mr-2 btn-brand btn-sm btn-bold  " (click)="download()">
+                    <i class="fa fa-file-excel"></i> <span class=" m-2">Export To Excel </span> </button>
+
+            </div>
+        </div>
+        <form [formGroup]="SearchFilter" (ngSubmit)="ChangeFilter()">
+            <div class="p-4 bg-light border-top border-bottom">
+
+                <div class="kt-form kt-form--label-right ">
+                    <div class="row align-items-center">
+
+                        <div class="col-xl-12 order-2 order-xl-1">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div>
+                                        <select class="form-control " formControlName="status">
+                                            <option value="All">Select Status</option>
+                                            <option value="Open">Open</option>
+                                            <option value="In-Process">In-Process</option>
+                                            <option value="Resolved">Resolved</option>
+                                            <option value="Closed">Close</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>From Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('From')"
+                                                formControlName="FromDate" [matDatepicker]="picker1">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>To Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('To')"
+                                                formControlName="Todate" [matDatepicker]="picker2">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Type To Search...</mat-label>
+                                        <input formControlName="search" matInput placeholder="Placeholder">
+                                        <mat-icon matSuffix>search</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-dark btn-sm" type="submit" title="bigger"><i
+                                            class="fa fa-search ml-2 ml-md-0"></i><span
+                                            class="d-none d-md-inline-block ml-2">Search</span></button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </form>
+        <div class="kt-portlet__body">
+            <div class="table-responsive">
+                <table class="table table-striped mt-2">
+                    <thead style="background-color: #CDCDCD;">
+                        <tr>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">SrNo</th>
+
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Ticket No</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Ticket Date</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Raised By</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Category Name</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Type</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Subject</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Assigned to</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Status</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Ticket of Tickets; index as i">
+                            <th scope="row">{{i + Indexing +1 }}</th>
+                            <td>{{Ticket?.RefNovtxt}}</td>
+                            <td>{{Ticket?.RefDatedate | date :'dd/MM/yyyy'}}</td>
+                            <td>{{Ticket?.CustomerNamevtxt}}</td>
+                            <td>{{Ticket?.DepartmentNamevtxt}}</td>
+                            <td>{{Ticket?.Typevtxt}}</td>
+                            <td>{{Ticket?.Subjectvtxt}}</td>
+                            <td>{{Ticket?.AssignTo}}</td>
+                            <td>{{Ticket?.Statusvtxt}}</td>
+                            <td>
+                                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                (click)="pass(this.Ticket.RefNovtxt,this.Ticket.Statusvtxt,this.Ticket.Edit)"><i class="fa fa-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+                <h4 *ngIf="this.Tickets[0]==null">No Data Available</h4>
+
+                <div *ngIf="Tickets[0] !=null" class="kt-pagination kt-pagination--brand">
+                    <ul class="kt-pagination__links">
+                        <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                            class="kt-pagination__link--prev">
+                            <a (click)="showPrevTickets()"
+                                [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-left kt-font-brand"></i></a></li>
+                        <li *ngFor="let page of pageField;let i=index">
+                            <a [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''"
+                                (click)="showTicketsByPageNumber(page,i)" style="cursor: pointer;">{{page}}</a>
+                        </li>
+                        <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                            class="kt-pagination__link--next"><a (click)="showNextTickets()"
+                                [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-right kt-font-brand"></i></a> </li>
+                    </ul>
+                    <div class="kt-pagination__toolbar">
+                        <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of
+                            <span class="kt-font-bold">{{paginationService.exactPageList}}</span></div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>

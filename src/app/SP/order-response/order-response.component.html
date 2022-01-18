@@ -1,0 +1,53 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid ">
+    <form>
+        <div class="kt-portlet kt-portlet--responsive-mobile">
+            <div class="kt-portlet__head bg-light">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title"> SAP Response
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="kt-form">
+                    <div class="table-bord">
+                                        <label class=" kt-font-boldest" style="color: #ed3237;">SAP Order No &nbsp;</label>
+                                        <div  >
+                                            : {{this.response?.E_ORD_NUMs}}
+                                        </div>
+                    </div>
+                </div>
+                <div *ngIf="this.detail!=null" class=" table table-responsive">
+                    <table class="table table-striped mt-2">
+                        <thead style="background-color: #CDCDCD;">
+                            <tr>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">SrNo</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">ID</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">NUMBER</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">MESSAGE</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Data of detail; index as i">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{Data?.ID}}</td>
+                                <td>{{Data?.NUMBER}}</td>
+                                <td>{{Data?.MESSAGE}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+                <div class="kt-form__actions">
+                    <div class="row">
+                        <div class="col">
+                            <button (click)="Back()" class="btn  ml-2 btn-brand ">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

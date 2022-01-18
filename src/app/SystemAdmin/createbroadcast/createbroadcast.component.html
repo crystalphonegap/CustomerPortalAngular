@@ -1,0 +1,109 @@
+<div class="kt-container text-dark kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+    <form [formGroup]="broadcast"   *ngIf="this.broadcast"  (ngSubmit)="onSubmit()">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">BroadCast System
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+            <div class="form-group row">
+                <label class="col-lg-2 col-form-label">Title</label>
+                <div class="col-lg-10">
+                    <input type="text"  formControlName="Titlevtxt"  class="form-control" placeholder="Title">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-form-label">Start Date</label>
+                <div class="col-lg-10">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Start Date</mat-label>
+                        <input matInput  autocomplete="off"  formControlName="StartDatedate" [matDatepicker]="picker1">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                 
+                    
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-form-label">End Date</label>
+                <div class="col-lg-10">
+                    <mat-form-field appearance="outline">
+                        <mat-label>End Date</mat-label>
+                        <input matInput autocomplete="off"  formControlName="EndDatedate" [matDatepicker]="picker2">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-form-label">Apply BroadCast  to </label>
+                <div class="col-lg-10 ">
+                    <div class="kt-checkbox-inline">
+                        <mat-radio-group name="radioOpt1" (change)="onContentAreaChange($event.value)"
+                        aria-label="Select an option">
+                        <mat-radio-button [checked]="CompanyRadioButton" value="Company">Company
+                        </mat-radio-button>
+                        <mat-radio-button [checked]="ZoneRadioButton" value="Zone">Zone</mat-radio-button>
+                        <mat-radio-button [checked]="RegionRadioButton" value="Region">Region</mat-radio-button>
+                        <mat-radio-button [checked]="BranchRadioButton" value="Branch">Branch</mat-radio-button>
+                        <mat-radio-button [checked]="TerritoryRadioButton" value="Territory">Territory
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="this.AreaData[0] !=null" class="form-group row">
+                <label class="col-lg-2 col-form-label"> Select {{this.SelectedArea}}</label>
+                <div class="col-lg-10 ">
+                    <div class="kt-checkbox ">
+                        <div class="kt-checkbox-list">
+                            <label *ngFor="let Area of AreaData;" class="kt-checkbox">  
+                                                           
+                                <input type="checkbox"  name="Area.Code"  [ngModelOptions]="{standalone: true}"   [(ngModel)]="Area.Checked"
+                                value="{{Area.Code}}"
+                                (change)="onCheckBoxChange(Area,$event)">
+                              {{Area.Name}}<br>  
+                                  <span></span>
+                              </label>  
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-lg-2 col-form-label">Status</label>
+                <div class="col-lg-10 ">
+                    <div class="kt-checkbox-inline">
+                        <label class="kt-checkbox">
+                            Active
+                            <input formControlName="Statusbit" type="checkbox">
+                            <br />
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-group-last row">
+                <label class="col-lg-2 col-form-label">contain</label>
+                <div class="col-lg-10">
+                    <textarea  formControlName="Messagevtxt"  class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+            <div class="kt-form__actions">
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-10">
+                        <button type="submit" Class="btn btn-brand mr-4 btn-sm">Submit</button>
+                        <button  [routerLink]="['/SystemAdmin/BroadCastDetails']" Class="btn btn-secondary btn-sm">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>

@@ -1,0 +1,88 @@
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title text-dark">
+                    <b>OutStanding</b>
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body ">
+          <div *ngFor="let Data of DetailData" class="row border shadow-sm p-3 mb-3">
+              <div class="col-md-12">
+                <div class="row mt-1 mb-1 ">
+                    <div class="mb-2 col-md-4 ">
+                        Advanced : ₹ {{Data?.Advancedcl | number}}
+                    </div>
+                    <div class="mb-2 col-md-4 ">
+                        Gross OutStanding Amount : ₹ {{Data?.GrossOutsatndingAmtdcl | number}}
+                    </div>
+                    <div class="mb-2 col-md-4 ">
+                        Net OutStanding Amount : ₹ {{Data?.NetOutstandingAmtdcl | number}}
+                    </div>
+                </div>
+                
+          <table  class="table table-striped" >
+            <thead style="background-color: #CDCDCD;" >
+              <tr>
+               <th class=" font-weight-bold align-text-top"  scope="col">Days</th>
+                <th class=" font-weight-bold align-text-top"  scope="col">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3-6</td>
+                <td>₹ {{Data?.D3dcl | number}}</td>
+              </tr>
+              <tr>
+                <td>7-14</td>
+                <td>₹ {{Data?.D7dcl | number}}</td>
+              </tr>
+              <tr>
+                <td>15-29</td>
+                <td>₹ {{Data?.D15dcl | number}}</td>
+              </tr>
+              <tr>
+                <td>30-44</td>
+                <td>₹ {{Data?.D30dcl | number}}</td>
+              </tr>
+              <tr>
+                <td>45-59</td>
+                <td>₹ {{Data?.D45dcl | number}}</td>
+              </tr>
+              <tr>
+                <td>60-89</td>
+                <td>₹ {{Data?.D60dcl | number}}</td>
+              </tr>
+              <tr>
+                <td>90</td>
+                <td>₹ {{Data?.D90dcl | number}}</td>
+              </tr>
+              <tr>
+                <td> >90</td>
+                <td>₹ {{Data?.gD90dcl | number}}</td>
+              </tr>
+             </tbody>
+            </table>
+                    
+                </div>
+            </div>
+            <h2 *ngIf="this.DetailData[0]==null">No Data Available</h2>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+

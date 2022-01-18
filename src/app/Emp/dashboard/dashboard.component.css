@@ -1,0 +1,42 @@
+.rotate-img {
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    padding-left: 20px;
+    /*width of the image*/
+    background: url(../../../assets/media/app_images/rotate.png) left top no-repeat;
+    margin-top: 10px;
+    float: left;
+}
+
+.my-2 {
+    margin-top: 0.5rem !important;
+    float: left;
+}
+
+
+/*.tbody {
+    display: block;
+    overflow-x: hidden;
+    height: 400px;
+    width: 100%;
+}
+
+thead tr {
+    display: table;
+    width: 100%;
+}
+
+thead,
+tbody tr {
+    display: table;
+    width: 100%;
+}*/
+
+.padingrow {
+    padding: 18px 10px;
+}
+
+.center-text1 {
+    padding: 6px;
+}

@@ -1,0 +1,459 @@
+<div class="kt-container kt-container--fluid kt-grid__item">
+  <div class="kt-container kt-container--fluid kt-grid__item">
+    <div>
+      <div class="kt-portlet kt-portlet--mobile">
+        <div class="p-2">
+          <div class="bg-dark text-white kt-portlet__head kt-portlet__head--lg pt-2 mb-2">
+            <h3 class="kt-portlet__head-title p-3 "><b>Price Approval</b></h3>
+          </div>
+
+          <div class="row  p-3">
+            <div class="col-md-6 border">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Approval No</label>
+                    <input type="label" class="form-control" value=" {{ApprovalNo}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label for="inputPassword4">Status</label>
+                    <input type="label" class="form-control" value=" " disabled="disabled">
+                  </div>
+                </div>
+
+                <div class="form-row">
+
+                  <div class="form-group col-md-4">
+                    <label>Customer Code *</label>
+                    <mat-form-field>
+                      <input type="text" placeholder="Enter Customer Code" class="pb-4" matInput
+                        [formControl]="Customers" [matAutocomplete]="AreaID">
+                      <mat-autocomplete #AreaID="matAutocomplete">
+                        <mat-option *ngFor="let cust of CustomerList | async " [value]="cust.CustCodevtxt">
+                          {{cust.CustCodevtxt}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-group col-md-8">
+                    <label>Customer Name</label>
+                    <input type="label" class="form-control" value="{{CustomerName}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+
+                  <div class="form-group col-md-4">
+                    <label>Consignee Code *</label>
+                    <mat-form-field>
+                      <input type="text" placeholder="Enter Consignee Code" class="pb-4" matInput
+                        [formControl]="Consignees" [matAutocomplete]="AreaConsignees">
+                      <mat-autocomplete #AreaConsignees="matAutocomplete">
+                        <mat-option *ngFor="let cust of ConsigneeList | async " [value]="cust.ShipToCodevtxt">
+                          {{cust.ShipToCodevtxt}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </div>
+
+                  <!-- <div class="form-group col-md-3">
+                    <label for="inputEmail4">Consignee Code</label>
+                    <select class=" form-control" (change)="getConsigneeNameData($event.target.value)">
+                      <option value="none">Select Consignee Code</option>
+                      <option *ngFor="let Consignee of ConsigneeMaster" value={{Consignee.ShipToCodevtxt}}>
+                        {{Consignee.ShipToCodevtxt}}
+                      </option>
+                    </select>
+                  </div> -->
+                  <div class="form-group col-md-8">
+                    <label>Consignee Name</label>
+                    <input type="label" class="form-control" value="{{ConsigneeName}}" disabled="disabled">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleSelects">Grade * </label>
+                  <select class=" form-control form-control-sm text-right" (change)="GetItemName($event.target.value)">
+                    <option value="0">Select Item</option>
+                    <option *ngFor="let Item of AllItemMasterData" value={{Item?.ItemCodevtxt}}>
+                      {{Item?.ItemCodevtxt}}
+                    </option>
+                  </select>
+                </div>
+
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="exampleSelects">Transport Mode</label>
+
+                    <div *ngIf="this.loose">
+                      <input type="label" class="form-control" value="BULK" disabled="disabled">
+                    </div>
+                    <div *ngIf="!this.loose">
+                      <select class="form-control form-control-sm" (change)="GetTransportMode($event.target.value)"
+                        id="exampleSelects">
+                        <option>Select</option>
+                        <option>TRUK</option>
+                        <option>RAKE</option>
+                        <!-- <option>ROAD</option> -->
+                      </select>
+                    </div>
+
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="exampleSelects">Supply From</label>
+
+                    <select class="form-control form-control-sm" (change)="GetSupplyFrom($event.target.value)"
+                      id="exampleSelects">
+                      <option>Select</option>
+                      <option>PLANT</option>
+                      <option>DEPOT</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+
+                  <div class="form-group col-md-4">
+                    <label>Depo Code</label>
+                    <mat-form-field>
+                      <input type="text" placeholder="Enter Depo Code" class="pb-4" matInput [formControl]="Depos"
+                        [matAutocomplete]="AreaDepot">
+                      <mat-autocomplete #AreaDepot="matAutocomplete">
+                        <mat-option *ngFor="let Depot of DepoList | async " [value]="Depot?.PlantCodevtxt">
+                          {{Depot?.PlantCodevtxt}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-group col-md-8">
+                    <label>Depot Name</label>
+                    <input type="label" class="form-control" value="{{DepotName}}" disabled="disabled">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleSelects">Delivery Condition *</label>
+                  <select class="form-control form-control-sm" (change)="GetDeliveryTersms($event.target.value)"
+                    id="DeliveryConditons">
+                    <option>Select</option>
+                    <option>FOB</option>
+                    <option>EX-DEPOT</option>
+                  </select>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="exampleSelects">Payment Term *</label>
+                    <select class="form-control form-control-sm" (change)="GetPaymentTerms($event.target.value)">
+                      <option>Select</option>
+                      <option>Advance</option>
+                      <option>30 DAYS AGIANST BG</option>
+                      <option>45 DAYS AGIANST BG</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Quantity *</label>
+                    <input autocomplete="off" type="number" onlyNumber matInput
+                      class=" mat-input-element1 form-control form-control-sm "
+                      (change)="GetQuantity($event.target.value)" />
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <div class="col-md-6 border">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Region</label>
+                    <input class="form-control" value="{{PriceApproval?.REGION}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9" disabled="disabled">
+                    <label for="inputPassword4"></label>
+                    <input class="form-control" disabled="disabled" value="{{PriceApproval?.RNAME}}">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Branch</label>
+                    <input class="form-control" value="{{PriceApproval?.BRANCH}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label></label>
+                    <input class="form-control" value="{{PriceApproval?.BNAME}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Territory</label>
+                    <input class="form-control" value="{{PriceApproval?.TERRITORY}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label></label>
+                    <input class="form-control" value="{{PriceApproval?.TNAME}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">TPC Agent</label>
+                    <input class="form-control" value="{{PriceApproval?.LIFNR}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label></label>
+                    <input class="form-control" value="{{PriceApproval?.TPC}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Destination</label>
+                    <input class="form-control" value="{{PriceApproval?.LZONE}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label></label>
+                    <input class="form-control" value="{{PriceApproval?.DNAME}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Price Zone</label>
+                    <input class="form-control" value="{{PriceApproval?.PLTYP}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label></label>
+                    <input class="form-control" value="{{PriceApproval?.PRNAME}}" disabled="disabled">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Validity From Date</label>
+                  </div>
+                  <div class="form-group col-md-9">
+                    <input class="form-control" value="{{PriceApproval?.VFROM}}" disabled="disabled">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Validity To Date</label>
+                  </div>
+                  <div class="form-group col-md-9">
+                    <input class="form-control" value="{{PriceApproval?.VTO}}" disabled="disabled">
+                  </div>
+                </div>
+
+              </form>
+            </div>
+
+          </div>
+
+          <div class="row  p-3">
+            <div class="bg-dark text-white col-md-12">
+              <h6 class="p-2">PRICE (PER BAG)</h6>
+            </div>
+            <div class="col-md-12 border">
+              <form class="mt-3">
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">None-Trade *</label>
+
+                    <input autocomplete="off" type="number" onlyNumber matInput
+                    class=" mat-input-element1 form-control form-control-sm "
+                    (change)="GetNoneTrade($event.target.value)" />
+
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputPassword4">Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.RTPRICE}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputPassword4">Price(Differnce)</label>
+                    <input class="form-control" value="{{PriceApproval?.DPRICE}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputPassword4">Remarks</label>
+                    <input type="text" class="form-control form-control-sm" placeholder=""
+                      (change)="GetRemarks($event.target.value)" />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row  p-3">
+            <div class="col-md-6 border">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="exampleSelects">Unloading *</label>
+                    <select class="form-control form-control-sm" (change)="GetUnLoading($event.target.value)"
+                      id="exampleSelects">
+                      <option>Select</option>
+                      <option>0</option>
+                      <option>40</option>
+                      <option>50</option>
+                      <option>60</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Discount</label>
+                    <input class="form-control" value="{{PriceApproval?.TDISCOUNT}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">Non Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.NDISCOUNT}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">SP COMM./TPC Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.TSP}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="inputPassword4">Non Trade *</label>
+                    <input type="email" class="form-control form-control-sm"
+                      (change)="GetSPNonTradeValue($event.target.value)" placeholder="Non Trade" />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label for="exampleSelects">Competition Name</label>
+                    <select class="form-control form-control-sm" id="exampleSelects"
+                      (change)="GetCompitionName($event.target.value)">
+                      <option>Select</option>
+                      <option>BIRLA A1</option>
+                      <option>ULTRA TECH</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label>Competition Price</label>
+                    <input autocomplete="off" type="number" onlyNumber matInput  placeholder="Competition Price"
+                    class=" mat-input-element1 form-control form-control-sm "
+                    (change)="GetCompitionPrice($event.target.value)" />
+
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-12">
+                    <label>TTE Name</label>
+                    <input type="email" class="form-control form-control-sm" placeholder="TTE Name"
+                      (change)="GetTTEName($event.target.value)" />
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col-md-6 border">
+              <form>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Packing Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.TPACK}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label for="inputPassword4">Non Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.NPACK}}" disabled="disabled">
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Handling Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.THAND}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label>Non Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.NHAND}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Price (Per MT)</label>
+                    <input class="form-control" value="{{PriceApproval?.TPRICE }}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label>Non Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.NPRICE}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Primery FRT</label>
+                    <input class="form-control" value="{{PriceApproval?.PTFRT}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label>Non Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.PNFRT}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">Secondary FRY</label>
+                    <input class="form-control" value="{{PriceApproval?.STFRT}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label>Non Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.SNFRT}}" disabled="disabled">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">GST</label>
+                    <input class="form-control" value="{{PriceApproval?.TGST}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-9">
+                    <label>Non Trade</label>
+                    <input class="form-control" value="{{PriceApproval?.NGST}}" disabled="disabled">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row  p-3">
+            <div class="col-md-12 border">
+              <form class="mt-3">
+                <div class="form-row">
+                  <div class="form-group col-md-3 pt-2  ">
+                    <div class="row  ml-2">
+                      <p>Type:</p>
+                      <mat-radio-group [ngModelOptions]="{standalone: true}" [(ngModel)]="Type"
+                        aria-label="Select an Type">
+                        <mat-radio-button value="Fresh">Fresh</mat-radio-button>
+                        <mat-radio-button value="Ageing"> Ageing</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputEmail4">NCR (Non-Trade)</label>
+                    <input class="form-control" value="{{PriceApproval?.NNCR}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputPassword4">NCR (Trade)</label>
+                    <input class="form-control" value="{{PriceApproval?.TNCR}}" disabled="disabled">
+                  </div>
+                  <div class="form-group col-md-3">
+                    <label for="inputPassword4">NCR (Differnce)</label>
+                    <input class="form-control" value="{{PriceApproval?.DNCR}}" disabled="disabled">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="row  p-3">
+
+            <a type="Submit" (click)="onSecoundSubmit()" Class="btn mr-2 btn-brand btn-sm">Post
+              to SAP</a>
+            <a type="Submit" (click)="onFirstSubmit()" Class="btn ml-2 btn-brand btn-sm">Save</a>
+            <a type="reset" Class="btn ml-2 btn-brand btn-sm">Cancel</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

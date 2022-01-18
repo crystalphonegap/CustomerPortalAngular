@@ -1,0 +1,109 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid mt-4">
+  <div class="kt-portlet">
+      <div class="kt-portlet__head">
+          <div class="kt-portlet__head-label">
+              <h3 class="kt-portlet__head-title">Employee Details:</h3>
+          </div>
+      </div>
+      <div class="kt-portlet__body">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="kt-section__body">
+                          <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">User Code</label>
+                              <div class="col-lg-9 col-xl-9">
+                                <label  class="form-control  ">
+                                  {{User.UserCodetxt}}
+                                </label>
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">User Name</label>
+                              <div class="col-lg-9 col-xl-9">
+                                <label  class="form-control  ">
+                                  {{User.UserNametxt}}
+                                </label>
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">User Type</label>
+                              <div class="col-lg-9 col-xl-9">
+                                <label  class="form-control  ">
+                                  {{User.UserTypetxt}}
+                                </label>
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">Mobile</label>
+                              <div class="col-lg-9 col-xl-9">
+                                  <div class="input-group">
+                                    <label  class="form-control  ">
+                                      {{User.Mobilevtxt}}
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">Email Address</label>
+                              <div class="col-lg-9 col-xl-9">
+                                  <div class="input-group">
+                                    <label  class="form-control  ">
+                                      {{User.Emailvtxt}}
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div  [style.display]="ViewZone" class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">Zone</label>
+                              <div class="col-lg-9 col-xl-9">
+                                  <div class="input-group">
+                                    <label  class="form-control  ">
+                                      {{User.ZoneCodevtxt}} - {{ User.ZoneDescriptionvtxt }}
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div  [style.display]="ViewRegion" class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">Region</label>
+                              <div class="col-lg-9 col-xl-9">
+                                  <div class="input-group">
+
+                                    <label  class="form-control disabled">
+                                      {{User.RegionCodevtxt}} - {{ User.RegionDescriptionvtxt }}
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div  [style.display]="ViewBranch" class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">Branch</label>
+                              <div class="col-lg-9 col-xl-9">
+                                  <div class="input-group">
+
+                                    <label  class="form-control disabled">
+                                      {{User.BranchCodevtxt}} - {{ User.BranchNamevtxt }}
+                                    </label>
+                                   </div>
+                              </div>
+                          </div>
+                          <div  [style.display]="ViewTSE" class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">TSE</label>
+                              <div class="col-lg-9 col-xl-9">
+                                  <div class="input-group">
+
+                                    <label  class="form-control disabled">
+                                      {{User.SalesOfficeCodevtxt}} - {{ User.SalesOfficeNamevtxt }}
+                                    </label>
+                                   </div>
+                              </div>
+                          </div>
+                          <div class="form-group mt-3">
+                              <button   [routerLink]="['/SystemAdmin/EmployeeDetails']"  class="btn  btn-secondary  btn-wide kt-font-bold kt-font-transform-u" > Back</button>
+
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+      </div>
+  </div>
+</div>

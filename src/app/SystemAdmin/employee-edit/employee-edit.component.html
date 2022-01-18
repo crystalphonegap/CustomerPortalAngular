@@ -1,0 +1,147 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid mt-4">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">Employee Details:</h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+            <form [formGroup]="userAdd"  *ngIf="this.userAdd" (ngSubmit)="AreaChanegd(true)">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="kt-section__body">
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">User Code</label>
+                                <div class="col-lg-9 col-xl-9">
+                                    <input class="form-control" type="text" value={{User.UserCodetxt}} placeholder="UserCode" required disabled/>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">User Name</label>
+                                <div class="col-lg-9 col-xl-9">
+
+                                    <input formControlName="UserNametxt"  class="form-control" type="text" placeholder="UserName"  required />
+                                </div>
+                            </div>
+                            <div   [style.display]="UserTypeNotEmployee"  class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">User Type</label>
+                                <div class="col-lg-9 col-xl-9">
+                                    <input class="form-control" type="text" value={{User.UserTypetxt}} placeholder="UserCode" required disabled/>
+                                </div>
+                            </div>
+                            <div   [style.display]="UserTypeEmployee"  class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">User Type</label>
+                                <div class="col-lg-9 col-xl-9">
+
+                                  <select class=" form-control"  formControlName="UserTypetxt"  (change)="ChangeUserType($event.target.value)">
+                                    <option value="Zonal Manager">Zonal Manager</option>
+                                    <option value="Regional Manager">Regional Manager</option>
+                                    <option value="Branch Manager">Branch Manager</option>
+                                    <option value="Territory Sales Executive">Territory Sales Executive</option>
+                                </select>
+                                </div>
+                            </div>
+                            <div   [style.display]="UserTypeEmployee"  class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">
+                                  {{UserType=='Zonal Manager'?'Zonal':UserType=='Regional Manager'? 'Region':UserType=='Branch Manager'? 'Branch':UserType=='Territory Sales Executive'? 'Territory':''}}
+                                </label>
+                                <div class="col-lg-9 col-xl-9">
+
+                                  <mat-form-field class="col-lg-12 col-xl-12">
+                                    <input type="text"    class="pb-4"  matInput [formControl]="Area" [matAutocomplete]="AreaID">
+                                    <mat-autocomplete      #AreaID="matAutocomplete">
+                                        <mat-option  *ngFor="let option of AreaList | async" [value]="UserType=='Zonal Manager'? option.ZoneDescriptionvtxt:UserType=='Regional Manager'? option.RegionDescriptionvtxt:UserType=='Branch Manager'? option.BranchNamevtxt:UserType=='Territory Sales Executive'? option.SalesOfficeNamevtxt:''">
+                                            {{ UserType=='Zonal Manager'? option.ZoneDescriptionvtxt:UserType=='Regional Manager'? option.RegionDescriptionvtxt:UserType=='Branch Manager'? option.BranchNamevtxt:UserType=='Territory Sales Executive'? option.SalesOfficeNamevtxt:''}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">Mobile</label>
+                                <div class="col-lg-9 col-xl-9">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" formControlName="Mobilevtxt" placeholder="Mobile" aria-describedby="basic-addon1" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">Email Address</label>
+                                <div class="col-lg-9 col-xl-9">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" formControlName="Emailvtxt" placeholder="Email" aria-describedby="basic-addon1" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">Password</label>
+                                <div class="col-lg-9 col-xl-9">
+                                    <div class="input-group">
+                                        <input (input)="CheckPassword($event.target.value,'p')" type="text" class="form-control" formControlName="Passwordvtxt" placeholder="Password" aria-describedby="basic-addon1" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">Confirm Password</label>
+                                <div class="col-lg-9 col-xl-9">
+                                    <div class="input-group">
+                                        <input (input)="CheckPassword($event.target.value,'c')" type="text" class="form-control" formControlName="CPasswordvtxt" placeholder="Confirm Password" aria-describedby="basic-addon1" required />
+                                    </div>
+                                </div>
+                                <label class="col-xl-3 col-lg-3 col-form-label">Status</label>
+                                                <div class="col-lg-9 col-xl-9 kt-checkbox-inline"> 	&nbsp;
+                                                    <label class="kt-checkbox">
+                                                        <input type="checkbox"  (change)="onStatusChange($event)"  value=" {{this.isActive}}"  [checked]="this.isActive==1"  >Active
+
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">Select Role</label>
+                                <div class="col-lg-9 col-xl-9">
+                                    <div class="input-group">
+                                        <select   class=" form-control" (change)="changeSelectRole($event.target.value)">
+                                            <option [selected]="this.SetRoles==0"  value="0">Default Role</option>
+                                            <option [selected]="this.SetRoles==1"  value="1">Set Roles</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="this.SetRoles==1" class="form-group row">
+                                <label class="col-xl-3 col-lg-3 col-form-label">Set Roles</label>
+                                <div class="col-lg-9 col-xl-9">
+                                    <div class="kt-checkbox-list">
+                                        <label *ngFor="let role of Roles;" class="kt-checkbox">
+                                            <input type="checkbox"  name="role.IDbint"  [ngModelOptions]="{standalone: true}"
+                                             [(ngModel)]="role.Checked"
+                                            value="{{role.IDbint}}"
+                                          (change)="onRoleChange(role,$event)">
+
+                                              {{role.RoleNamevtxt}}<br>
+                                              <span></span>
+                                          </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <app-password-strength-bar [passwordToCheck]="Password" >
+                                </app-password-strength-bar>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-control-label">{{Error}}</label>
+                            </div>
+                            <div class="form-group mt-3">
+                                <button class="btn btn-brand btn-wide kt-font-bold kt-font-transform-u" type="submit" > Submit</button>
+                                <button   [routerLink]="['/SystemAdmin/EmployeeDetails']"  class="btn  btn-secondary  btn-wide kt-font-bold kt-font-transform-u" > Cancel</button>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

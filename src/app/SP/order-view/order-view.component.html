@@ -1,0 +1,160 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+    <div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
+
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">Pending Orders Info
+                    <small>
+						<span>Credit Limit:<span
+								class="kt-font-bold mr-3">{{ this.CreditLimit}}</span></span>
+						<span>Available Credit Limit:<span
+								class="kt-font-bold mr-3">{{ this.AvailableCreditLimit}}</span></span>
+					</small>
+                </h3>
+            </div>
+            <div *ngIf="this.OrderInfo?.Statusvtxt=='Pending'">
+                <button (click)="Edit()" class="btn mt-3  btn-brand "><i class="fa fa-edit"></i></button>
+            </div>
+        </div>
+
+        <div class="kt-portlet__body">
+            <div class="table-responsive" style="overflow: hidden;">
+
+
+                <table class="text-dark col-md-12">
+
+                    <tbody>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Sold To Code </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.CustomerCodevtxt}}</td>
+                            <th class="col-sm-3" scope="row">Sold To Name </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.CustomerNamevtxt}}</td>
+
+
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Ship To Code </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.ShipToCodevtxt}}</td>
+                            <th class="col-sm-3" scope="row">Ship To Name </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.ShipToNamevtxt}}</td>
+
+
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Web Order No </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.OrderNovtxt}}</td>
+                            <th class="col-sm-3" scope="row">Web Order Date </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.OrderDatedate | date :'dd/MM/yyy'}}</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Po No</th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.RefNovtxt}}</td>
+                            <th class="col-sm-3" scope="row">PO Date </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.RefDatedate | date : 'MM/dd/yyy'}}</td>
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">SAP Order No</th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.SAPOrderNovtxt}}</td>
+                            <th class="col-sm-3" scope="row">SAP Order Date </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.SAPOrderDatedate | date : 'dd/MM/yyy'}}</td>
+
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Total Order Quantity</th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.TotalOrderQuantityint }}</td>
+                            <th class="col-sm-3" scope="row">Total Order Quantity In MT </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.TotalOrderQuantityMTint }}</td>
+                        </tr>
+                        <tr class="row">
+
+                            <th class="col-sm-3" scope="row">Payment Terms </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.PaymentTermsvtxt}}</td>
+                            <th class="col-sm-3" scope="row">Delivery Terms </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.DeliveryTermsvtxt}}</td>
+
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Ship To Address </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.ShipToAddressvtxt}}</td>
+                            <th class="col-sm-3" scope="row">Delivery Address </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.DeliveryAddressvtxt}}</td>
+
+
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Status </th>
+                            <td class="col-sm-3">: {{this.OrderInfo?.Statusvtxt}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <h5 class="mt-4">Orders Placed Detail</h5>
+            <div class="table-responsive">
+                <div class="kt-portlet__body up-bord">
+
+                    <div>
+                        <div *ngFor="let Order of Orders" class="customerCustomers-list border shadow-sm p-3 mb-3">
+                            <div class="row col-11">
+                                <div class="row col-12">
+                                    <div class="col-md-4 ">
+                                        Material Code : <span class="kt-font-bold">{{Order?.MaterialCodevtxt}}</span>
+                                    </div>
+                                    <div class="col-md-2 ">
+                                        UOM : <span class="kt-font-bold">{{Order?.UoMvtxt}}</span>
+                                    </div>
+
+                                    <div class="col-md-2 ">
+                                        Qty : <span class="kt-font-bold">{{Order?.Quantityint}}</span>
+                                    </div>
+                                    <div class="col-md-3 ">
+                                        Qty In MT : <span class="kt-font-bold">{{Order?.QtyMt}}</span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div *ngIf="this.detail[0]!=null">
+
+
+                <div class="table-bord">
+                    <h5 class="mt-4" style="color: #ed3237;">SAP Response</h5>
+                    <label class=" kt-font-boldest" style="float: left;">SAP Order No &nbsp;</label>
+                    <div>
+                        : {{this.detail[0].SAPOrderNovtxt}}
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped mt-2">
+                        <thead style="background-color: #CDCDCD;">
+                            <tr>
+                                <th class=" font-weight-bold align-text-top" scope="col">SrNo</th>
+                                <th class=" font-weight-bold align-text-top" scope="col">ID</th>
+                                <th class=" font-weight-bold align-text-top" scope="col">NUMBER</th>
+                                <th class=" font-weight-bold align-text-top" scope="col">MESSAGE</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Data of detail; index as i">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{Data.ErrorIDvtxt}}</td>
+                                <td>{{Data.Numvtxt}}</td>
+                                <td>{{Data.Messagevtxt}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <button (click)="Back()" class="btn mr-2  btn-brand ">Back</button>
+                <button (click)="onSubmit()" class="btn  btn-brand ">Reject</button>
+            </div>
+        </div>

@@ -1,0 +1,55 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">Upload KAM
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+            <div class="row">
+                <label class="col-lg-2 col-form-label">Upload File:</label>
+                <div class="col-lg-10">
+                    <div class="kt-uppy" id="kt_uppy_5">
+                        <div class="kt-uppy__wrapper">
+                            <div class="uppy-Root uppy-FileInput-container">
+                              <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" >
+                            </div>
+                        </div>
+                        <div class="kt-uppy__list"></div>
+                        <div class="kt-uppy__status kt-uppy__status--hidden">
+                            <div class="uppy-Root uppy-StatusBar is-waiting" aria-hidden="true">
+                                <div class="uppy-StatusBar-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width: 0%;">
+                                </div>
+                                <div class="uppy-StatusBar-actions"></div>
+                            </div>
+                        </div>
+                        <div class="kt-uppy__informer kt-uppy__informer--min">
+                            <div class="uppy uppy-Informer" aria-hidden="true">
+                                <p role="alert"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-demo-icon mt-3 mb-0 border">
+                        <button class="btn btn-sm  btn-icon btn-icon-md" (click)="download()"> <i
+                          class="fa fa-file-download"></i></button>
+                          <div class="kt-demo-icon__class">
+                              Download Sample File
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+            <div class="kt-form__actions">
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-10">
+                        <button type="button" class="btn mr-2 btn-brand btn-sm" (click)="Submit()">Submit</button>
+                        <button type="button" class="btn btn-secondary btn-sm" (click)="back()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

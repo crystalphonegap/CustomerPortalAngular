@@ -1,0 +1,88 @@
+<!-- begin:: Content -->
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid mt-4">
+  <div class="kt-wizard-v4" id="kt_user_add_user" data-ktwizard-state="step-first">
+    <!--begin: Form Wizard Nav -->
+
+    <!--end: Form Wizard Nav -->
+    <div class="kt-portlet">
+      <div class="kt-portlet__body kt-portlet__body--fit">
+        <div class="kt-grid">
+          <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v4__wrapper">
+            <form [formGroup]="userAdd" (ngSubmit)="onSubmit()">
+              <!--begin: Form Wizard Form-->
+              <div >
+                <!--begin: Form Wizard Step 1-->
+                <div class="kt-wizard-v4__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+                  <div class="kt-heading kt-heading--md">
+                    User's Details:
+                  </div>
+                  <div class="kt-section kt-section--first">
+                    <div class="kt-wizard-v4__form">
+                      <div class="row">
+                        <div class="col-xl-12">
+                          <div class="kt-section__body">
+                            <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">UserCode</label>
+                              <div class="col-lg-9 col-xl-9">
+                                <input class="form-control" type="text" formControlName="UserCodetxt"
+                                  placeholder="UserCode" required disabled />
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">UserName</label>
+                              <div class="col-lg-9 col-xl-9">
+                                <input class="form-control" type="text" placeholder="UserName"
+                                  formControlName="UserNametxt" required />
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">Division</label>
+                              <div class="col-lg-9 col-xl-9">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" formControlName="Divisionvtxt"
+                                    placeholder="Division" aria-describedby="basic-addon1" required />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">Mobile</label>
+                              <div class="col-lg-9 col-xl-9">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" formControlName="Mobilevtxt"
+                                    placeholder="Mobile" aria-describedby="basic-addon1" required />
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <label class="col-xl-3 col-lg-3 col-form-label">Email Address</label>
+                              <div class="col-lg-9 col-xl-9">
+                                <div class="input-group">
+                                  <input type="email" class="form-control" formControlName="Emailvtxt"
+                                    placeholder="Email" aria-describedby="basic-addon1" required />
+                                </div>
+                              </div>
+                            </div>
+
+                            <span *ngIf="userAdd.errors?.invalid">
+                              Password doesn't match
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+         
+                    <button class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" type="submit" [disabled]="this.userAdd.invalid"> Submit</button>
+                
+                <!--end: Form Actions -->
+              </div>
+            </form>
+            <!--end: Form Wizard Form-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

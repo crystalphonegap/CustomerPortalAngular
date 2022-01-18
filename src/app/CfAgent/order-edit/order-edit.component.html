@@ -1,0 +1,144 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid ">
+    <form  >
+        <div class="kt-portlet kt-portlet--responsive-mobile">
+            <div class="kt-portlet__head bg-light">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">Edit Order
+                        <small>
+                            <span>Credit Limit:<span class=" kt-font-bold mr-3">{{ this.CreditLimit}}</span></span>
+                            <span>Available Credit Limit:<span class="kt-font-bold mr-3">{{ this.AvailableCreditLimit}}</span></span>
+                        </small>
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="kt-form">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="kt-section p-3">
+
+                                <div class="kt-section__body">
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Web Order No</label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.OrderNovtxt}}
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">Web Order Date</label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.OrderDatedate | date :'dd/MM/yyyy'}}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">PO No</label>
+                                        <div class="col-md-4">
+                                            : {{Pono}}
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">PO Date</label>
+                                        <div class="col-md-4">
+                                            : {{this.PoDate  | date :'dd/MM/yyyy'}}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Ship to </label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.ShipToCodevtxt}} - {{this.OrderInfo?.ShipToNamevtxt}}
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">Ship to Address</label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.ShipToAddressvtxt}}
+                                        </div>
+
+                                    </div>
+                                    <div class=" mt-2  row">
+
+                                        <label class="col-md-2 kt-font-boldest">Delivery Address</label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.DeliveryAddressvtxt}}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <table class="text-dark col-md-12">
+                        <tbody>
+                            <tr class="mt-4">
+                                <th scope="row">UOM</th>
+                                <td> 
+                                    <select (change)="updateUOM($event.target.value)" class="form-control" name="anyName"
+                                    >
+                                         <option   [selected]="UOM.IDint ==ItemMaster.UoMint"
+                                          *ngFor="let UOM of UOMs" value="{{UOM?.IDint}}">
+                                             {{UOM?.AlternativeUnit}}
+                                         </option>
+                                     </select>
+                               
+                            </tr>
+                            <tr class="mt-4">
+                                <th scope="row">Item</th>
+                                <td><select  class=" form-control form-control-sm text-right"
+                                    (change)="AddDataInItemMaster($event.target.value)"> 
+                                  
+                                    <option  [selected]="Item.ItemCodevtxt ==ItemMaster.MaterialCodevtxt" *ngFor="let Item of AllItemMasterDate" value={{Item?.ItemCodevtxt}}>
+                                        {{Item?.ItemCodevtxt}} - {{Item?.ItemDescvtxt}}
+                                    </option>
+                                </select>
+                                </td>
+                                
+                            </tr>
+                            <tr class="mt-4">
+                                <th scope="row">Quantity </th>
+                                <td>  <input type="number" onlyNumber matInput class="mat-input-element1 form-control form-control-sm "
+                                    (change)="updateTotal($event.target.value)"
+                                    value="{{TotalQuantity}}"> </td>
+                               
+                               
+                                
+                            </tr>
+                            <tr class="mt-4">
+                                <th scope="row">  Quantity in MT </th>
+                                <td>   {{this.TotalMT}} </td>
+                               
+                            </tr>
+                            <tr class="mt-4">
+                                <th scope="row"> Quantity in Kgs</th>
+                                <td>   {{this.TotalKgs}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+               
+
+                <div class="row col-md-12">
+                    <div class="mt-3 col-md-auto">
+                        <b> Payment Terms :</b> {{OrderInfo?.PaymentTermsvtxt}}
+                    </div>
+                    <div class="mt-3  ml-3 col-md-auto">
+                        <b> Delivery Terms :</b> {{OrderInfo?.DeliveryTermsvtxt}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+                <div class="kt-form__actions">
+                    <div class="row">
+                        <div class="col">
+                            <a (click)="Back()" Class="btn mr-3  btn-brand btn-sm">Cancel</a>
+                            <a type="Submit" (click)="onSubmit('Save')" Class="btn mr-3 btn-brand btn-sm">Submit</a>
+                           
+                            <button (click)="onSubmit('Post')" class="btn  btn-brand ">Post to SAP</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

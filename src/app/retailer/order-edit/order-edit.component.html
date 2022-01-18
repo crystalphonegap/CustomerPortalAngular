@@ -1,0 +1,105 @@
+<form [formGroup]="OtherData" >
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid ">
+  
+        <div class="kt-portlet kt-portlet--responsive-mobile">
+            <div class="kt-portlet__head bg-light">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">Edit Order
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="kt-form">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="kt-section p-3">
+
+                                <div class="kt-section__body">
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">PO No</label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" type="text"
+                                                (change)="updatePoDate($event.target.value)" value="{{Pono}}">
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">PO Date</label>
+                                        <div class="col-md-4">
+                                            <input class="form-control" type="text"
+                                            (change)="updatePono($event.target.value)" value="{{PoDate}}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Item *</label>
+                                        <div class="col-md-4">
+                                            <select class=" form-control form-control-sm text-right"
+                                            (change)="AddDataInItemMaster($event.target.value)">
+    
+                                            <option [selected]="Item.ItemCodevtxt ==this.ItemCode"
+                                                *ngFor="let Item of AllItemMasterDate" value={{Item?.ItemCodevtxt}}>
+                                                {{Item?.ItemCodevtxt}}  
+                                            </option>
+                                        </select>
+                                              </div>
+                                        <label class="col-md-2 kt-font-boldest">UOM *</label>
+                                        <div class="col-md-4">
+                                            <select (change)="updateUOM($event.target.value)" class="form-control"
+                                            name="anyName">
+                                            <option [selected]="UOM.IDint ==OrderInfo.UoMint" *ngFor="let UOM of UOMs"
+                                                value="{{UOM?.IDint}}">
+                                                {{UOM?.AlternativeUnit}}
+                                            </option>
+                                        </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Quantity *</label>
+                                        <div class="col-md-4">
+                                            <input type="number" onlyNumber matInput
+                                            class="form-control  form-control-sm mat-input-element1"
+                                        (change)="updateTotal($event.target.value)" value="{{TotalQuantity}}"> 
+                                              </div>
+                                        <label class="col-md-2 kt-font-boldest">Delivery Address</label>
+                                        <div class="col-md-4">
+                                            <textarea class=" form-control" type="text"
+                                            (change)="updateAddress($event.target.value)"
+                                            value="{{OrderInfo.DeliveryAddressvtxt}}"></textarea>
+                            
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Quantity in MT </label>
+                                        <div class="col-md-4">
+                                            {{this.TotalMT}}
+                                              </div>
+                                        <label class="col-md-2 kt-font-boldest">Quantity in Kgs </label>
+                                        <div class="col-md-4">
+                                            {{this.TotalKgs}}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+                <div class="kt-form__actions">
+                    <div class="row">
+                        <div class="col">
+                            <a type="Submit" (click)="onSubmit('Retailer Submited')" Class="btn mr-3 btn-brand btn-sm">Submit</a>
+                            <a type="Submit" (click)="onSubmit('Draft')" Class="btn mr-3  btn-brand btn-sm">Save in
+                                Drafts</a>
+                            <a (click)="Back()" Class="btn mr-3  btn-brand btn-sm">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+</div>
+
+</form>

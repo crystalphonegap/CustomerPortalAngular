@@ -1,0 +1,91 @@
+<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+    <div id="kt_aside_menu" class="kt-aside-menu" data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
+        <ul class="kt-menu__nav">
+            <li class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/dashboard']" class="kt-menu__link "><i
+                        class="kt-menu__link-icon fa fa-chart-area"></i><span class="kt-menu__link-text">Home
+                        Page</span></a></li>
+
+
+            <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/CustomerList']" class="kt-menu__link "><i
+                        class="kt-menu__link-icon  flaticon-rotate  "></i><span class="kt-menu__link-text">Switch User
+                    </span></a></li>
+            <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/OpenOrders']" class="kt-menu__link "><i
+                        class="kt-menu__link-icon   fa fa-shopping-cart "></i><span class="kt-menu__link-text">Open
+                        Order's
+                    </span></a></li>
+
+            <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/BlockOrders']" class="kt-menu__link "><i
+                        class="kt-menu__link-icon   fa fa-lock"></i><span class="kt-menu__link-text">Block
+                        Order's
+                    </span></a></li>
+            <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/OpenTicketsDetail']" class="kt-menu__link "><i
+                        class="kt-menu__link-icon fa fa-book-open"></i><span class="kt-menu__link-text"> Ticket Status
+                    </span></a></li>
+
+
+
+            <li class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel  " [routerLinkActive]="['kt-menu__item--active']"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon fa fa-book-open"></i><span
+                        class="kt-menu__link-text">Balance Confirmation List</span><i
+                        class="kt-menu__ver-arrow la la-angle-right"></i></a>
+
+                <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left" kt-hidden-height="80">
+                    <ul class="kt-menu__subnav">
+
+                        <li class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/BalanceConfirmationListA']" class="kt-menu__link "><i
+                                    class=" fa kt-menu__link-icon"><span></span></i><span class="kt-menu__link-text">
+                                    Customer</span></a></li>
+                        <li class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']">
+                            <a [routerLink]="['/Emp/BalanceConfirmationListForCFSP']" class="kt-menu__link "><i
+                                    class="kt-menu__link-icon"></i><span class="kt-menu__link-text">CF Agent
+                                    / SP</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li [style.display]="BalanceConfirmation" class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel  " [routerLinkActive]="['kt-menu__item--active']"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon fa fa-clipboard-list"></i><span
+                        class="kt-menu__link-text">Balance Confirmation</span><i
+                        class="kt-menu__ver-arrow la la-angle-right"></i></a>
+
+                <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left" kt-hidden-height="80">
+                    <ul class="kt-menu__subnav">
+
+                        <li class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/BalanceConfirmationUpload']" class="kt-menu__link "><i
+                                    class=" fa kt-menu__link-icon"><span></span></i><span class="kt-menu__link-text">
+                                    Balance Confirmation Upload</span></a></li>
+                        <li class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']">
+                            <a [routerLink]="['/Emp/BalanceConfirmationList']" class="kt-menu__link "><i
+                                    class="kt-menu__link-icon"></i><span class="kt-menu__link-text">Balance Confirmation
+                                    List</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+
+            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover" [routerLinkActive]="['kt-menu__item--active']"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon  flaticon2-browser"></i><span
+                        class="kt-menu__link-text">Report</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="kt-menu__submenu ">
+                    <span class="kt-menu__arrow"></span>
+                    <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']">
+                            <a [routerLink]="['/Emp/TicketMISUserTypeWise']" class="kt-menu__link "><i
+                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                    class="kt-menu__link-text">Ticket MIS UserType Wise</span></a>
+                        </li>
+                        <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']">
+                            <a [routerLink]="['/Emp/TicketMISCategoryTypeWise']" class="kt-menu__link "><i
+                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                    class="kt-menu__link-text">Ticket MIS Category Wise</span></a>
+                        </li>
+                        <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']">
+                            <a [routerLink]="['/Emp/LoginReport']" class="kt-menu__link "><i
+                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                    class="kt-menu__link-text"> Login Report</span></a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

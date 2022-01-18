@@ -1,0 +1,109 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+    <div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
+        <!--begin::Portlet-->
+
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">Ticket Detail
+                </h3>
+            </div>
+        </div>
+
+        <div class="kt-portlet__body">
+            <div class="table-responsive">
+                <table class="text-dark col-md-12">
+
+                    <tbody>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Type</th>
+                            <td class="col-sm-3">{{this.TicketInfo?.Typevtxt}}</td>
+                            <th class="col-sm-3" scope="row">Category </th>
+                            <td class="col-sm-3">{{this.TicketInfo?.DepartmentNamevtxt}} </td>
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Ticket No</th>
+                            <td class="col-sm-3"> {{this.TicketInfo?.RefNovtxt}}</td>
+                            <th class="col-sm-3" scope="row">Priority</th>
+                            <td class="col-sm-3">{{this.TicketInfo?.Priorityvtxt}}</td>
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Ticket Date</th>
+                            <td class="col-sm-3">{{this.TicketInfo?.RefDatedate | date :'dd/MM/yyyy'}}</td>
+                            <th class="col-sm-3" scope="row">Status</th>
+                            <td class="col-sm-3">{{this.TicketInfo?.Statusvtxt}}</td>
+                        </tr>
+                        <tr class="row">
+
+                            <th class="col-sm-3" scope="row">Attachment</th>
+                            <td class="col-sm-3">
+                                <div *ngIf="TicketInfo.AttachmentFileNamevtxt != null">
+                                    <a (click)=" customerDownload(TicketInfo.Idbint,TicketInfo.AttachmentFileNamevtxt)"  type="submit"  class="alert-link">
+                                        {{this.TicketInfo?.AttachmentFileNamevtxt}}   </a>
+                                </div>
+                                <div *ngIf="TicketInfo.AttachmentFileNamevtxt == null">
+                                   Not present
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row mt-4">
+                <div class=" col-md-2 kt-font-bold kt-font-dark">
+                    Subject
+                </div>
+                <div class=" col-md-8  shadow-sm p-3 mb-3 bg-white rounded">
+                    {{this.TicketInfo?.Subjectvtxt}}
+                </div>
+            </div>
+            <div class="row ">
+                <div class=" col-md-2 kt-font-bold kt-font-dark">
+                    Description
+                </div>
+                <div class=" col-md-8 col-md-8  shadow-sm p-3 mb-3 bg-white rounded">
+                    {{this.TicketInfo?.Descriptionvtxt}}
+                </div>
+            </div>
+                <h5 class="mt-4">Ticket History</h5>
+                <br>
+                <h4 *ngIf="this.TicketDetail[0]==null">No Data Available</h4>
+
+
+            <div *ngFor="let Ticket of TicketDetail" class="custom-list-view row bTicket shadow-sm p-3 m-3 ">
+
+                <div style="width: 100%;">
+
+                    <div class=" row">
+                        <div class="col-12 col-md-6 col-lg-5 col-xl-4"><b>Updated By :</b> &nbsp; {{Ticket?.UserCodevtxt}} - {{Ticket?.UserNametxt }} </div>
+                        <div class="col-12 col-md-4 col-lg-3 col-xl-2">
+                            <b>{{Ticket?.Createddatetimedatetime | date:'d-M-yyyy, h:mm a' }}</b></div>
+
+                            <div  *ngIf="Ticket.AttachmentFileNamevtxt != null"  class="col-12 col-md-2 col-lg-4 col-xl-2" ><b>Attachment :</b> &nbsp;
+
+                                <a (click)=" employeeDownload(Ticket.IDbint,Ticket.AttachmentFileNamevtxt)"  type="submit"  class="alert-link">
+                                    {{this.TicketInfo?.AttachmentFileNamevtxt}}   </a>
+                              </div>
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-12 col-md-2 col-lg-2 col-xl-2">
+                            <b>Remark :</b>
+                        </div>
+                        <div class="col-12 col-md-8 col-lg-8 col-xl-8">
+                            {{Ticket?.Remarksvtxt}}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="kt-portlet__foot">
+                <div class="kt-form__actions">
+                    <a (click)="Back()"  class="btn btn-secondary btn-sm" >Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

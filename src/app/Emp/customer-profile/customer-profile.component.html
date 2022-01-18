@@ -1,0 +1,425 @@
+<div class="kt-container kt-container--fluid kt-grid__item">
+  <div>
+    <div class="kt-portlet kt-portlet--mobile">
+      <div class="bg-light kt-portlet__head kt-portlet__head--lg pt-2 mb-2">
+        <h3 class="kt-portlet__head-title text-dark p-3"><b>Customer Profile</b></h3>
+      </div>
+      <div class="bg-light kt-portlet__head kt-portlet__head--lg mb-2 pt-2 bot-border">
+        <div class="col-md-12 row">
+          <div class="col-md-2" style="margin-bottom: 25px;">
+
+
+            <div class="profile-img profile-i">
+              <div class="overlay-layer align-items-end justify-content-end ">
+                <button class="btn btn-sm" Tooltip="Delete Profile Picture" (click)="ondeletephotoclick()"><i
+                    class="flaticon-delete"></i>Delete Profile Picture
+                </button>
+              </div>
+
+              <img style="align-items: center;" [src]="Base" height="44" width="55">
+              <div class="file btn btn-lg btn-primary">
+                <i class="flaticon2-pen"></i> Edit Pic
+
+                <input width="100%" type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)">
+              </div>
+            </div>
+
+            <div *ngIf="deletephoto ==true" class="row" style="margin-top: 6px;">
+              <button (click)="DeleteUserProfileImage()" class="btn  mt-2 mr-2 btn-sm btn-primary"> Confirm Delete
+              </button>
+              <button (click)="uploadFile(null)" class="btn  mt-2  btn-sm btn-primary">Cancel </button>
+            </div>
+            <div *ngIf="submitphoto ==true" class="row" style="margin-top: 6px;">
+              <button (click)="UpdateUserProfileImage()" class="btn  mt-2 mr-2 btn-sm btn-primary"> Update Photo
+              </button>
+              <button (click)="uploadFile(null)" class="btn  mt-2  btn-sm btn-primary">Cancel </button>
+            </div>
+          </div>
+          <div class="col-md-10 " style="padding-top: 10px;">
+            <div class="profile-head">
+
+              <div class="row ml-1">
+
+                <h4>Firm Name : {{ this.ProfileData?.CustNamevtxt}} </h4>
+
+              </div>
+              <div class="row ml-1 mb-2">
+                <p><b>Owner’s Name : </b> {{ this.ProfileData?.Contactpersonvtxt}} </p>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <p><b>Address : </b>{{ this.ProfileData?.Address1vtxt}} , {{ this.ProfileData?.Address2vtxt}} </p>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-4">
+                  <p><b>State : </b> {{ this.ProfileData?.StateCdvtxt}}-{{ this.ProfileData?.StateNamevtxt}}</p>
+                </div>
+                <div class="col-md-4">
+                  <p><b>City :</b> {{ this.ProfileData?.CityCdvtxt}} </p>
+                </div>
+                <div class="col-md-4">
+                  <p><b>Sales Office : </b>{{ this.ProfileData?.SalesOfficevtxt}}-{{
+                    this.ProfileData?.SalesOfficeDescvtxt}}
+                  </p>
+                </div>
+              </div>
+
+              <div class="row ">
+                <div class="col-md-4">
+                  <p><b>Territory :</b> {{ this.ProfileData?.TerritoryCodevtxt}}-{{
+                    this.ProfileData?.TerritoryNamevtxt}}
+
+                  </p>
+                </div>
+                <div class="col-md-4">
+                  <p><b>TSE : </b>{{ this.ProfileData?.TSE}} </p>
+                </div>
+                <div class="col-md-4">
+                  <p><b>TTE : </b>{{ this.ProfileData?.TTEName}} </p>
+                </div>
+              </div>
+              <div class="row ">
+                <div class="col-md-4">
+                  <p><b>Contact Number : </b>{{ this.ProfileData?.Contactpersonvtxt}} </p>
+                </div>
+                <div class="col-md-4">
+                  <p><b>Email : </b>{{ this.ProfileData?.Emailvtxt}} </p>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="kt-portlet__body">
+        <div class="kt-portlet__head-label border-bottom p-2">
+          <h3 class="kt-portlet__head-title text-dark"><b> Other Details </b></h3>
+        </div>
+        <div class="row border-bottom p-2 mt-2">
+          <div class="col-md-4">
+            <p><b>With Prism since:</b> {{ this.ProfileData?.AssociatedWithPrism}} </p>
+          </div>
+          <div class="col-md-4">
+            <p><b>TR/NT :</b> {{ this.ProfileData?.Typevtxt}} </p>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-4 row">
+              <b>Active : </b>
+              <div *ngIf="ProfileData?.IsActivebit=='True'">
+                Yes
+              </div>
+              <div *ngIf="ProfileData?.IsActivebit!='True'">
+                No
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="row border-bottom p-2 mt-2">
+          <div class="col-md-4">
+            <p><b>Category :</b> {{ this.ProfileData?.CustCategory}} </p>
+          </div>
+          <div class="col-md-4">
+            <p><b>Associated Retailers :</b> {{ this.ProfileData?.AssociatedRetailers}} </p>
+          </div>
+          <div class="col-md-4">
+            <p><b>Associated Masons :</b> {{ this.Mason?.length}} </p>
+          </div>
+
+        </div>
+
+        <div class="row border-bottom p-2 mt-2">
+          <div class="col-md-4 pl-4">
+
+            <div class="row mb-2">
+              <b>List of Retailers :</b>
+
+              <div [style.display]="showRetailer" class="ml-2">
+                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                  (click)="showRetailerfucn(false)"><i class="fa fa-minus"></i></button> <span
+                  class="ml-1">Shrink</span>
+
+
+              </div>
+              <div [style.display]="showRetailer=='block'?'none':''" class="ml-2">
+                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                  (click)="showRetailerfucn(true)"><i class="fa fa-plus"></i></button><span class="ml-1">Expand</span>
+              </div>
+
+            </div>
+
+          </div>
+          <div class="col-md-4 pl-4">
+            <div class="row mb-2">
+              <b>List of Masons :</b>&nbsp;&nbsp;
+              <div [style.display]="showMason" class="ml-2">
+                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="showMasonfucn(false)"><i
+                    class="fa fa-minus"></i></button> <span class="ml-1">Shrink</span>
+
+
+              </div>
+              <div [style.display]="showMason=='block'?'none':''" class="ml-2">
+                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="showMasonfucn(true)"><i
+                    class="fa fa-plus"></i></button><span class="ml-1">Expand</span>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="col-md-4">
+            <p><b>Customer Type : </b> {{ this.ProfileData?.CustomerTypevtxt}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div [style.display]="showRetailer" class="kt-container col-md-6 mt-2 kt-container--fluid ">
+            <div class="kt-portlet kt-portlet--mobile">
+              <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                <div class="kt-portlet__head-label">
+                  <h3 class="kt-portlet__head-title text-dark">
+                    <b>
+                      Retailer List
+                    </b>
+                  </h3>
+                </div>
+
+                <div class="kt-portlet__head-toolbar">
+
+
+                  <button (click)="showRetailerfucn(false)" class="btn btn-sm "> (-) shrink </button>
+                </div>
+              </div>
+
+              <div *ngIf="this.Retailer[0]!=null" class="table table-responsive">
+                <table class="table table-striped ">
+                  <thead style="background-color: #CDCDCD;">
+                    <tr>
+                      <th class=" font-weight-bold align-text-top" scope="col" style="width: 75px;">Sr No</th>
+                      <th class=" font-weight-bold align-text-top" scope="col">Retailer Name </th>
+                      <th class=" font-weight-bold align-text-top" scope="col">Retailer Mobile Number </th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of Retailer; index as i">
+                      <th scope="row">{{ i + 1 }}</th>
+
+                      <td>{{ data?.ShipToNamevtxt }}</td>
+                      <td>{{ data?.TelNumber1vtxt }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <h2 *ngIf="this.Retailer[0]==null">No Data Available</h2>
+            </div>
+          </div>
+
+          <div [style.display]="showMason" class="kt-container  col-md-6  mt-2 kt-container--fluid ">
+            <div class="kt-portlet kt-portlet--mobile">
+              <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                <div class="kt-portlet__head-label">
+                  <h3 class="kt-portlet__head-title text-dark">
+                    <b>
+                      Mason List
+                    </b>
+                  </h3>
+                </div>
+
+                <div class="kt-portlet__head-toolbar">
+
+
+                  <button (click)="showMasonfucn(false)" class="btn btn-sm "> (-) shrink </button>
+                </div>
+              </div>
+
+              <div *ngIf="this.Mason[0]!=null" class=" table table-responsive">
+                <table class="table table-striped ">
+                  <thead style="background-color: #CDCDCD;">
+                    <tr>
+                      <th class=" font-weight-bold align-text-top" scope="col" style="width: 75px;">Sr No</th>
+                      <th class=" font-weight-bold align-text-top" scope="col">Mason Name </th>
+                      <th class=" font-weight-bold align-text-top" scope="col">Mason Mobile Number </th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of Mason; index as i">
+                      <th scope="row">{{ i + 1 }}</th>
+
+                      <td>{{ data?.MasonNametxt }}</td>
+                      <td>{{ data?.MasonMobileNumber }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <h2 *ngIf="this.Mason[0]==null">No Data Available</h2>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="row border-bottom p-2 mt-2">
+          <div class="col-md-4">
+            <p><b>Loyalty Points :</b> Redeemed points: {{ this.ProfileData?.EarnPoints}} Balance points : {{
+              this.ProfileData?.BalancePoints}}
+            </p>
+          </div>
+          <div class="col-md-4">
+            <p><b>Security Amount :</b>Rs {{
+              this.ProfileData?.CustSecurityAmount==null?0:this.ProfileData?.CustSecurityAmount}} </p>
+          </div>
+
+          <div class="col-md-4">
+            <p><b>Credit Limit :</b> Rs {{
+              this.ProfileData?.AvailableCreditLimitdcl==null?0:this.ProfileData?.AvailableCreditLimitdcl}} </p>
+          </div>
+
+
+        </div>
+
+        <div class="row border-bottom p-2 mt-2">
+          <div class="col-md-4">
+            <p><b>No. of Authorized Retailers Associated – Effective : </b> {{
+              this.ProfileData?.NoOfEffectiveRetailersCount}}
+            </p>
+          </div>
+          <div class="col-md-4">
+            <p><b>No. of Authorized Retailers Associated – Non effective : </b> {{
+              this.ProfileData?.NoOfNoEffectiveRetailersCount}}
+            </p>
+          </div>
+          <div class="col-md-4">
+            <p><b>Payment Terms : </b> {{ this.ProfileData?.PaymentTerms1vtxt}}{{
+              this.ProfileData?.PaymentTerms2vtxt==null?'': '- '+this.ProfileData?.PaymentTerms2vtxt}}
+            </p>
+          </div>
+        </div>
+
+        <div class="row border-bottom p-2 mt-2">
+          <div class="col-md-4">
+            <p><b>Consistency over last 12 months : </b> {{ this.CustomerProfileConsistency?.TotalConsistency}}</p>
+          </div>
+          <div class="col-md-4">
+            <p>
+              <b>Last 9 months Customer Effective : </b> {{ this.CustomerProfileEffective?.TotalEffectiveMonths}}
+              <b>/ Non effective : </b> {{ this.CustomerProfileEffective?.TotalNonEffectiveMonths}}
+
+            </p>
+          </div>
+          <div class="col-md-4">
+            <p><b>Supply Source : </b> {{ this.ProfileData?.SupplySourcevtxt}}</p>
+          </div>
+        </div>
+
+
+        <div class="row  ">
+
+          <div class="col-md-8">
+            <div class="row border-bottom p-2 mt-2">
+              <div class="col-md-6">
+                <p><b>Warehouse :</b> {{ this.ProfileData?.WareHouseSqmt}} in sq. ft.</p>
+              </div>
+              <div class="col-md-6">
+                <p><b>Staff : </b> {{ this.ProfileData?.Staffvtxt}} </p>
+              </div>
+            </div>
+            <div class="row border-bottom p-2 mt-2">
+              <div class="col-md-6">
+                <p><b>Potential : </b> {{ this.ProfileData?.Potentialvtxt==null?0:this.ProfileData?.Potentialvtxt}} MT/m
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p><b>MTD Sales : </b> {{
+                  this.ProfileData?.TotalActualSales==null?0:this.ProfileData?.TotalActualSales}}
+                  MT/m
+                </p>
+              </div>
+
+            </div>
+            <div class="row border-bottom p-2 mt-2">
+              <div class="col-md-6">
+                <p><b>Effective in last month : </b> {{ this.ProfileData?.DealerEffectiveLastMonth}}</p>
+              </div>
+
+            </div>
+            <div class="row border-bottom p-2 mt-2">
+              <div class="col-md-12">
+                <p><b>Other Business : </b> {{ this.ProfileData?.OtherBusinessvtxt}}</p>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-md-4">
+
+            <div class="row border-bottom mt-3" style="text-align: center;">
+              <h5>Sales History</h5>
+              <canvas [id]="TranscationSalesHistoryCanvos">{{ this.TranscationSalesHistory }}</canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+
+
+          <div class="col-md-4" style="text-align: center;">
+            <h5>Sales Growth (rolling 9 months) Actual V/s Target</h5>
+            <canvas [id]="TargetSalesCanvos">{{ this.TargetSales }}</canvas>
+          </div>
+          <div class="col-md-4" style="text-align: center;">
+            <h5>NCR Revenues (rolling 9 months)</h5>
+            <canvas [id]="NCRCanvos">{{ this.NCR }}</canvas>
+          </div>
+          <div class="col-md-4" style="text-align: center;">
+            <h5>CD Availment % History (last 9 months)</h5>
+            <canvas [id]="PaymnetSalesCanvos">{{ this.PaymnetSales }}</canvas>
+          </div>
+        </div>
+
+
+        <div class="table table-responsive mt-4 ">
+
+          <table style="width: 100%;" class="table table-striped">
+            <thead style="background-color: #CDCDCD;">
+              <tr>
+                <th *ngFor="let  Column of Columns" class=" font-weight-bold align-text-top" scope="col">
+                  {{Column=='Typevtxt'?'Sales (breakup)':Column}}</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td *ngFor="let  Column of Columns">{{Column=='Typevtxt'?'Couter Sales':rows[Column]==null?'0':
+                  rows[Column]}}
+                </td>
+              </tr>
+              <tr>
+                <td *ngFor="let  Column of Columns">{{Column=='Typevtxt'?'Retailer Sales':rows1[Column]==null?'0':
+                  rows1[Column] }}</td>
+              </tr>
+              <!-- <tr>
+                              <td *ngFor="let  Column of Columns">{{Column=='Typevtxt'?'Retailer Sales':rows2[Column]==null?'0': rows2[Column] }}</td>
+                          </tr> -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row p-2 mt-2">
+          <p><b>Mason Meet Conducted (Total) : </b> {{ this.ProfileData?.MasonMeetConductedint}}</p>
+        </div>
+        <div>
+          <button class="btn btn-sm mt-1   btn-primary" (click)="BacK()">Back </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

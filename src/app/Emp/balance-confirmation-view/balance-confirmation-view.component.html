@@ -1,0 +1,56 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+	<div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
+		<!--begin::Portlet-->
+
+		<div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+			<div class="kt-portlet__head-label">
+				<h3 class="kt-portlet__head-title">Balance Confirmation Information
+				</h3>
+			</div>
+			<div   >
+				<button (click)="Edit()" class="btn mt-3  btn-brand "><i class="fa fa-edit"></i></button>
+			</div>
+		</div>
+
+		<div class="kt-portlet__body">
+			<div class="table-responsive">
+
+
+				<table class="text-dark col-md-12">
+
+					<tbody>
+						<tr class="mt-4">
+							<th scope="row">Request No</th>
+							<td>: {{this.BCs[0]?.RequestNovtxt}}</td>
+							<th scope="row">Expiry Date </th>
+							<td>: {{this.BCs[0]?.ExpiryDatedatetime | date :'dd/MM/yyy'}}</td>
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">From Date </th>
+							<td>: {{this.BCs[0]?.FromDatedatetime | date :'dd/MM/yyy'}}</td>
+							<th scope="row">To Date </th>
+							<td>: {{this.BCs[0]?.ToDatedatetime | date :'dd/MM/yyy'}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			 <h5 class="mt-4">Balance Confirmation Detail</h5>
+			<div class="table-responsive">
+				<div class="kt-portlet__body ">
+
+					<div>
+						<div *ngFor="let BC of BCs" class="customerCustomers-list border shadow-sm p-3 mb-3">
+							<div class="row col-11">
+
+									 <span class="kt-font-bold">{{BC.UserTypetxt}} code : {{BC.DealerCodevtxt}}</span>
+
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<button  (click)="Back()" class="btn  btn-brand ">Back</button>
+			</div>
+		</div>

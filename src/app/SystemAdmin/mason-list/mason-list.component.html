@@ -1,0 +1,105 @@
+
+
+
+<div class="kt-container  kt-container--fluid ">
+  <div class="kt-portlet kt-portlet--mobile">
+      <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm">
+          <div class="kt-portlet__head-label">
+              <h3 class="kt-portlet__head-title">Mason List
+              </h3>
+          </div>
+          <div class="kt-portlet__head-toolbar">
+            <button class="btn btn-brand mr-2  btn-sm btn-bold  " (click)="ChangeFilter('download')" >
+              <i class="fa fa-file-excel"></i> <span class=" m-2">Export To Excel </span>
+           </button>
+           <button class="btn btn-brand mr-2 btn-sm btn-bold  " (click)="Add()" >
+              <i class="fa fa-file-excel"></i> <span class=" m-2">Upload</span>
+           </button>
+          </div>
+      </div>
+
+      <form [formGroup]="SearchFilter" (ngSubmit)="ChangeFilter('List')">
+        <div class="p-4 bg-light border-top border-bottom">
+            <!--begin: Search Form -->
+            <div class="kt-form kt-form--label-right ">
+                <div class="row align-items-center">
+
+                    <div class="col-xl-12 order-2 order-xl-1">
+                         <div class="row align-items-center">
+                            <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                <mat-form-field appearance="outline">
+                                    <mat-label>Type To Search...</mat-label>
+                                    <input formControlName="search" matInput placeholder="Placeholder">
+                                    <mat-icon matSuffix>search</mat-icon>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                <button class="btn btn-dark btn-sm" type="submit" title="bigger"><i
+                                        class="fa fa-search ml-2 ml-md-0"></i><span
+                                        class="d-none d-md-inline-block ml-2">Search</span></button>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--end: Search Form -->
+        </div>
+    </form>
+       <div class="kt-portlet__body ">
+          <div class=" table table-responsive">
+              <table class="table table-striped">
+                <thead style="background-color: #CDCDCD;" >
+                  <tr>
+                    <th class=" font-weight-bold align-text-top"  scope="col">Sr No</th>
+                    <th class=" font-weight-bold align-text-top"  scope="col">Mason Code </th>
+                    <th class=" font-weight-bold align-text-top"  scope="col">Mason Name </th>
+                    <th class=" font-weight-bold align-text-top"  scope="col">Mason Mobile Number </th>
+                    <th class=" font-weight-bold align-text-top"  scope="col">Customer Code </th>
+                    <th class=" font-weight-bold align-text-top"  scope="col">Customer Name </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let data of LoyalityPoints; index as i">
+                    <th scope="row">{{i + Indexing +1 }}</th>
+                    <td>{{ data?.MasonCodetxt }}</td>
+                    <td>{{ data?.MasonNametxt }}</td>
+                    <td>{{ data?.MasonMobileNumber }}</td>
+                    <td>{{ data?.MasonCustomerCode }}</td>
+                    <td>{{ data?.MasonCustomerName }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+          </div>
+          <h4 *ngIf="this.LoyalityPoints[0]==null">No Data Available</h4>
+          <div *ngIf="LoyalityPoints[0] !=null" class="kt-pagination kt-pagination--brand">
+              <ul class="kt-pagination__links">
+                  <li *ngIf="this.pageField.length < paginationService.exactPageList" class="kt-pagination__link--prev">
+                      <a (click)="showPrevLoyalityPoints()" [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                              class="fa fa-angle-left kt-font-brand"></i></a></li>
+                  <li *ngFor="let page of pageField;let i=index">
+                      <a (click)="showLoyalityPointsByPageNumber(page,i)"  [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''"  style="cursor: pointer;">{{page}}</a>
+                  </li>
+                  <li *ngIf="this.pageField.length < paginationService.exactPageList" class="kt-pagination__link--next"><a (click)="showNextLoyalityPoints()" [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                              class="fa fa-angle-right kt-font-brand"></i></a> </li>
+              </ul>
+              <div class="kt-pagination__toolbar">
+                  <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of page
+                      <span class="kt-font-bold">{{paginationService.exactPageList}}</span></div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

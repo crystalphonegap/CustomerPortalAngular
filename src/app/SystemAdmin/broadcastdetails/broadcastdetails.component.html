@@ -1,0 +1,89 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">BroadCast List
+                </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <a  (click)="AddBroadCast()"  class="btn mr-2 btn-brand btn-sm">Add New</a>
+            </div>
+        </div>
+        <div class="p-4 bg-light border-top border-bottom">
+            <!--begin: Search Form -->
+            <div class="kt-form kt-form--label-right ">
+                <div class="row align-items-center">
+                  <div class="col-xl-12 order-2 order-xl-1">
+                    <div class="row align-items-center">
+                      <div class="col-md kt-margin-b-20-tablet-and-mobile">
+                        <div class="kt-input-icon kt-input-icon--left">
+                          <input type="text" class="form-control" [(ngModel)]="search" placeholder="Type To Search...">
+                          <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                            <span><i class="la la-search"></i></span>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-1">
+                        <button class="btn btn-dark" (click)="ngOnInit()" title="bigger">Search</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <!--end: Search Form -->
+        </div>
+        <div class="kt-portlet__body  ">
+            <div  *ngIf="this.BroadCast[0]!=null" class="table-responsive">
+
+                <table align="center"
+                 class="table table-striped">
+                    <thead style="background-color: #CDCDCD;" >
+                        <tr>
+                             <th class=" font-weight-bold align-text-top"  scope="col" width="61">Sr. No.</th>
+                             <th class=" font-weight-bold align-text-top"  scope="col">Start Date</th>
+                             <th class=" font-weight-bold align-text-top"  scope="col">End Date</th>
+                             <th class=" font-weight-bold align-text-top"  scope="col">Title</th>
+                             <th class=" font-weight-bold align-text-top"  scope="col">contain</th>
+                             <th class=" font-weight-bold align-text-top"  scope="col">Status</th>
+                             <th class=" font-weight-bold align-text-top"  scope="col" width="90">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let BroadCastdata of BroadCast; index as i">
+                            <th scope="row">{{i + Indexing +1 }}</th>
+                            <td>{{BroadCastdata?.StartDatedate | date :'dd/MM/yyyy'}}</td>
+                            <td>{{BroadCastdata?.EndDatedate | date :'dd/MM/yyyy'}}</td>
+                            <td>{{BroadCastdata?.Titlevtxt}}</td>
+                            <td>{{BroadCastdata?.Messagevtxt}}</td>
+                            <td>
+                                <a class=" text-dark" *ngIf="BroadCastdata?.Statusbit==true">Active</a>
+                                <a class=" text-dark" *ngIf="BroadCastdata?.Statusbit==false">In Active </a>
+                            </td>
+                            <td><button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="pass(BroadCastdata)"><i class="fa fa-pen"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 *ngIf="this.BroadCast[0]==null">No Data Available</h2>
+        <div *ngIf="BroadCast[0]!=null" class="kt-pagination kt-pagination--brand">
+                <ul class="kt-pagination__links">
+                    <li *ngIf="this.pageField.length < paginationService.exactPageList" class="kt-pagination__link--prev">
+                        <a (click)="showPrevBroadCast()" [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                                class="fa fa-angle-left kt-font-brand"></i></a></li>
+                    <li *ngFor="let page of pageField;let i=index">
+                        <a (click)="showBroadCastByPageNumber(page,i)" [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''" style="cursor: pointer;">{{page}}</a>
+                    </li>
+                    <li *ngIf="this.pageField.length < paginationService.exactPageList" class="kt-pagination__link--next"><a (click)="showNextBroadCast()" [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                                class="fa fa-angle-right kt-font-brand"></i></a> </li>
+                </ul>
+                <div class="kt-pagination__toolbar">
+                    <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of
+                        <span class="kt-font-bold">{{paginationService.exactPageList}}</span></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

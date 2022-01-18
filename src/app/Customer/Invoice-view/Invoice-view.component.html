@@ -1,0 +1,97 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+    <div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
+        <!--begin::Portlet-->
+
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">Invoice Information
+                </h3>
+            </div>
+        </div>
+
+        <div class="kt-portlet__body">
+            <div class="table-responsive" style="overflow: hidden;">
+                <table class="text-dark col-md-12">
+                    <tbody>
+                        <tr class="row">
+                            <th class="col-md-3" scope="row">Sold To</th>
+                            <td class="col-md-3">: {{this.InvoiceInfo?.SoldToPartyCodevtxt}} - {{this.InvoiceInfo?.SoldTopPartyNamevtxt}}
+                            </td>
+                            <th class="col-md-3" scope="row"> Ship To</th>
+                            <td class="col-md-3">: {{this.InvoiceInfo?.ShipToPartyCodevtxt}} - {{this.InvoiceInfo?.ShipToPartyNamevtxt}}</td>
+                        </tr>
+                        <tr class="row">
+                            <th class="col-md-3" scope="row"> Invoice No </th>
+                            <td class="col-md-3">: {{this.InvoiceInfo?.InvoiceDocumentNovtxt}}</td>
+                            <th class="col-md-3" scope="row">Billing Date </th>
+                            <td class="col-md-3">: {{this.InvoiceInfo?.BillingDatedate | date :'dd/MM/yyyy'}}</td>
+
+                        </tr>
+                        <tr class="row">
+                            <th class="col-md-3" scope="row">Quantity In MT </th>
+                            <td class="col-md-3">: {{this.InvoiceInfo?.QtyMt}}</td>
+                            <th class="col-md-3" scope="row">Tax Amount </th>
+                            <td class="col-md-3">: ₹{{this.InvoiceInfo?.TaxAmountdcl}}</td>
+
+                        </tr>
+                        <tr class="row">
+                            <th class="col-md-3" scope="row">Billing Value </th>
+                            <td class="col-md-3">: ₹{{this.InvoiceInfo?.BillingValuedcl}}</td>
+                            <th class="col-md-3" scope="row"> Delivery Order No</th>
+                            <td class="col-md-3">: {{this.InvoiceInfo?.DeliveryOrder}}</td>
+
+                        </tr>
+                        <tr class="row">
+                            <th class="col-md-3" scope="row">Shipping From Address </th>
+                            <td class="col-md-3">: {{this.InvoiceInfo?.ShippingFromAddress}}</td>
+                            <th class="col-md-3" scope="row"> Delivery To Address </th>
+                            <td class="col-md-3">: {{this.InvoiceInfo?.DeliveryToAddress}}</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+
+            </div>
+            <h5 class="mt-4">Invoice Detail</h5>
+            <div class="table-responsive">
+                <div class="kt-portlet__body ">
+
+                    <div>
+                        <div *ngFor="let Invoice of Invoices" class="customerCustomers-list border shadow-sm p-3 mb-3">
+                            <div class="row col-12">
+
+                                <div class="col-md-3 ">
+
+                                    Material : <span class="kt-font-bold">{{Invoice?.MaterialCodevtxt}}</span>
+
+                                </div>
+
+                                <div class="col-md-2 ">
+
+                                    Quantity In MT : <span class="kt-font-bold">{{Invoice?.QtyMt}}</span>
+
+                                </div>
+                                <div class="col-md-3 ">
+                                    Tax Amount : ₹<span class="kt-font-bold">{{Invoice?.TaxAmountdcl}}</span>
+
+                                </div>
+                                <div class="col-md-3 ">
+                                    Billing Value : ₹<span class="kt-font-bold">{{Invoice?.BillingValuedcl}}</span>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <button (click)="Back()" class="btn  btn-brand ">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

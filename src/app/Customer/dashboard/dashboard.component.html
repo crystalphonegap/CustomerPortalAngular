@@ -1,0 +1,253 @@
+<!-- begin:: Content -->
+<div class="kt-container   kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <app-contain></app-contain>
+
+    <div class="row center  mb-2 text-center">
+        <div class="col-md-9">
+            <div class="row">
+                <div
+                    class="  text-center   col-md-4 col-11  col-xl-4   ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+                    <div class=" mt-2">
+                        <b>
+                            Available Credit Limit
+
+                        </b>
+                    </div>
+                    <div class=" mb-2">
+                        ₹ {{ this.AvailableCreditLimit}}
+                    </div>
+                </div>
+                <div
+                    class="  text-center   col-md-4 col-11  col-xl-4   ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+                    <div class=" mt-2">
+                        <b>
+                            OutStanding
+
+                        </b>
+                    </div>
+                    <div class=" mb-2">
+                        ₹ {{this.OutStanding}}
+                    </div>
+                </div>
+
+                <div [style.display]="MyARss"
+                    class="  text-center col-md-3 col-11  col-xl-3  ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+                    <div class=" mt-2">
+                        <b>
+                            My ARs
+
+                        </b>
+                    </div>
+                    <div class=" mb-2">
+                        {{ this.MyARs}}
+                    </div>
+                </div>
+
+                <div [style.display]="TypeNT"
+                    class="   text-center col-md-3 col-11  col-xl-3  ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+                    <div class=" mt-2">
+                        <b>
+                            MTD Sales
+
+                        </b>
+                    </div>
+                    <div class=" mb-2">
+                        {{ this.ActualSales}} Tons
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3  text-center ">
+
+            <div class=" mt-2" style="float: left;">
+                <i class=" flaticon h-50 align-text-bottom pr-2  flaticon-rotate"></i>
+                <b class=" text-center ">OutStanding Updated on <br/>
+                     {{this.DataDate | date:'dd-MM-yyyy HH:mm:ss  ' }}</b>
+            </div>
+            <div class=" mb-2">
+                <button (click)="Refreash()" class=" btn btn-sm btn-glow btn-brand">Refresh</button>
+            </div>
+        </div>
+    </div>
+
+      <div *ngIf="this.CustomerUserType == 'TR'" class="row center  mb-2 text-center">
+          <div class="col-md-9">
+
+              <div class="row">
+                  <div
+                      class="  text-center   col-md-4 col-11  col-xl-4   ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+                      <div class=" mt-2">
+                          <b>
+                              Earn Loyalty Points
+                          </b>
+                      </div>
+                      <div class=" mb-2">
+                          {{ this.EarnLoyalityPoints}}
+                      </div>
+                  </div>
+
+                  <div
+                      class="  text-center   col-md-4 col-11  col-xl-4   ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+                      <div class=" mt-2">
+                          <b>
+                              Redeem Loyalty Points
+                          </b>
+                      </div>
+                      <div class=" mb-2">
+                          {{this.ReedemLoyalityPoints}}
+                      </div>
+                  </div>
+                  <div
+                      class="  text-center col-md-3 col-11  col-xl-3  ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+                      <div class=" mt-2">
+                          <b>
+                              Balance Loyalty Points
+                          </b>
+                      </div>
+                      <div class=" mb-2">
+                          {{ this.EarnLoyalityPoints -this.ReedemLoyalityPoints}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-3  text-center ">
+              <div class=" mt-2" style="float: left;">
+                  <i class=" flaticon h-50 align-text-bottom pr-2  flaticon-rotate"></i>
+                  <b class=" text-center ">Loyalty Points Updated on <br/>
+                      {{this.LoyalityDate   }}</b>
+              </div>
+            
+          </div>
+      </div>
+
+
+      <div  *ngIf="this.CustomerUserType == 'TR'"  class="row">
+        <div class="  text-center   col-md-5 col-11  col-xl-5   ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+            <div class=" mt-2">
+                <b>
+                  Premium Sales
+                </b>
+            </div>
+            <div class=" mb-2">
+              Champion : {{PremiumSalesChamp}} | Champion Plus : {{PremiumSalesChampPlus}} | Duratech :{{PremiumSalesDuratech}}
+            </div>
+        </div>
+
+        <div class="  text-center col-md-5 col-11  col-xl-5  ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+            <div class=" mt-2">
+                <b>
+                  % Premium
+                </b>
+            </div>
+            <div class=" mb-2">
+              Champion : {{PremiumSalesChampPer}} | Champion Plus : {{PremiumSalesChampPlusPer}} | Duratech :{{PremiumSalesDuratechPer}}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div [style.display]="TypeNT" class="col-xl-12 ">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title text-dark">
+                            <b>
+                                Performance
+                            </b>
+                        </h3>
+                    </div>
+                </div>
+                <div class=" m-2">
+                    <div class="chart-container">
+                        <canvas [id]="canvasNT">{{ this.Linechart }}</canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div [style.display]="TypeNTN"  class="col-xl-10 " >
+          <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title text-dark">
+                        <b>
+                            Performance
+                        </b>
+                    </h3>
+                </div>
+            </div>
+            <div class=" m-2">
+                <div class="chart-container2">
+                  <canvas [id]="canvasNTN">{{ this.Linechart }}</canvas>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-xl-2  center  text-center  ">
+            <div [style.display]="MonthlyTarget" class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        Monthly Target
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{this.TargetSales}} Tons
+                </div>
+            </div>
+
+
+            <div [style.display]="TypeNTN" class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        MTD Sales
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{ this.ActualSales}} Tons
+                </div>
+            </div>
+
+            <div [style.display]="Achievementper" class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        % Achievement
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{ this.Achivement}}
+                </div>
+            </div>
+
+            <div [style.display]="PremiumSales" class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        Premium Sales
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{ this.ProrateSale}}
+                </div>
+            </div>
+
+            <div [style.display]="PremiumPer" class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        % Premium
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{ this.Premium}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End::Row-->
+
+    <!--End::Dashboard 1-->
+</div>
+
+<!-- end:: Content -->

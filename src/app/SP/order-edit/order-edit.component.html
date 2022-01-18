@@ -1,0 +1,212 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid ">
+    <form>
+        <div class="kt-portlet kt-portlet--responsive-mobile">
+            <div class="kt-portlet__head bg-light">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">Edit Order
+                        <small>
+                            <span>Credit Limit:<span
+                                    class="kt-font-bold mr-3">{{ this.CreditLimit}}</span></span>
+                            <span>Available Credit Limit:<span
+                                    class="kt-font-bold mr-3">{{ this.AvailableCreditLimit}}</span></span>
+                        </small>
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="kt-form">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="kt-section p-3">
+
+                                <div class="kt-section__body">
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Web Order No</label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.OrderNovtxt}}
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">Web Order Date</label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.OrderDatedate | date :'dd/MM/yyyy'}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">PO No</label>
+                                        <div class="col-md-4">
+                                            : {{Pono}}
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">PO Date</label>
+                                        <div class="col-md-4">
+                                            : {{this.PoDate  | date :'dd/MM/yyyy'}}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Sold To</label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.CustomerCodevtxt}} - {{this.OrderInfo?.CustomerNamevtxt}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Ship to </label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.ShipToCodevtxt}} - {{this.OrderInfo?.ShipToNamevtxt}}
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">Ship to Address</label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.ShipToAddressvtxt}}
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Item *</label>
+                                        <div class="col-md-4">
+                                            <select class=" form-control text-right"
+                                                (change)="AddDataInItemMaster($event.target.value)">
+
+                                                <option [selected]="Item?.ItemCodevtxt ==ItemMaster?.MaterialCodevtxt"
+                                                    *ngFor="let Item of AllItemMasterDate" value={{Item?.ItemCodevtxt}}>
+                                                    {{Item?.ItemCodevtxt}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">UOM *</label>
+                                        <div class="col-md-4">
+                                            <select (change)="updateUOM($event.target.value)" class="form-control"
+                                                name="anyName">
+                                                <option [selected]="UOM.IDint ==ItemMaster.UoMint"
+                                                    *ngFor="let UOM of UOMs" value="{{UOM?.IDint}}">
+                                                    {{UOM?.AlternativeUnit}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Quantity *</label>
+                                        <div class="col-md-4">
+                                            <input type="number" autocomplete="off" onlyNumber matInput
+                                                class="mat-input-element1 form-control "
+                                                (change)="updateTotal($event.target.value)" value="{{TotalQuantity}}">
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">Quantity in MT </label>
+                                        <div class="col-md-4">
+                                            : {{this.TotalMT}}
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest"> Quantity in Kgs</label>
+                                        <div class="col-md-4">
+                                            : {{this.TotalKgs}}
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">Delivery Address</label>
+                                        <div class="col-md-4">
+                                            : {{this.OrderInfo?.DeliveryAddressvtxt}}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                        <label class="col-md-2 kt-font-boldest">Vehicle Type *</label>
+                                        <div class="col-md-4">
+                                            <select (change)="updateTrans($event.target.value)" class="form-control"
+                                                name="anyNameplant">
+                                                <option value="null">
+                                                    Select Vehicle Type
+                                                </option>
+                                                <option value="TRUK">
+                                                    TRUK
+                                                </option>
+                                                <option value="BULK">
+                                                    BULK
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <label class="col-md-2 kt-font-boldest">Suppling  Plant *
+                                          
+                                        </label>
+                                        <div class="col-md-3">
+                                            <select (change)="updatePlant($event.target.value)" class="form-control"
+                                                name="anyNameplant">
+                                            <option value="null">
+                                                    Select Suppling  Plants
+                                                </option>
+                                                <option *ngFor="let Plant of SpPlant" value="{{Plant.Plantcodevtxt}}">
+                                                    {{Plant.Plantcodevtxt}} - {{Plant.PlantNamevtxt}}
+                                                </option>
+                                            </select> 
+                                            
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                            (click)="getPlantData()"><i class=" fa fa-eye"></i></button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class=" table table-responsive">
+                        <table class="table table-striped mt-2">
+                            <thead style="background-color: #CDCDCD;">
+                                <tr>
+                                    <th  class=" font-weight-bold align-text-top"   scope="col">SrNo</th>
+                                    <th  class=" font-weight-bold align-text-top"   scope="col">Plant Code</th>
+                                    <th  class=" font-weight-bold align-text-top"   scope="col">Plant Name</th>
+                                    <th  class=" font-weight-bold align-text-top"   scope="col">Storage Code</th>
+                                    <th  class=" font-weight-bold align-text-top"   scope="col">Storage Name</th>
+                                    <th  class=" font-weight-bold align-text-top"   scope="col">Material</th>
+                                    <th  class=" font-weight-bold align-text-top"   scope="col">Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Data of PlantData; index as i">
+                                    <th scope="row">{{ i + 1 }}</th>
+                                    <td>{{Data?.PLANT}}</td>
+                                    <td>{{Data?.PLANT_DESC}}</td>
+                                    <td>{{Data?.STORAGE_LOC}}</td>
+                                    <td>{{Data?.STROAGE_DESC}}</td>
+                                    <td>{{Data?.MATERIAL}}</td>
+                                    <td>{{Data?.UNRESTRICTED}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h4 *ngIf="this.PlantData[0]==null">No Data Available for stock</h4>
+                </div>
+                <div class="row col-md-12">
+                    <div class="mt-1 col-md-auto">
+                        <b> Payment Terms :</b> {{OrderInfo?.PaymentTermsvtxt}}
+                    </div>
+                    <div class="mt-1  ml-3 col-md-auto">
+                        <b> Delivery Terms :</b> {{OrderInfo?.DeliveryTermsvtxt}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+                <div class="kt-form__actions">
+                    <div class="row">
+                        <div class="col">
+                            <button (click)="onSubmit('Post')" class="btn btn-brand ">Post to SAP</button>
+                            <button (click)="onSubmit('Save')" class="btn ml-2  btn-brand ">Save</button>
+                            <button (click)="Back()" class="btn  ml-2 btn-brand ">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

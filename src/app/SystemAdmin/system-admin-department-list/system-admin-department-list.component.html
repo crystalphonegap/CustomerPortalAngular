@@ -1,0 +1,107 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title text-dark">
+                    <b>
+                        Category Assign To View
+                    </b>
+                </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <button class="btn mr-2 btn-brand btn-sm btn-bold  " (click)="Add()">
+                    <i class="fa fa-plus" aria-hidden="true"></i><span class=" m-2">Add Category </span> </button>
+
+            </div>
+        </div>
+
+        <form [formGroup]="SearchFilter" (ngSubmit)="ChangeFilter()">
+            <div class="p-4 bg-light border-top border-bottom">
+                <!--begin: Search Form -->
+                <div class="kt-form kt-form--label-right ">
+                    <div class="row align-items-center">
+
+                        <div class="col-xl-12 order-2 order-xl-1">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Type To Search...</mat-label>
+                                        <input formControlName="search" matInput placeholder="Placeholder">
+                                        <mat-icon matSuffix>search</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-dark btn-sm" type="submit" title="bigger"><i
+                                            class="fa fa-search ml-2 ml-md-0"></i><span
+                                            class="d-none d-md-inline-block ml-2">Search</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--end: Search Form -->
+            </div>
+        </form>
+
+        <div class="kt-portlet__body">
+            <div class=" table table-responsive">
+                <table class="table table-striped">
+                  <thead style="background-color: #CDCDCD;" >
+                    <tr>
+                      <th class=" font-weight-bold align-text-top"  scope="col">Sr No</th>
+                      <th class=" font-weight-bold align-text-top"  scope="col">Category</th>
+                      <th class=" font-weight-bold align-text-top"  scope="col">Assign To</th>
+                      <th class=" font-weight-bold align-text-top"  scope="col">1st Escalation Days</th>
+                      <th class=" font-weight-bold align-text-top"  scope="col">1st Escalation Assign to</th>
+                      <th class=" font-weight-bold align-text-top"  scope="col">2nd Escalation Days</th>
+                      <th class=" font-weight-bold align-text-top"  scope="col">2nd Escalation Assign to</th>
+                      <th class=" font-weight-bold align-text-top"  scope="col">3rd Escalation Days</th>
+                      <th class=" font-weight-bold align-text-top"  scope="col">3rd Escalation Assign to</th>
+                      <th class=" font-weight-bold align-text-top"  scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let Department of Departments; index as i">
+                      <th scope="row">{{i + Indexing +1 }}</th>
+                      <td>{{ Department?.CategoryNamevtxt }}</td>
+                      <td>{{ Department?.AssignTovtxt }}</td>
+                      <td>{{ Department?.EscalationDays1int }}</td>
+                      <td>{{ Department?.Escalation1AssignTovtxt }}</td>
+                      <td>{{ Department?.EscalationDays2int }}</td>
+                      <td>{{ Department?.Escalation2AssignTovtxt }}</td>
+                      <td>{{ Department?.EscalationDays3int }}</td>
+                      <td>{{ Department?.Escalation3AssignTovtxt }}</td>
+                      <td><button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="pass(Department.IDbint)"><i class="fa fa-pen"></i></button></td>
+                    </tr>
+                    </tbody>
+                  </table>
+            </div>
+
+            <h4 *ngIf="this.Departments[0]==null">No Data Available</h4>
+<!--
+            <div *ngIf="Departments[0]!=null" class="kt-pagination kt-pagination--brand">
+                <ul class="kt-pagination__links">
+                    <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                        class="kt-pagination__link--prev">
+                        <a (click)="showPrevDepartments()"
+                            [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                                class="fa fa-angle-left kt-font-brand"></i></a></li>
+                    <li *ngFor="let page of pageField;let i=index"
+                        [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''">
+                        <a (click)="showDepartmentsByPageNumber(page,i)" style="cursor: pointer;">{{page}}</a>
+                    </li>
+                    <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                        class="kt-pagination__link--next"><a (click)="showNextDepartments()"
+                            [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                                class="fa fa-angle-right kt-font-brand"></i></a> </li>
+                </ul>
+                <div class="kt-pagination__toolbar">
+                    <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of
+                        <span class="kt-font-bold">{{paginationService.exactPageList}}</span></div>
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+</div>

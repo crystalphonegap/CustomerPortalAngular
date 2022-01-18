@@ -1,0 +1,137 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+
+        <div class="kt-portlet kt-portlet--responsive-mobile">
+            <div class="kt-portlet__head bg-light">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        <b>Place Order Request</b>
+                        <small>
+                            <span>Credit Limit:<span class="kt-font-bold mr-3">
+                                    {{ this.CreditLimit}}</span></span>
+                            <span>Available Credit Limit:<span class="kt-font-bold mr-3">
+                                    {{ this.AvailableCreditLimit}}</span></span>
+                        </small>
+                    </h3>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="kt-form">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest label-first">Web Order No</label>
+                                <div class="col-md-4 mb-1 mb-md-0">
+                                    {{this.OrderInfo?.ReqOrderNo}}
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">Web Order Date</label>
+                                <div class="col-md-4">
+                                    {{this.OrderInfo?.OrderDatedate | date :'dd/MM/yyyy'}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest">PO No</label>
+                                <div class="col-md-4 mb-1 mb-md-0">
+                                    <input type="text" class="form-control" (change)="updatePono($event.target.value)"
+                                        value="{{Pono}}">
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">PO Date</label>
+                                <div class="col-md-4">
+
+                                    <mat-form-field appearance="outline">
+
+                                        <mat-label>Select Date</mat-label>
+                                        <input matInput autocomplete="off" [ngModelOptions]="{standalone: true}"
+                                            [(ngModel)]="PoDate" [matDatepicker]="picker1">
+                                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker1></mat-datepicker>
+                                    </mat-form-field>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest">Ship to Name *</label>
+                                <div class="col-md-4 mb-1 mb-md-0">
+                                    <select class=" form-control" (change)="getShipToNameData($event.target.value)">
+
+                                        <option value="none">Select Ship To Name</option>
+                                        <option *ngFor="let ShiptoAddress of ShiptoAddresss"
+                                            value={{ShiptoAddress.ShipToCodevtxt}}>
+                                            {{ShiptoAddress.ShipToNamevtxt}}
+                                        </option>
+                                    </select>
+
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">Ship to Address</label>
+                                <div class="col-md-4">
+                                    {{this.Addressvtxt}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest label-first">Item *</label>
+                                <div class="col-md-4 mb-1 mb-md-0">
+                                    <select class=" form-control form-control-sm text-right"
+                                        (change)="AddDataInItemMaster($event.target.value)">
+                                        <option value="0">Select Item</option>
+                                        <option *ngFor="let Item of AllItemMasterDate" value={{Item?.ItemCodevtxt}}>
+                                            {{Item?.ItemCodevtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+<label class="col-md-2 kt-font-boldest">UOM</label>
+                                <div class="col-md-4">
+                                    <select class=" form-control form-control-sm"
+                                    (change)="updateUOM($event.target.value)">
+                                    <option value="0">Select UOM</option>
+                                    <option *ngFor="let UOM of UOMs" value="{{UOM?.IDint}}">
+                                        {{UOM?.AlternativeUnit}}
+                                    </option>
+                                </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest">Quantity *</label>
+                                <div class="col-md-4">
+                                    <input autocomplete="off" type="number" onlyNumber matInput class=" mat-input-element1 form-control form-control-sm "
+                                        (change)="updateTotal($event.target.value)" value="{{TotalQuantity}}">
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">Quantity in MT</label>
+                                <div class="col-md-4">
+                                    {{this.TotalMT}}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-2 kt-font-boldest">Delivery Address</label>
+                                <div class="col-md-4">
+                                    <textarea class=" form-control" type="text"
+                                        (change)="updateAddress($event.target.value)"
+                                        value="{{DeliveryAddress}}"></textarea>
+                                </div>
+                                <label class="col-md-2 kt-font-boldest">Quantity in Kgs</label>
+                                <div class="col-md-4">
+                                    {{this.TotalKgs}}
+                                </div>
+                            </div>
+                            <div class="form-group-last row">
+                                <div class="col-md-auto">
+                                    <b> Payment Terms :</b> {{CustomerData?.PaymentTerms1vtxt}}
+                                </div>
+                                <div class="col-md-auto">
+                                    <b> Delivery Terms :</b> {{CustomerData?.DeliveryTermsvtxt}}
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+                <div>
+                    <a type="Submit" (click)="onSubmit('Pending')" Class="btn mr-2 btn-brand btn-sm">Submit</a>
+                    <a type="Submit" (click)="onSubmit('Draft')" Class="btn mr-2 btn-brand btn-sm mx-1">Save as
+                        Drafts</a>
+                    <a (click)="Back()" Class="btn mr-2 btn-brand btn-sm">Cancel</a>
+                </div>
+            </div>
+        </div>
+
+</div>

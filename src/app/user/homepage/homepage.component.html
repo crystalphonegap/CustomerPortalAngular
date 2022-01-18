@@ -1,0 +1,66 @@
+<div class="home-main">
+    <div class="row justify-content-md-center" style="background-color: #FFF;">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-md-7">
+                    <div style="padding: 10px 65px;">
+                        <h1>
+                            <b>
+                                Bandhan Dealer Portal
+                            </b>
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div style="padding: 10px 10px; float: left;"><button class="btn btn-danger mr-3" *ngIf="Pwa.promptEvent" (click)="installPwa()">
+                        Add to Home screen
+                      </button>
+                      <button [routerLink]="['/user/login']" type="button" class="btn btn-danger mr-3">Login</button> 
+                      <button [routerLink]="['/user/PasswordEmailSend']"  type="button" class="btn btn-danger">Forgot Password</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="homepage-back1 img-fluid" style="background-image: url(assets/media/app_images/homepage-bg10.jpg);">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-3 offset-md-3"><img src="assets/media/app_images/johnson-logo-home.png" class="img-fluid" /></div>
+            </div>
+
+            <div class=" botom-text">
+                <div>
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3 bordertext">
+                            <h1 class="bordertext-color row">Building a</h1>
+                            <h1 class="bordertext-color row">Green Future</h1>
+
+                        </div>
+                        <div class="col-md-6 offset-md-3 p-color">Prism Cement, Satna Plant, Madhya Pradesh</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="container">
+            <div class="row " style="
+    padding: 13px 0px;
+    font-size: 15px;
+">
+                <div class="col-md-4">
+                    <div>Toll Free Number : 1800 572 1444</div>
+                </div>
+                <div class=" col-md-6" >
+                    <div>Email :<a class="mail-id " href="mailto:cement.customerservice@prismjohnson.in "> cement.customerservice@prismjohnson.in</a>
+                    </div>
+                </div>
+                <div class="col-md-2" >
+                    <div>Enquiry / Feedback</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

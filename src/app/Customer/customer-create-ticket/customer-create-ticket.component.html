@@ -1,0 +1,101 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+
+    <div class="kt-portlet kt-portlet--responsive-mobile">
+        <div class="kt-portlet__head bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    <b>Raise Ticket</b>
+                </h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+            <div class="kt-form">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label class="col-md-2 kt-font-boldest">Type</label>
+                            <div class="col-md-4">
+                                <mat-radio-group name="radioOpt1" (change)="onRadioButtonTypeChange($event.value)"
+                                aria-label="Select an option">
+                                <mat-radio-button [checked]="Complaint" value="Complaint">Complaint</mat-radio-button>
+                                <mat-radio-button [checked]="Feedback" value="Feedback">Feedback
+                                </mat-radio-button>
+                            </mat-radio-group>
+                            </div>
+                            <label class="col-md-2 kt-font-boldest label-first">Ticket No</label>
+                            <div class="col-md-4 mb-1 mb-md-0">
+                                {{this.TicketInfo?.RefNovtxt}}
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label class="col-md-2 kt-font-boldest label-first">Category</label>
+                            <div class="col-md-4 mb-1 mb-md-0">
+                                <select class=" form-control" (change)="SelectedDepartment($event.target.value)">
+                                    <option value="none">Select Category</option>
+                                    <option *ngFor="let Department of Departments"
+                                        value={{Department?.IDbint}}>
+                                        {{Department?.CategoryNamevtxt}}
+                                    </option>
+                                </select>
+                            </div>
+                            <label class="col-md-2 kt-font-boldest">Date</label>
+                            <div class="col-md-4">
+                                {{this.TicketInfo?.RefDatedate | date :'dd/MM/yyyy'}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 kt-font-boldest label-first">Priority</label>
+                            <div class="col-md-4 mb-1 mb-md-0">
+                                <mat-radio-group name="radioOpt2" (change)="onRadioButtonTypePriorityChange($event.value)"
+                                aria-label="Select an option">
+                                <mat-radio-button [checked]="Low" value="Low">Low</mat-radio-button>
+                                <mat-radio-button [checked]="Normal" value="Normal">Normal</mat-radio-button>
+                                <mat-radio-button [checked]="High" value="High">High</mat-radio-button>
+                            </mat-radio-group>
+                            </div>
+                            <label class="col-md-2 kt-font-boldest">Status</label>
+                            <div class="col-md-4">
+                               Open
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 kt-font-boldest label-first">Subject</label>
+                            <div class="col-md-8 mb-1 mb-md-0">
+                                <input type="text"  (change)="updateSubject($event.target.value)" class=" form-control"  />
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-2 kt-font-boldest label-first">Description</label>
+                            <div class="col-md-8 mb-1 mb-md-0">
+                                <textarea rows="5" (change)="updateDescription($event.target.value)" class=" form-control" type="text"
+                                ></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-2 kt-font-boldest label-first">Attachment</label>
+                            <div class="col-md-10 mb-1 mb-md-0">
+
+                                <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+            <div>
+                <a (click)="onSubmit('Submit')" type="Submit" Class="btn mr-2 btn-brand btn-sm">Submit</a>
+                <a (click)="Back()" Class="btn mr-2 btn-brand btn-sm">Cancel</a>
+            </div>
+        </div>
+    </div>
+
+</div>

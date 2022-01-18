@@ -1,0 +1,38 @@
+<div class="spinner_background" [style.display]="loading">
+    <div class="spinner_overlay"><mat-spinner></mat-spinner></div>
+    
+  </div>
+
+<!-- begin:: Header Mobile -->
+<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+    <div class="kt-header-mobile__logo">
+        <img src="assets/media/app_images/johnson-logo.png" class="img-fluid py-2" alt="Logo" id="logo">
+    </div>
+    <div class="kt-header-mobile__toolbar">
+
+        <button type="button" class="kt-header-mobile__topbar-toggler" id="kt_header_mobile_toggler"><i class="flaticon-user"></i></button>
+    </div>
+</div>
+
+<!-- end:: Header Mobile -->
+<div class="kt-grid kt-grid--hor kt-grid--root ">
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper pl-0" id="kt_wrapper">
+            <app-homenav></app-homenav>
+            <alert></alert>
+            <div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor ml-0" id="kt_content">
+                <router-outlet></router-outlet>
+            </div>
+
+            <!-- begin:: Footer -->
+            <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer" style="left: 0;">
+                <div class="kt-container  kt-container--fluid ">
+                    <div class="kt-footer__copyright">
+                          {{ this.Year }}&nbsp;&copy;&nbsp;<a class="kt-link">Prism Johnson Limited</a>
+                    </div>
+                </div>
+            </div>
+            <!-- end:: Footer -->
+        </div>
+    </div>
+</div>

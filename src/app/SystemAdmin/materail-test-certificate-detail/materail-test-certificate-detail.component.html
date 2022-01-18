@@ -1,0 +1,99 @@
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid mt-4">
+  <div class="kt-portlet">
+      <div class="kt-portlet__head">
+          <div class="kt-portlet__head-label">
+              <h3 class="kt-portlet__head-title">Materail Test Certificate Detail</h3>
+          </div>
+      </div>
+      <div class="kt-portlet__body">
+              <div class="row">
+                  <div class="col-md-12">
+                      <div class="kt-section__body">
+                          <div class="form-group row">
+                              <label class="col-md-2 col-form-label">Doc No</label>
+                              <div class="col-md-10">
+                                <label  class="form-control  ">
+                                  {{MTCDetail[0]?.DocNovtxt}}
+                                </label>
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-md-2 col-form-label">Date </label>
+                              <div class="col-md-10">
+                                <label  class="form-control  ">
+                                  {{MTCDetail[0]?.DocDatedatetime  | date :'dd/MM/yyyy'}}
+                                </label>
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-md-2 col-form-label">Year</label>
+                              <div class="col-md-10">
+                                <label  class="form-control  ">
+                                  {{MTCDetail[0]?.Yeartxt}}
+                                </label>
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-md-2 col-form-label">Grade</label>
+                              <div class="col-md-10">
+                                  <div class="input-group">
+                                    <label  class="form-control  ">
+                                      {{MTCDetail[0]?.Gradetxt}}
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label class="col-md-2 col-form-label">Days</label>
+                              <div class="col-md-10">
+                                  <div class="input-group">
+                                    <label  class="form-control  ">
+                                      {{MTCDetail[0]?.Daystxt}}
+                                    </label>
+                                  </div>
+                              </div>
+                              <label class="col-md-2 col-form-label">Week </label>
+                              <div class="col-md-10">
+                                  <div class="input-group">
+                                    <label  class="form-control  ">
+                                      {{MTCDetail[0]?.Weektxt}}
+                                    </label>
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class=" table table-responsive">
+                            <table class="table table-striped">
+                                <thead style="background-color: #CDCDCD;">
+                                    <tr>
+                                        <th class=" font-weight-bold align-text-top" scope="col" style="width: 60px;">Sr No</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col">File</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col" style="width: 60px;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let User of MTCDetail; index as i">
+                                        <th scope="row">{{i +1 }}</th>
+                                        <td>{{ User?.AttachmentFileNamevtxt }}</td>
+                                        <td>
+                                            <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="ImageView(User?.IDbint,User?.AttachmentFileNamevtxt)"><i class="fa fa-eye" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                          <div class="form-group mt-3">
+                              <button   [routerLink]="['/SystemAdmin/MaterialTestCertificateList']"  class="btn  btn-secondary  btn-wide kt-font-bold kt-font-transform-u" > Back</button>
+
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+      </div>
+  </div>
+</div>

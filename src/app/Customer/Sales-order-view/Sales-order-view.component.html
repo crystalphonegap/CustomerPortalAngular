@@ -1,0 +1,138 @@
+
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+	<div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
+		<!--begin::Portlet-->
+
+		<div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+			<div class="kt-portlet__head-label">
+				<h3 class="kt-portlet__head-title">SAP Sales Order Information
+				</h3>
+			</div>
+		</div>
+
+		<div class="kt-portlet__body">
+			<div >
+				<table class="text-dark col-md-12">
+
+					<tbody>
+						<tr class="mt-4">
+							<th scope="row">Sold To  </th>
+							<td>: {{this.OrderInfo?.SoldToPartyCodevtxt}} - {{this.OrderInfo?.SoldTopPartyNamevtxt}}</td>
+							<th scope="row"> Ship To  </th>
+							<td>: {{this.OrderInfo?.ShipToPartyCodevtxt}} - {{this.OrderInfo?.ShipToPartyNamevtxt}}</td>
+
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Sales Order Number </th>
+							<td>: {{this.OrderInfo?.SalesOrderNumbervtxt}}</td>
+							<th scope="row">Sales Order Date </th>
+							<td>: {{this.OrderInfo?.CreatedOndatetime | date :'dd/MM/yyyy'}}</td>
+
+						</tr>
+						<tr class="mt-4">
+							<th scope="row"> Web Order No </th>
+							<td>: </td>
+							<th scope="row"> PO No </th>
+							<td>: {{this.OrderInfo?.Ponumbervtxt}}</td>
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Total Delivery Quantity In MT</th>
+							<td>: {{this.OrderInfo?.TotalDeliveryQuantity}}</td>
+							<th scope="row">Total balance Quantity In MT</th>
+							<td>: {{this.OrderInfo?.BalanceQuantity }}</td>
+
+						</tr>
+						<tr class="mt-4">
+							<th scope="row"> Total Order Quantity In MT</th>
+							<td>: {{this.OrderInfo?.TotalOrderQuantity }}</td>
+							<th scope="row"> Total Order Value </th>
+							<td>: ₹{{this.OrderInfo?.TotalOrderValue}}</td>
+
+						</tr>
+
+						<tr class="mt-4">
+							<th scope="row"> City</th>
+							<td>: {{this.OrderInfo?.Cityvtxt}}</td>
+							<th scope="row"> Address </th>
+							<td>: {{this.OrderInfo?.Addressvtxt}}</td>
+
+						</tr>
+
+						<tr class="mt-4">
+
+							<th scope="row">Status </th>
+							<td>: {{this.OrderInfo?.SalesOrderStatusvtxt}}</td>
+
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+			<h5 class="mt-4" >SAP Sales Order Detail</h5>
+			<div >
+				<div class="kt-portlet__body ">
+
+					<div>
+						<div *ngFor="let Order of Orders;  let i=index" class="customerCustomers-list border shadow-sm p-3 mb-3">
+							<div class="row col-11">
+
+								<div class="row col-12">
+									<div class="col-md-3 ">
+										Sales Order No : {{Order?.SalesOrderNumbervtxt}}
+									</div>
+									<div class="col-md-3 ">
+										Creation Date : {{Order?.CreatedOndatetime  | date :'dd/MM/yyyy'}}
+									</div>
+									<div class="col-md-3 ">
+										Material : {{Order?.MaterialCodevtxt}}
+									</div>
+									<div class="col-md-3 ">
+										Qty In MT : {{Order?.OrderQuantityint}}
+									</div>
+								</div>
+								<div class="row col-12">
+									<div class="col-md-3 ">
+										Dl Order No : {{Order?.DDeliveryOrderNovtxt}}
+									</div>
+									<div class="col-md-3 ">
+										Dl Date : {{Order?.DDeliveryDatedate | date :'dd/MM/yyyy'}}
+									</div>
+									<div class="col-md-3 ">
+										Material : {{Order?.MaterialCodevtxt}}
+									</div>
+									<div class="col-md-3 ">
+										Dl Qty In MT : {{Order?.DQtyint}}
+									</div>
+								</div>
+
+
+								<div class="row col-12">
+
+									<div class="col-md-3 ">
+										Inv No : {{Order?.IInvoiceDocumentNovtxt}}
+									</div>
+									<div class="col-md-3 ">
+										Inv Date : {{Order?.IBillingDatedate | date :'dd/MM/yyyy'}}
+									</div>
+									<div class="col-md-3 ">
+										Material : {{Order?.MaterialCodevtxt}}
+									</div>
+									<div class="col-md-3 ">
+										Inv Qty In MT : {{Order?.IInvoiceQuantityint}}
+									</div>
+								</div>
+
+									<h2 *ngIf="this.Orders[0]==null">No Data Available for Dispatch Order </h2>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+			<button (click)="Back()" class="btn col-md-1  btn-brand ">Back</button>
+		</div>

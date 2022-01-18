@@ -1,0 +1,23 @@
+h6 {
+    margin-bottom: 0;
+}
+
+.mat-select-trigger {
+  height: 3.125em;
+}
+
+
+.mat-input-element1
+  {display: block;
+      width: 100%;
+      height: calc(1.5em + 1.3rem + 2px);
+      padding: 0.65rem 1rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #e2e5ec;
+      border-radius: 4px;
+      transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;}

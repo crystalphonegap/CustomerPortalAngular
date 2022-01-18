@@ -1,0 +1,9 @@
+
+.rotate-img {
+    width:20px;
+    height:20px;
+    box-sizing:border-box;
+    padding-left: 20px;
+    /*width of the image*/
+    background: url(../../../assets/media/app_images/rotate.png) left top no-repeat;
+  }

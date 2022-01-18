@@ -1,0 +1,57 @@
+//
+// Custom Example 1 Style
+// Here you can put your custom sass code, use global SASS mixings and variables to override the theme or add new styles according to your requirements.
+// Most of the changes can be achieved via global or layout level sass variable changes.
+//
+.my-custom-style {
+    padding: 1rem 0.5rem;
+    color: kt-brand-color();
+    .my-custom-element {
+        margin-left: 1rem;
+    }
+}
+
+.custom-list-view {
+    small {
+        margin-right: 0.5rem;
+        font-size: 90%;
+    }
+    .mat-icon-button,
+    .mat-icon-button {
+        width: 30px;
+        height: 30px;
+        .mat-icon,
+        i {
+            line-height: 14px;
+        }
+    }
+}
+
+.kt-header-mobile .kt-header-mobile__toolbar .kt-header-mobile__toolbar-topbar-toggler i {
+    font-size: 2.3rem;
+    color: #4e4c5f;
+}
+
+.kt-header-menu-light .kt-header-menu .kt-menu__nav>.kt-menu__item:hover:not(.kt-menu__item--here):not(.kt-menu__item--active)>.kt-menu__link .kt-menu__link-text,
+.kt-header-menu-light .kt-header-menu .kt-menu__nav>.kt-menu__item.kt-menu__item--hover:not(.kt-menu__item--here):not(.kt-menu__item--active)>.kt-menu__link .kt-menu__link-text {
+    color: #fff;
+}
+
+.mat-raised-button {
+    min-width: 30px !important;
+}
+
+@include kt-tablet-and-mobile {
+    .my-custom-style {
+        padding: 0.5rem 0.25rem;
+        .my-custom-element {
+            margin-left: 0.5rem;
+        }
+    }
+}
+
+@include kt-mobile {
+    .kt-portlet__head-toolbar .btn i {
+        padding-right: 0;
+    }
+}

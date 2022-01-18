@@ -1,0 +1,105 @@
+<div class="kt-grid kt-grid--ver kt-grid--root kt-page" style="min-height: 100vh;">
+    <div class="kt-grid kt-grid--hor kt-grid--root  kt-login kt-login--v6 kt-login--signin" id="kt_login">
+        <div
+            class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--desktop kt-grid--ver-desktop kt-grid--hor-tablet-and-mobile">
+            <div class="kt-grid__item  kt-grid__item--order-tablet-and-mobile-2  kt-grid kt-grid--hor kt-login__aside">
+                <div class="kt-login__wrapper">
+                    <div class="kt-login__container">
+                        <div class="kt-login__body">
+                            <div class="kt-login__logo">
+                                <img src="assets/media/app_images/johnson-logo.png" class="img-fluid" />
+                            </div>
+                            <div class="kt-login__signin">
+                                <div class="kt-login__head">
+                                    <h3 class="kt-login__title">Customer Registration
+                                    </h3>
+                                </div>
+                                <form [formGroup]="Customer" (ngSubmit)="Submit()" autocomplete="off">
+                                    <div class="kt-login__form">
+                                        <div class="kt-form">
+                                            <table class="text-dark col-md-12">
+                                                <tbody>
+                                                    <tr class="mt-4">
+                                                        <th scope="row">Customer Code</th>
+                                                        <td>: {{this.Customers.CustCodevtxt}}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="mt-4">
+                                                        <th scope="row"> Contact Person </th>
+                                                        <td>: {{this.Customers.Contactpersonvtxt}}</td>
+
+                                                    </tr>
+                                                    <tr class="mt-4">
+                                                        <th scope="row">  GST No </th>
+                                                        <td>: {{this.Customers.Gstnovtxt}}</td>
+
+                                                    </tr>
+                                                    <tr class="mt-4">
+                                                        <th scope="row">  PAN No </th>
+                                                        <td>: {{this.Customers.PanNovtxt}} </td>
+
+                                                    </tr>
+                                                    <tr class="mt-4">
+                                                        <th scope="row">  Sales Office </th>
+                                                        <td>: {{this.Customers.SalesOfficevtxt}}</td>
+
+                                                    </tr>
+                                                    <tr class="mt-4">
+                                                        <th scope="row"> Name </th>
+                                                        <td>: {{this.Customers.CustNamevtxt}}</td>
+
+                                                    </tr>
+                                                    <tr class="mt-4">
+                                                        <th scope="row"> Mobile </th>
+                                                        <td>: {{this.Customers.TelNumber1vtxt}}</td>
+
+                                                    </tr>
+                                                    <tr class="mt-4">
+                                                        <th scope="row"> Email </th>
+                                                        <td>: {{this.Customers.Emailvtxt}}</td>
+
+                                                    </tr>
+                                                    <tr class="mt-4">
+                                                        <th scope="row"> Address </th>
+                                                        <td>: {{this.Customers.Address1vtxt}}</td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                            <div class="form-group">
+                                                <input (input)="CheckPassword($event.target.value,'p')" class="form-control" type="password" formControlName="Password"
+                                                    placeholder="Password" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input (input)="CheckPassword($event.target.value,'c')" class="form-control" type="password"
+                                                    formControlName="ConfirmPassword" placeholder="Confirm Password"
+                                                    required>
+                                            </div>
+                                            <div class="form-group">
+                                                <app-password-strength-bar [passwordToCheck]="Password" >
+                                                </app-password-strength-bar>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-control-label">{{Error}}</label>
+                                            </div>
+                                            <div class="kt-login__actions">
+                                                <button type="submit" 
+                                                    class="btn btn-brand ml-3 btn-pill btn-elevate">Submit</button>
+ <button   [routerLink]="['/user/login']"  class="btn btn-brand btn-pill mr-3 btn-elevate">Cancel</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid__item--center kt-grid kt-grid--ver kt-login__content"
+                style="background-image: url(assets/media/app_images/login-bg.jpg);">
+
+            </div>
+        </div>
+    </div>
+</div>

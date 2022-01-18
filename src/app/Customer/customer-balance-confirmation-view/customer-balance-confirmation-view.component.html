@@ -1,0 +1,386 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+  <div class="kt-portlet kt-portlet--mobile">
+    <div class="kt-portlet__head kt-font-lg  kt-portlet__head--lg bg-light">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title text-dark">Customer Ledger</h3>
+      </div>
+      <div class="kt-portlet__head-toolbar">
+        <span class="kt-font-bold mr-3">Ledger From</span>
+        <span class="kt-font-brand kt-font-bold kt-font-lg">
+          {{this.BalanceConfirmationInfo?.FromDatedatetime | date :'dd/MM/yyyy'}}
+          To
+          {{this.BalanceConfirmationInfo?.ToDatedatetime | date :'dd/MM/yyyy'}}
+        </span>
+      </div>
+    </div>
+    <div class="col-12 ml-2 kt-font-lg  mt-4 HeaderPart">
+      <div *ngIf="BalanceConfirmationInfo?.AttachmentFilevtxt!='' && BalanceConfirmationInfo?.AttachmentFilevtxt!=null"
+        class="mb-2">
+        <a (click)="download()" type="button" class="alert-link"><i class="fa fa-download" aria-hidden="true"></i>
+          {{this.BalanceConfirmationInfo?.AttachmentFilevtxt}} </a>
+      </div>
+
+      <div class="mb-2">
+        <span class="kt-font-bolder">Reference No:</span> {{this.BalanceConfirmationInfo?.RequestNovtxt}}
+      </div>
+      <div class="mb-3">
+        <span class="kt-font-bolder">Date:</span> {{this.BalanceConfirmationInfo?.InsertDatetimedatetime | date
+        :'dd/MM/yyyy'}}
+      </div>
+      <div>
+        <span class="kt-font-bolder">To</span> ,
+      </div>
+      <div>
+        <span class="ToName kt-font-bolder">
+
+          {{this.BalanceConfirmationInfo?.CustomerCodevtxt}} -
+          {{this.BalanceConfirmationInfo?.CustomerNamevtxt}}
+        </span> ,
+      </div>
+      <div>
+        <span class="ToPost kt-font-bolder">Customer</span> ,
+      </div>
+      <div>
+        <span class="ToAddress kt-font-bolder">
+          {{this.BalanceConfirmationInfo?.Addressvtxt}}
+          {{ this.BalanceConfirmationInfo?.Cityvtxt}}
+        </span>
+      </div>
+    </div>
+    <div class="col-12 ml-2  kt-font-lg  SubjectPart">
+      <div class="my-4">
+        <span class="kt-font-bolder">Dear Sir</span> ,
+      </div>
+      <div class="Subject row">
+        <div class="col-10 mx-auto">
+          <span class="kt-font-bolder">Sub :</span> Balance Confirmation as on
+          {{this.BalanceConfirmationInfo?.ToDatedatetime | date :'dd/MM/yyyy'}} as Required by internal audit
+          department.
+        </div>
+      </div>
+    </div>
+    <div class="col-12 my-5  kt-font-lg  ContentPart">
+      <div class="MainContent row mb-4">
+        <div class="col-10 mx-auto">
+          <p>
+            <a class="pl-4">With</a> Reference to the above subject, our book of accounts shows a credit/debit balance
+            in your account of Rs.{{this.BalanceConfirmations[lengthofBalanceConfirmations]?.Balancedcl}}/- as on
+            {{this.BalanceConfirmationInfo?.ToDatedatetime
+            | date :'dd/MM/yyyy'}}.
+          </p>
+          <p>
+            Your Security Deposit as on {{this.BalanceConfirmationInfo?.BalanceConfirmationDateTime| date :'dd/MM/yyyy'}} is {{this.BalanceConfirmationInfo?.Securitydeposit}}
+          </p>
+          <p>
+            In case you need any further including statement of account to reconcile the differences if any please do
+            write us.
+          </p>
+          <p>
+            If we do not receive your confirmation within 15 day's we could treat the above balance is correct.
+          </p>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <!-- begin: Datatable -->
+        <table class="table table-striped ">
+          <thead style="background-color: #CDCDCD;">
+            <tr>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Sr. No.
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Doc/ Invoice No
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Doc.Date
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Type
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Plant Code
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Product
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Quantity
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Debit In ₹
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Credit In ₹
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Balance In ₹
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Narration
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Remark
+              </th>
+              <th
+                *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'"
+                class=" font-weight-bold align-text-top" scope="col">
+                Updated Amount
+              </th>
+              <th
+                *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'"
+                class=" font-weight-bold align-text-top" scope="col">
+                Updated Remark
+              </th>
+              <th class=" font-weight-bold align-text-top" scope="col">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let Ledger of BalanceConfirmations; index as i ">
+              <th scope="row">{{ i + 1 }} </th>
+              <td>
+                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                  <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                    {{Ledger.DocumentNovtxt}}</div>
+                </div>
+              </td>
+              <td>
+                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                  <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                    {{Ledger.DocumentDatedate | date :'dd/MM/yyyy'}}
+                  </div>
+                </div>
+
+              </td>
+              <td>{{Ledger.DocumentTypevtxt}}</td>
+              <td>{{Ledger.Plantvtxt}}</td>
+              <td>
+                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                  <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                    {{Ledger.Materialvtxt}}</div>
+                </div>
+              </td>
+              <td>
+                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                  <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                    {{Ledger.Quantitydcl}}
+                  </div>
+                </div>
+              </td>
+              <td>{{Ledger.Debitdcl}}
+              </td>
+              <td>{{Ledger.Creditdcl}}
+              </td>
+              <td>{{Ledger.Balancedcl}}</td>
+              <td>
+                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                  <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                    {{Ledger.ChequeNovtxt}}</div>
+                </div>
+              </td>
+              <td
+                *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'">
+                <div *ngIf="Ledger.Debitdcl >0">
+                  {{Ledger.EditDebitdcl}}
+                </div>
+                <div *ngIf="Ledger.Creditdcl >0">
+                  {{Ledger.EditCreditdcl}}
+                </div>
+              </td>
+              <td>
+                {{ Ledger.Narrationvtxt}}
+              </td>
+              <td
+                *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'">
+                {{ Ledger.Remarksvtxt}}
+              </td>
+              <td>
+                <div class="row ml-4">
+                  <div class="row"
+                    *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+                    <div class="inputcheck">
+                      <input type="checkbox" checked="checked"
+                        (change)="onStatusChange($event.target.checked,'checkbox',Ledger)">
+                      <span></span>
+                      <button class="btn btn col-1 edit-butt" (click)="onStatusChange(true,'button',Ledger)"
+                        *ngIf="Ledger.editmode==true">
+                        <i class="fa mr-2 fa-edit"></i></button>
+                    </div>
+
+                    <!--<div class="row" >
+
+                                        </div>-->
+
+                  </div>
+
+                  <div class="row"
+                    *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'">
+
+                    <input type="checkbox" [(ngModel)]="Ledger.edit" disabled>
+                    <span></span>
+                  </div>
+
+                </div>
+
+
+                <jw-modal id="custom-modal-{{Ledger.IDbint }}">
+
+                  <div class="col-md-12 row mt-4">
+                    <h4 class="col-md-3">
+                      <div *ngIf="Ledger.Debitdcl >0">
+                        Debit
+                      </div>
+                      <div *ngIf="Ledger.Creditdcl >0">
+                        Credit
+                      </div>
+                    </h4>
+                    <div class=" col-md-9">
+                      <div *ngIf="Ledger.Debitdcl >0">
+                        {{Ledger.Debitdcl}}
+                      </div>
+                      <div *ngIf="Ledger.Creditdcl >0">
+                        {{Ledger.Creditdcl}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 row mt-4">
+                    <h4 class="col-md-3"> Amount</h4>
+                    <div class=" col-md-9">
+                      <div
+                        *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+                        <input class=" form-control" (change)="onRowChange(Ledger,$event.target.value,'amount')">
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-md-12 row mt-4">
+                    <h4 class="col-md-3">Remark</h4>
+                    <div class=" col-md-9">
+                      <div
+                        *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+                        <textarea (change)="onRowChange(Ledger,$event.target.value,'remark')" class=" form-control"
+                          type="text"></textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p></p>
+                  <div class="row">
+                    <div
+                      *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+                      <a (click)="saveModal('custom-modal-'+Ledger.IDbint,Ledger);"
+                        class="btn btn-brand mr-2 btn-sm">Save</a>
+                    </div>
+
+                    <a (click)="closeModal('custom-modal-'+Ledger.IDbint,Ledger);"
+                      class="btn btn-brand mr-2  btn-sm">Close</a>
+                  </div>
+
+                </jw-modal>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+        <!-- end: Datatable -->
+      </div>
+
+      <div class="MainContent row mt-4">
+        <div class="col-10 mx-auto">
+           <p>
+           <b>Total Credit Amount : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Creditdcl}}
+           <b>Total Debit Amount : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Debitdcl}}
+           <b>Closing Balance : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Balancedcl}}
+          </p>
+          <p>
+            This is Computer generated bill so no need to any required rubber stamp or signature.
+          </p>
+          <div class="col-12 mt-4 FooterPart">
+            <div class=" kt-align-left">
+              <div>
+                <span class="kt-font-bolder">Your's faithfully</span>
+              </div>
+              <div>Prism Cement</div>
+            </div>
+          </div>
+          <div  *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'" class="col-md-12 row mt-4">
+            <h4 class="col-md-3  col-lg-2 ">Remark :</h4>
+            <div class="col-md-9  col-lg-10 ">
+                <textarea (change)="onRemarkChange($event.target.value)" class=" form-control" type="text"></textarea>
+            </div>
+          </div>
+          <div
+            *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+            <div class="col-md-12 row mt-4">
+              <h4 class="col-md-2">Attachment :</h4>
+              <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div  *ngIf=" this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B' "  class="col-md-12 row mt-4">
+        <h4 class="col-md-2">Remark :</h4>
+        <div class="col-md-9">
+          <textarea (change)="onRemarkChange($event.target.value)" class=" form-control" type="text"></textarea>
+        </div>
+        <div  class="col-md-9">
+          <div class="row mt-2">
+            <a (click)="sendRemark('html','B')" class="btn btn-sm btn-brand mr-2 ">Send Back To Accounts</a>
+            <div >
+              <a *ngIf="this.Save==true" (click)="sendRemark('html','A')" class="btn btn-brand mr-2 btn-sm">I Agree</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div  *ngIf=" this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B' ||  this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' " >
+        <h5  class="mt-4">Balance Confirmation History</h5>
+        <h4 *ngIf="this.BalanceConfirmationLog==null">No Data Available</h4>
+       <div *ngFor="let log of BalanceConfirmationLog" class="custom-list-view row bTicket shadow-sm p-3 m-3 ">
+
+         <div  *ngIf="this.log.Remarksvtxt!=null&&this.log.Remarksvtxt!=''"   style="width: 100%;">
+           <div class=" row">
+             <div class="col-12 col-md-8 "><b>Updated By :</b> &nbsp;
+               {{log?.UserTypevtxt}} - {{log?.UserCodevtxt }} -{{log?.UserNametxt}}
+
+
+             </div>
+             <div class="col-12 col-md-4 ">
+               <b>{{log?.CreatedDatetime | date:'dd-MM-yyyy, h:mm a' }}</b>
+             </div>
+           </div>
+           <div class="row">
+             <div class="col-12 col-md-2 col-lg-1 col-xl-1">
+               <b>Remark :</b>
+             </div>
+             <div class="col-12 col-md-8 col-lg-8 col-xl-8">
+                 {{log?.Remarksvtxt}}
+             </div>
+           </div>
+         </div>
+       </div>
+      </div>
+
+
+
+
+    </div>
+
+    <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+      <div class="row mt-3">
+        <div
+          *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+          <a *ngIf="this.Save==true" (click)="Agree()" class="btn btn-brand mr-2 btn-sm">I Agree</a>
+          <a (click)="Disagree()" class="btn btn-brand mr-2  btn-sm">I Disagree</a>
+        </div>
+        <div>
+          <a (click)="Back()" class="btn btn-sm btn-brand "> Back </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

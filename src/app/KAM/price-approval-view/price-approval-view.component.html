@@ -1,0 +1,361 @@
+<div class="kt-container kt-container--fluid kt-grid__item">
+    <div class="kt-container kt-container--fluid kt-grid__item">
+        <div>
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="p-2">
+                    <div class="bg-dark text-white kt-portlet__head kt-portlet__head--lg pt-2 mb-2">
+                        <h3 class="kt-portlet__head-title p-3 "><b>Price Approval</b></h3>
+                    </div>
+
+                    <div class="row  p-3">
+                        <div class="col-md-6 border">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Approval No</label>
+                                        <input class="form-control" value="{{PriceApproval?.ApprovalNovtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label for="inputPassword4">Status</label>
+                                        <input class="form-control" value="{{PriceApproval?.SAPStatusvtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Customer Code</label>
+                                        <input class="form-control" value="{{PriceApproval?.CustomerCodevtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Customer Name</label>
+                                        <input class="form-control" value="{{PriceApproval?.CustomerNamevtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Consignee Code</label>
+                                        <input class="form-control" value="{{PriceApproval?.ConsigneeCodevtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Consignee Name</label>
+                                        <input class="form-control" value="{{PriceApproval?.ConsigneeNamevtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleSelects">Grade</label>
+                                    </div>
+                                    <div class="col-md-9 mb-1 mb-md-0">
+
+                                        <input class="form-control" disabled="disabled" value="{{PriceApproval?.Gradevtxt}}">
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleSelects">Transport Mode</label>
+
+                                        <input class="form-control" value="{{PriceApproval?.TransportModevtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleSelects">Supply From</label>
+                                        <input class="form-control" value="{{PriceApproval?.SupplyFromvtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="exampleSelects">Depot Code</label>
+                                        <input class="form-control" value="{{PriceApproval?.DepotCodevtxt}}" disabled="disabled">
+
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Depot Name</label>
+                                        <input class="form-control" value="{{PriceApproval?.DepotNamevtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleSelects">Delivery Condition</label>
+                                    <input class="form-control" value="{{PriceApproval?.DeliveryTermsvtxt}}" disabled="disabled">
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="exampleSelects">Payment Term</label>
+                                        <input class="form-control" value="{{PriceApproval?.PaymentTermsvtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Quantity</label>
+                                        <input class="form-control" value="{{PriceApproval?.Quantitydcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-6 border">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Region</label>
+                                        <input class="form-control" value="{{PriceApproval?.RegionCodevtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label for="inputPassword4"></label>
+                                        <input class="form-control" value="{{PriceApproval?.RegionDescvtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Branch</label>
+                                        <input class="form-control" value="{{PriceApproval?.BranchCodevtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label></label>
+                                        <input class="form-control" value="{{PriceApproval?.BranchDescvtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Territory</label>
+                                        <input class="form-control" value="{{PriceApproval?.TerritoryCodevtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label></label>
+                                        <input class="form-control" value="{{PriceApproval?.TerritoryDescvtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">TPC Agent</label>
+                                        <input class="form-control" value="{{PriceApproval?.TPCAgentCodevtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label></label>
+                                        <input class="form-control" value="{{PriceApproval?.TPCAgentNamevtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Destination</label>
+                                        <input class="form-control" value="{{PriceApproval?.Destinationcodevtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label></label>
+                                        <input class="form-control" value="{{PriceApproval?.DestinationNamevtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Price Zone</label>
+                                        <input class="form-control" value="{{PriceApproval?.PriceZonevtxt}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label></label>
+                                        <input class="form-control" value="{{PriceApproval?.PriceZonedescvtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Validity From Date</label>
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <input class="form-control" value="{{PriceApproval?.ValidityFromDate}}" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Validity To Date</label>
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <input class="form-control" value="{{PriceApproval?.ValidityToDate}}" disabled="disabled">
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="row  p-3">
+                        <div class="bg-dark text-white col-md-12">
+                            <h6 class="p-2">PRICE (PER BAG)</h6>
+                        </div>
+                        <div class="col-md-12 border">
+                            <form class="mt-3">
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">None-Trade</label>
+                                        <!-- <input type="email" class="form-control form-control-sm" placeholder="" (change)="GetNoneTrade($event.target.value)" /> -->
+                                        <input class="form-control" value="{{PriceApproval?.NonTradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputPassword4">Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.Tradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputPassword4">Price(Differnce)</label>
+                                        <input class="form-control" value="{{PriceApproval?.PriceDiffdcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputPassword4">Remarks</label>
+                                        <!-- <input type="text" class="form-control form-control-sm" placeholder="" (change)="GetRemarks($event.target.value)" /> -->
+                                        <input class="form-control" value="{{PriceApproval?.Remarksvtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row  p-3">
+                        <div class="col-md-6 border">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="exampleSelects">Unloading</label>
+                                        <input class="form-control" value="{{PriceApproval?.Unloading}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="inputEmail4">Discount</label>
+                                        <input class="form-control" value="{{PriceApproval?.Discountdcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">SP COMM./TPC Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.SPCommTrade}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Non Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.SPCommNonTrade}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label for="exampleSelects">Competition Name</label>
+                                        <input class="form-control" value="{{PriceApproval?.CompetitionNamevtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>Competition Price</label>
+                                        <input class="form-control" value="{{PriceApproval?.CompetitionPricedcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <label>TTE Name</label>
+                                        <input class="form-control" value="{{PriceApproval?.TTENamevtxt}}" disabled="disabled">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6 border">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Packing Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.PackingTradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label for="inputPassword4">Non Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.PackingNonTradedcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Handling Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.HandlingTradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Non Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.HandlingNonTradedcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Price (Per MT)</label>
+                                        <input class="form-control" value="{{PriceApproval?.PricePerMTTradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Non Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.PricePerMTNonTradedcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Primery FRT</label>
+                                        <input class="form-control" value="{{PriceApproval?.PrimaryFrtTradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Non Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.PrimaryFrtNonTradedcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">Secondary FRY</label>
+                                        <input class="form-control" value="{{PriceApproval?.SecondaryFrtTradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Non Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.SecondaryFrtNonTradedcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">GST</label>
+                                        <input class="form-control" value="{{PriceApproval?.GSTTradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Non Trade</label>
+                                        <input class="form-control" value="{{PriceApproval?.GSTNonTradedcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row  p-3">
+                        <div class="col-md-12 border">
+                            <form class="mt-3">
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <p>Type</p>
+                                        <input type="radio" id="Fresh" name="Type" checked=true value="Fresh">
+                                        <label for="Fresh">Fresh</label><br>
+                                        <input type="radio" id="Ageing" name="Type" value="Ageing">
+                                        <label for="Ageing">Ageing</label><br>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputEmail4">NCR (Non-Trade)</label>
+                                        <input class="form-control" value="{{PriceApproval?.NCRNonTradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputPassword4">NCR (Trade)</label>
+                                        <input class="form-control" value="{{PriceApproval?.NCRTradedcl}}" disabled="disabled">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputPassword4">NCR (Differnce)</label>
+                                        <input class="form-control" value="{{PriceApproval?.NCRDiffdcl}}" disabled="disabled">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row  p-3">
+                        <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+                            <div>
+                                <button (click)="Back()" class="btn  btn-brand ">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

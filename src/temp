@@ -1,0 +1,208 @@
+//data for System Admin master
+
+
+
+    <!-- begin:: Header Mobile -->
+    <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+        <div class="kt-header-mobile__logo">
+            <img  src="assets/media/app_images/johnson-logo.png"  class="img-fluid" alt="Logo" runat="server" id="logo" >
+        </div>
+        <div class="kt-header-mobile__toolbar">
+            <button class="kt-header-mobile__toolbar-toggler kt-header-mobile__toolbar-toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
+            <button class="kt-header-mobile__toolbar-toggler" id="kt_header_mobile_toggler"><span></span></button>
+        </div>
+    </div>
+
+    <!-- end:: Header Mobile -->
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+
+            <!-- begin:: Aside -->
+            <button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
+            <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+
+                <!-- begin:: Aside -->
+                <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+                    <div class="kt-aside__brand-logo">
+                        <img  src="assets/media/app_images/johnson-logo.png"  class="img-fluid" alt="Logo" runat="server" id="logo1" >
+                    </div>
+                    <div class="kt-aside__brand-tools">
+                       
+                            <button   type="button" class="kt-aside__brand-aside-toggler" ><span></span></button>
+                      
+                    </div>
+                </div>
+                <!-- end:: Aside -->
+                <!-- begin:: Aside Menu -->
+                <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+                    <div id="kt_aside_menu" class="kt-aside-menu" data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
+                        <ul class="kt-menu__nav">
+                            <li class="kt-menu__item  kt-menu__item--active" aria-haspopup="true"><a href="Dashboard.aspx" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-architecture-and-city"></i><span class="kt-menu__link-text">Home</span></a></li>
+                            <li class="kt-menu__section ">
+                                <h4 class="kt-menu__section-text">ADMINISTRATION</h4>
+                                <i class="kt-menu__section-icon flaticon-more-v2"></i>
+                            </li>
+                            
+                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-avatar"></i><span class="kt-menu__link-text">Employee Management</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                <div class="kt-menu__submenu ">
+                                    <span class="kt-menu__arrow"></span>
+                                    <ul class="kt-menu__subnav">
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="EmployeeMgt.aspx" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Upload Employee</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="EmployeeDetails.aspx" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Employee Details</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon2-avatar"></i><span class="kt-menu__link-text">Customer Management</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                <div class="kt-menu__submenu ">
+                                    <span class="kt-menu__arrow"></span>
+                                    <ul class="kt-menu__subnav">
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="CustomerMgt.aspx" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Upload Customer</span></a></li>
+                                      
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="CustomerDetails.aspx" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Customer Details</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="CustomerSalesPromoterMapping.aspx" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Upload Mapping Customer and C&F Agents</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="kt-menu__item " aria-haspopup="true"><a href="ContentDetails.aspx" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-list-2"></i><span class="kt-menu__link-text">Content Details</span></a></li>
+
+                            <li class="kt-menu__item " aria-haspopup="true"><a href="AssignRoles.aspx" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-rotate"></i><span class="kt-menu__link-text">Role Management</span></a></li>
+                            <li class="kt-menu__item " aria-haspopup="true"><a href="BroadCastDetails.aspx" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-browser"></i><span class="kt-menu__link-text">BroadCast Details</span></a></li>
+                            <li class="kt-menu__item " aria-haspopup="true"><a href="SwitchUser.aspx" class="kt-menu__link "><i class="kt-menu__link-icon flaticon2-group"></i><span class="kt-menu__link-text">Swicth User</span></a></li>
+                            <li class="kt-menu__item " aria-haspopup="true"><a href="ComplaintMgt.aspx" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-layers"></i><span class="kt-menu__link-text">View Complaints</span></a></li>
+                            <li class="kt-menu__item  kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-interface-3"></i><span class="kt-menu__link-text">Feedback</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                <div class="kt-menu__submenu ">
+                                    <span class="kt-menu__arrow"></span>
+                                    <ul class="kt-menu__subnav">
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="UploadUser.aspx" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Upload User</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="UserDetails.aspx" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">User Details</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="CreateDept.aspx" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Create Department</span></a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <!-- Below is the Example For Menu Link Submenu || Copy code and Use-->
+                        </ul>
+                    </div>
+                </div>
+                <!-- end:: Aside Menu -->
+            </div>
+
+            <!-- end:: Aside -->
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+
+                <!-- begin:: Header -->
+                <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
+
+                    <!-- begin: Header Menu -->
+                    <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+                    <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
+                        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
+                            <ul class="kt-menu__nav ">
+                              
+                <li class="kt-menu__item" aria-haspopup="false"><a [routerLink]="['/SystemAdmin/dashboard']" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-users"></i><span class="kt-menu__link-text">Dashboard</span></a></li>
+                <li class="kt-menu__item" aria-haspopup="false"><a [routerLink]="['/SystemAdmin/CustomerDetail']" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-users"></i><span class="kt-menu__link-text">CustomerDetail</span></a></li>
+                <li class="kt-menu__item" aria-haspopup="false"><a [routerLink]="['/SystemAdmin/profile']" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-profile"></i><span
+                            class="kt-menu__link-text">My Profile</span></a></li>
+                <!-- <li class="kt-menu__item " aria-haspopup="true"><a [routerLink]="['/SuperAdmin/profile']" class="kt-menu__link" data-toggle="modal"><i class="kt-menu__link-icon la la-key"></i><span class="kt-menu__link-text">Change Password</span></a></li> -->
+                <!-- <%--<li class="kt-menu__item " aria-haspopup="true"><a href="ChangePassword.aspx" class="kt-menu__link "><i class="kt-menu__link-icon la la-key"></i><span class="kt-menu__link-text">Change Password</span></a></li>--%> -->
+                <!--<li class="kt-menu__item" aria-haspopup="false"><a href="index.html" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-interface-3"></i><span class="kt-menu__link-text">Reports</span></a></li>-->
+                <li class="kt-menu__item" aria-haspopup="false"><a (click)="onLogout()" class="kt-menu__link "><i
+                            class="kt-menu__link-icon flaticon-logout"></i><span class="kt-menu__link-text">Log
+                            Out</span></a></li>
+                            </ul>
+                            <!-- begin: Custom User-->
+                            <div class="kt-custom-user">
+                                <div class="kt-header-custom-user">
+                                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
+                                    <span class="kt-header__topbar-username">SystemAdmin</span>
+                                    <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
+
+                                    <!--<span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">S</span>-->
+                                </div>
+                            </div>
+                            <!-- end: Custom User-->
+                        </div>
+                    </div>
+                    <!-- end: Header Menu -->
+                </div>
+
+                <!-- end:: Header -->
+                <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+//data for System Admin master
+
+
+
+<div class=" kt-wrapper" id="kt_wrapper">
+
+    <!-- begin:: Header -->
+    <div id="kt_header" class="kt-header ">
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <div class="kt-aside__brand-logo">
+                    <img src="assets/media/app_images/johnson-logo.png" class="img-fluid mb-2 mt-2 small" alt="Logo">
+                </div>
+                <button mat-icon-button>
+                    <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+                </button>
+
+                <span class="menu-spacer"></span>
+                <div class="kt-header-mobile__toolbar">
+                    <a mat-button [routerLink]="['/SystemAdmin/dashboard']" class="kt-menu__link "><i
+                            class="kt-menu__link-icon flaticon-users"></i><span
+                            class="kt-menu__link-text">Dashboard</span></a>
+                    <a mat-button [routerLink]="['/SystemAdmin/CustomerDetail']" class="kt-menu__link "><i
+                            class="kt-menu__link-icon flaticon-users"></i><span
+                            class="kt-menu__link-text">CustomerDetail</span></a>
+                    <a mat-button [routerLink]="['/SystemAdmin/profile']" class="kt-menu__link "><i
+                            class="kt-menu__link-icon flaticon-profile"></i><span class="kt-menu__link-text">My
+                            Profile</span></a>
+                    <a mat-button (click)="onLogout()" class="kt-menu__link "><i
+                            class="kt-menu__link-icon flaticon-logout"></i><span class="kt-menu__link-text">Log
+                            Out</span></a>
+
+                </div>
+            </mat-toolbar-row>
+        </mat-toolbar>
+    </div>
+</div>
+
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav>
+        <mat-nav-list>
+
+            <a mat-list-item [routerLink]="'/accounts'"> Accounts </a>
+            <a mat-list-item [routerLink]="'/create-account'"> Create Account </a>
+            <a mat-list-item [routerLink]="'/contacts'"> Contacts </a>
+            <a mat-list-item [routerLink]="'/create-contact'"> Create Contact </a>
+            <a mat-list-item [routerLink]="'/activities'"> Activities </a>
+            <a mat-list-item [routerLink]="'/create-activity'"> Create Activity </a>
+            <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+
+
+//data for System Admin master
+
+
+
+
+

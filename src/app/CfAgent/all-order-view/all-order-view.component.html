@@ -1,0 +1,109 @@
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+	<div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
+
+		<div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+			<div class="kt-portlet__head-label">
+				<h3 class="kt-portlet__head-title">Orders Info
+				</h3>
+			</div>
+
+		</div>
+
+		<div class="kt-portlet__body">
+			<div class="table-responsive">
+
+
+				<table class="text-dark col-md-12">
+
+					<tbody>
+						<tr class="mt-4">
+							<th scope="row">Ship To  Code </th>
+							<td>: {{this.OrderInfo?.ShipToCodevtxt}}</td>
+							<th scope="row">Ship To  Name </th>
+							<td>: {{this.OrderInfo?.ShipToNamevtxt}}</td>
+
+
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Web Order No </th>
+							<td>: {{this.OrderInfo?.OrderNovtxt}}</td>
+							<th scope="row">Web Order Date </th>
+							<td>: {{this.OrderInfo?.OrderDatedate | date :'dd/MM/yyy'}}</td>
+
+						</tr>
+
+						<tr class="mt-4">
+							<th scope="row">Po No</th>
+							<td>: {{this.OrderInfo?.RefNovtxt}}</td>
+							<th scope="row">PO Date </th>
+							<td>: {{this.OrderInfo?.RefDatedate | date : 'MM/dd/yyy'}}</td>
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">SAP Order No</th>
+							<td>: {{this.OrderInfo?.SAPOrderNovtxt}}</td>
+							<th scope="row">SAP Order Date </th>
+							<td>: {{this.OrderInfo?.SAPOrderDatedate | date : 'dd/MM/yyy'}}</td>
+
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Total Order Quantity</th>
+							<td>: {{this.OrderInfo?.TotalOrderQuantityint }}</td>
+							<th scope="row">Total Order Quantity In MT </th>
+							<td>: {{this.OrderInfo?.TotalOrderQuantityMTint }}</td>
+						</tr>
+						<tr class="mt-4">
+
+							<th scope="row">Payment Terms </th>
+							<td>: {{this.OrderInfo?.PaymentTermsvtxt}}</td>
+							<th scope="row">Delivery Terms </th>
+							<td>: {{this.OrderInfo?.DeliveryTermsvtxt}}</td>
+
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Ship To Address </th>
+							<td>: {{this.OrderInfo?.ShipToAddressvtxt}}</td>
+							<th scope="row">Delivery Address </th>
+							<td>: {{this.OrderInfo?.DeliveryAddressvtxt}}</td>
+
+
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Status </th>
+							<td>: {{this.OrderInfo?.Statusvtxt}}</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+			<h5 class="mt-4">Orders Placed Detail</h5>
+			<div class="table-responsive">
+				<div class="kt-portlet__body ">
+
+					<div>
+						<div *ngFor="let Order of Orders" class="customerCustomers-list border shadow-sm p-3 mb-3">
+							<div class="row col-11">
+								<div class="row col-12">
+									<div class="col-md-4 ">
+										Material Code : <span class="kt-font-bold">{{Order?.MaterialCodevtxt}}</span>
+									</div>
+									<div class="col-md-2 ">
+										UOM : <span class="kt-font-bold">{{Order?.UoMvtxt}}</span>
+									</div>
+
+									<div class="col-md-2 ">
+										Qty : <span class="kt-font-bold">{{Order?.Quantityint}}</span>
+									</div>
+									<div class="col-md-3 ">
+										Qty In MT : <span class="kt-font-bold">{{Order?.QtyMt}}</span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<button (click)="Back()" class="btn mr-2 btn-brand ">Back</button>
+			</div>
+		</div>

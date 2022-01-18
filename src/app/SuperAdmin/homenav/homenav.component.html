@@ -1,0 +1,39 @@
+<!-- begin:: Header -->
+<div id="kt_header" class="kt-header kt-grid__item">
+
+    <div class="kt-padding-r-25  kt-padding-l-25 d-flex align-items-center  ">
+        <a [routerLink]="['/SuperAdmin/dashboard']">
+            <img style="border-bottom: 2px solid #151515;" class="kt-aside__brand kt-aside__brand-logo img" src="assets/media/app_images/johnson-logo.png" alt="Logo" runat="server" >
+        </a>
+    </div>
+
+    <!-- begin: Header Menu -->
+    <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i
+            class="la la-close"></i></button>
+    <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
+        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
+            <ul class="kt-menu__nav ">
+                <li class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']" aria-haspopup="false"><a [routerLink]="['/SuperAdmin/dashboard']" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-users"></i><span class="kt-menu__link-text">User List</span></a></li>
+                <li class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']" aria-haspopup="false"><a [routerLink]="['/SuperAdmin/AddAdmin']" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-avatar"></i><span class="kt-menu__link-text">Add User</span></a></li>
+           
+                <li class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']" aria-haspopup="false"><a [routerLink]="['/SuperAdmin/Profile']" class="kt-menu__link "><i class="kt-menu__link-icon flaticon-profile"></i><span
+                            class="kt-menu__link-text">My Profile</span></a></li>
+                <li class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"  aria-haspopup="true"><a [routerLink]="['/SuperAdmin/ChangePassword']" class="kt-menu__link" data-toggle="modal"><i class="kt-menu__link-icon la la-key"></i><span class="kt-menu__link-text">Change Password</span></a></li>
+              
+                <li class="kt-menu__item" aria-haspopup="false" id="logoutClick"><a (click)="onLogout()" class="kt-menu__link "><i
+                            class="kt-menu__link-icon flaticon-logout"></i><span class="kt-menu__link-text">Log
+                            Out</span></a></li>
+            </ul>
+            <!-- begin: Custom User-->
+            <div class="kt-custom-user">
+                <div class="kt-header-custom-user">
+                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
+                    <!-- <span class="kt-header__topbar-username">Super Admin</span> -->
+                    <!-- <img src="assets/media/app_images/user.jpg" alt="Pic" class="kt-radius-100"> -->
+                </div>
+            </div>
+            <!-- end: Custom User-->
+        </div>
+    </div>
+    <!-- end: Header Menu -->
+</div>

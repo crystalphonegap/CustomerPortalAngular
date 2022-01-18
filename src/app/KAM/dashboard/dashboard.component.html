@@ -1,0 +1,521 @@
+<!-- begin:: Content -->
+
+<div class="kt-container   kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+
+    <div class=" row">
+        <div class=" col-md-12">
+            <div class="row">
+                <div class=" col-md-12">
+                    <div class="row ">
+                        <div class="col-xl-2  text-center col-md-2 col-lg-2 ml-2 mr-2    border border-dark col-xl-1 kt-portlet">
+                            <div class=" ml-2 mt-3">
+                                <month-picker class=" mr-1" (change)="onMonthYearChange($event.target.value,'m')">
+                                </month-picker>
+                            </div>
+                        </div>
+                        <div class="col-xl-2  text-center col-md-2 col-lg-2 ml-2 mr-2    border border-dark col-xl-1 kt-portlet">
+                            <div class=" mt-2">
+                                <b>
+                                    My Customer
+
+                                </b>
+                            </div>
+                            <div class=" mb-2">
+                               {{this.OutStanding}}
+                            </div>
+                        </div>
+                        <div class="col-xl-2 text-center col-md-2 col-lg-2 ml-2 mr-2   border border-dark col-xl-1 kt-portlet">
+                            <div class=" mt-2">
+                                <b>
+                                    New Customer
+
+                                </b>
+                            </div>
+                            <div class=" mb-2">
+                                {{this.MyDealers}}
+                            </div>
+                        </div>
+                        <div class=" col">
+                            <div class=" row padingrow">
+                                <div class=" rotate-img ">
+                                </div>
+                                <b class=" text-center center-text1 ">Updated on {{this.DataDate  | date :'dd/MM/yyyy'}}</b>
+                                <button (click)="ngOnInit()" class=" btn btn-sm btn-glow btn-brand">Refresh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="  text-center   col-md-5 col-11  col-xl-5   ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+                            <div class=" mt-2">
+                                <b>
+                                  Premium Sales
+                                </b>
+                            </div>
+                            <div class=" mb-2">
+                              Champion : {{PremiumSalesChamp}} | Champion Plus : {{PremiumSalesChampPlus}} | Duratech :{{PremiumSalesDuratech}}
+                            </div>
+                        </div>
+                
+                        <div class="  text-center col-md-5 col-11  col-xl-5  ml-2 mr-2 border border-dark col-xl-1 kt-portlet">
+                            <div class=" mt-2">
+                                <b>
+                                  % Premium
+                                </b>
+                            </div>
+                            <div class=" mb-2">
+                              Champion : {{PremiumSalesChampPer}} | Champion Plus : {{PremiumSalesChampPlusPer}} | Duratech :{{PremiumSalesDuratechPer}}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div *ngIf="this.DataNotAvailable==true" class="kt-container  kt-container--fluid ">
+        <div class="kt-portlet kt-portlet--mobile">
+            <h4 class="m-3">No Report Available For {{this.monthtoshow | date :'MMMM'}} - {{this.Year}}</h4>
+
+        </div>
+    </div>
+
+    <div [style.display]="CMOList" class="kt-container  kt-container--fluid ">
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title text-dark">
+                        <b>
+                            Zone List
+                        </b>
+                    </h3>
+                </div>
+
+            </div>
+
+            <div class=" table table-responsive">
+                <table class="table table-striped ">
+                    <thead style="background-color: #CDCDCD;">
+                        <tr>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">SrNo</th>
+
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Zone Name</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Mnth Target<br/> (In Tons)</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">MTD Sales<br/>(In Tons)</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Ach</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Short Fall</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Premium Sales</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">% Premium</th>
+                            <th  class=" font-weight-bold align-text-top"   scope="col">Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Zonedata of CMO; index as i">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>{{Zonedata?.Name}}</td>
+                            <td>{{Zonedata?.TargetSales}}</td>
+                            <td>{{Zonedata?.ActualSales}}</td>
+                            <td>{{Zonedata?.Achivement}}</td>
+                            <td>{{Zonedata?.SortPoll}}</td>
+                            <td>{{Zonedata?.PremiumSales}}</td>
+                            <td>{{Zonedata?.PremiumSalesPer}}</td>
+                            <td>
+                                <div *ngIf="Zonedata?.Name!=SelectedZone">
+                                    <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                        (click)="GetZoneData(Zonedata?.Code,Zonedata?.Name)"><i class="fa fa-plus"></i></button>
+                                </div>
+                                <div *ngIf="Zonedata?.Name==SelectedZone">
+                                    <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                        (click)="CloseZone('All')"><i class="fa fa-minus"></i></button>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <div [style.display]="ZoneList">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title text-dark">
+                            <b>
+                                Region List For {{SelectedZone}} Zone
+                            </b>
+                        </h3>
+                    </div>
+                    <div *ngIf="this.UserType!='Zonal Manager'" class="kt-portlet__head-toolbar">
+
+                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                            (click)="CloseZone('this')">
+                            <i class="flaticon-cancel"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+
+                    <table class="table table-striped mt-2">
+                        <thead style="background-color: #CDCDCD;">
+                            <tr>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">SrNo</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Region Name</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Mnth Target<br/> (In Tons)</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">MTD Sales<br/>(In Tons)</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Ach</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Short Fall</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Premium Sales</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">% Premium</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Region of Zone; index as i">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{Region?.Name}}</td>
+                                <td>{{Region?.TargetSales}}</td>
+                                <td>{{Region?.ActualSales}}</td>
+                                <td>{{Region?.Achivement}}</td>
+                                <td>{{Region?.SortPoll}}</td>
+                                <td>{{Region?.PremiumSales}}</td>
+                                <td>{{Region?.PremiumSalesPer}}</td>
+                                <td>
+                                    <div *ngIf="Region?.Name!=SelectedRedgion">
+                                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                            (click)="GetRegionData(Region?.Code,Region?.Name)"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                    <div *ngIf="Region?.Name==SelectedRedgion">
+                                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                            (click)="CloseRegion('All')"><i class="fa fa-minus"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div [style.display]="BranchList">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title text-dark">
+                            <b>
+                                Branch List For {{SelectedRedgion}} Region
+                            </b>
+                        </h3>
+                    </div>
+                    <div *ngIf="this.UserType!='Regional Manager'" class="kt-portlet__head-toolbar">
+
+                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                            (click)="CloseRegion('this')">
+                            <i class="flaticon-cancel"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped mt-2">
+                        <thead style="background-color: #CDCDCD;">
+                            <tr>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">SrNo</th>
+
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Branch Name</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Mnth Target<br/> (In Tons)</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">MTD Sales<br/>(In Tons)</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Ach</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Short Fall</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Premium Sales</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">% Premium</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Branch of Region; index as i">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{Branch?.Name}}</td>
+                                <td>{{Branch?.TargetSales}}</td>
+                                <td>{{Branch?.ActualSales}}</td>
+                                <td>{{Branch?.Achivement}}</td>
+                                <td>{{Branch?.SortPoll}}</td>
+                                <td>{{Branch?.PremiumSales}}</td>
+                                <td>{{Branch?.PremiumSalesPer}}</td>
+                                <td>
+                                    <div *ngIf="Branch?.Name!=SelectedBranch">
+                                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                            (click)="GetBranchData(Branch?.Code,Branch?.Name)"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                    <div *ngIf="Branch?.Name==SelectedBranch">
+                                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                            (click)="CloseBranch('All')"><i class="fa fa-minus"></i></button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div [style.display]="TerritoryList">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title text-dark">
+                            <b>
+                                Territory List For {{SelectedBranch}} Branch
+                            </b>
+                        </h3>
+                    </div>
+                    <div *ngIf="this.UserType!='Branch Manager'" class="kt-portlet__head-toolbar">
+                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                            (click)="CloseBranch('this')">
+                            <i class="flaticon-cancel"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped mt-2">
+                        <thead style="background-color: #CDCDCD;">
+                            <tr>
+
+                                <th  class=" font-weight-bold align-text-top"   scope="col">SrNo</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Territory Name</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Mnth Target<br/> (In Tons)</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">MTD Sales<br/>(In Tons)</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Ach</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Short Fall</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Premium Sales</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">% Premium</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Action</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Territory of Branch; index as i">
+                                <th scope="row">{{ i + 1 }}</th>
+                                <td>{{Territory?.Name}}</td>
+                                <td>{{Territory?.TargetSales}}</td>
+                                <td>{{Territory?.ActualSales}}</td>
+                                <td>{{Territory?.Achivement}}</td>
+                                <td>{{Territory?.SortPoll}}</td>
+                                <td>{{Territory?.PremiumSales}}</td>
+                                <td>{{Territory?.PremiumSalesPer}}</td>
+                                <td>
+                                    <div *ngIf="Territory?.Name!=SelectedTerritory">
+                                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                            (click)="GetTerritoryData(Territory?.Code,Territory?.Name)"><i
+                                                class="fa fa-plus"></i></button>
+                                    </div>
+                                    <div *ngIf="Territory?.Name==SelectedTerritory">
+                                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                            (click)="CloseTerritory()"><i class="fa fa-minus"></i></button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div [style.display]="CustomerList">
+        <div class="kt-container  kt-container--fluid ">
+            <div class="kt-portlet kt-portlet--mobile">
+                <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                    <div class="kt-portlet__head-label">
+                        <h3 class="kt-portlet__head-title text-dark">
+                            <b>
+                                Customer List For {{SelectedTerritory}} Territory
+                            </b>
+                        </h3>
+                    </div>
+                    <div *ngIf="this.UserType!='Territory Sales Executive'" class="kt-portlet__head-toolbar">
+                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                            (click)="CloseTerritory()">
+                            <i class="flaticon-cancel"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped mt-2">
+                        <thead class="thead" >
+                            <tr>
+
+                                <th  class=" font-weight-bold align-text-top"   scope="col">SrNo</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Customer Name </th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Mnth Target<br/> (In Tons)</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">MTD Sales<br/>(In Tons)</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Ach</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Short Fall</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">Premium Sales</th>
+                                <th  class=" font-weight-bold align-text-top"   scope="col">% Premium</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr *ngFor="let Customer of Territory; index as i">
+                                <th  scope="row">{{ i + 1 }}</th>
+                                <td >{{Customer?.Name}}</td>
+                                <td >{{Customer?.TargetSales}}</td>
+                                <td >{{Customer?.ActualSales}}</td>
+                                <td >{{Customer?.Achivement}}</td>
+                                <td >{{Customer?.SortPoll}}</td>
+                                <td >{{Customer?.PremiumSales}}</td>
+                                <td >{{Customer?.PremiumSalesPer}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="kt-container  kt-container--fluid ">
+      <div class="row  mb-1 mt-1">
+        <div class="col-md-6 ">
+         <mat-radio-button [checked]="rbtnAmount" (change)="radioChange('Amount')" value="Amount" checked  >Amount</mat-radio-button>
+        <mat-radio-button [checked]="rbtnQuantity" (change)="radioChange('Quantity')" value="Quantity" >Quantity</mat-radio-button>
+      </div>
+      </div>
+        <div class="row  mb-1 mt-1">
+            <div class="col-md-6 ">
+
+                <div class="kt-portlet kt-portlet--mobile">
+                    <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title text-dark">
+                                <b>
+                                    Top 10 Dealers ( {{this.monthtoshow | date :'MMMM'}} - {{this.Year}} )
+                                </b>
+                            </h3>
+                        </div>
+
+                    </div>
+
+
+                    <div *ngIf="this.TopDealers[0]!=null" class=" table table-responsive">
+                        <table class="table table-striped mt-2"
+                            style='font-size:90%'>
+                            <thead style="background-color: #CDCDCD;">
+                                <tr>
+                                    <th class="  align-text-top" scope="col">Sr No</th>
+                                    <th class="  align-text-top" scope="col">Customer Code
+                                    </th>
+                                    <th class="  align-text-top" scope="col">Name</th>
+                                    <th class="  align-text-top" scope="col">City</th>
+                                    <th class="  align-text-top" scope="col">Amount</th>
+                                    <th class="  align-text-top" scope="col">Quantity</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Dealer of TopDealers; index as i">
+                                    <th scope="row">{{ i + 1 }}</th>
+                                    <td>{{ Dealer?.CustCodevtxt }}</td>
+                                    <td>{{ Dealer?.CustNamevtxt }}</td>
+                                    <td>{{Dealer?.City}}</td>
+                                    <td>{{Dealer?.Amount}}</td>
+                                    <td>{{Dealer?.Quantity}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="m-3" *ngIf="this.TopDealers[0]==null">No Data Available</h4>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="kt-portlet kt-portlet--mobile">
+                    <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                        <div class="kt-portlet__head-label">
+                            <h3 class="kt-portlet__head-title text-dark">
+                                <b>
+                                    Bottom 10 Dealers ( {{this.monthtoshow | date :'MMMM'}} - {{this.Year}} )
+                                </b>
+                            </h3>
+                        </div>
+
+                    </div>
+                    <div *ngIf="this.BottomDealer[0]!=null" class=" table table-responsive">
+                        <table class="table table-striped mt-2"
+                            style=' font-size:90%'>
+                            <thead style="background-color: #CDCDCD;">
+                                <tr>
+                                    <th class="   align-text-top" scope="col">Sr No</th>
+                                    <th class="  align-text-top" scope="col">Customer Code
+                                    </th>
+                                    <th class="  align-text-top" scope="col">Name</th>
+                                    <th class="  align-text-top" scope="col">City</th>
+                                    <th class="  align-text-top" scope="col">Amount</th>
+                                    <th class="  align-text-top" scope="col">Quantity</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Dealer of BottomDealer; index as i">
+                                    <th scope="row">{{ i + 1 }}</th>
+                                    <td>{{ Dealer?.CustCodevtxt }}</td>
+                                    <td>{{ Dealer?.CustNamevtxt }}</td>
+                                    <td>{{Dealer?.City}}</td>
+                                    <td>{{Dealer?.Amount}}</td>
+                                    <td>{{Dealer?.Quantity}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="m-3" *ngIf="this.BottomDealer[0]==null">No Data Available</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="kt-container row  kt-container--fluid ">
+
+    <div class="col-12 order-lg-1 order-xl-1">
+        <div class="kt-portlet kt-portlet--mobile">
+            <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title text-dark">
+                        <b>
+                            {{ this.Performancefor}} Performance
+                        </b>
+                    </h3>
+                </div>
+
+            </div>
+
+            <div class=" m-2">
+                <div class="chart-container">
+                    <canvas id="canvas">{{ this.Linechart }}</canvas>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<!-- end:: Content -->

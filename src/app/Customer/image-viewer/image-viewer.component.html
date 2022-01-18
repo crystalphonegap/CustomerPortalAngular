@@ -1,0 +1,31 @@
+
+
+
+
+<div class="kt-container  kt-container--fluid ">
+  <div class="kt-portlet kt-portlet--mobile">
+      <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm">
+          <div class="kt-portlet__head-label">
+              <h3 class="kt-portlet__head-title">{{this.title}}
+              </h3>
+          </div>
+          <div class="kt-portlet__head-toolbar">
+            <button class="btn btn-brand mr-2  btn-sm btn-bold  " (click)="Download()" >
+              <i class="fa  fas fa-download"></i> <span class=" m-2">Download</span>
+           </button>
+          </div>
+      </div>
+
+       <div class="kt-portlet__body ">
+        <img  style="align-items: center;"  [src]="Base" >
+      </div>
+
+    <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
+      <div class="kt-form__actions">
+        <div class="row">
+          <button type="button" class="btn btn-secondary btn-sm" (click)="Back()">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

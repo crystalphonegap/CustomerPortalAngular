@@ -1,0 +1,147 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ">
+    <div class="kt-portlet ">
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">
+                    <b>Login Report</b>
+                    <small>
+                        <span class="kt-font-brand kt-font-bold mr-3">({{this.FromDate}}) - ({{this.Todate}})</span>
+                    </small>
+                </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <button class="btn mr-2 btn-brand btn-sm btn-bold  " (click)="ChangeFilter('Download')">
+                    <i class="fa fa-file-excel"></i> <span class=" m-2">Export To Excel </span>
+                </button>
+            </div>
+        </div>
+        <form [formGroup]="SearchFilter" (ngSubmit)="ChangeFilter('Login Report')">
+            <div class="p-4 bg-light border-top border-bottom">
+                <!--begin: Search Form -->
+                <div class="kt-form kt-form--label-right ">
+                    <div class="row align-items-center">
+
+                        <div class="col-xl-12 order-2 order-xl-1">
+                            <div class="row align-items-center">
+
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>From Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('From')"
+                                                formControlName="FromDate" [matDatepicker]="picker1">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>To Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('To')"
+                                                formControlName="Todate" [matDatepicker]="picker2">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <select class=" form-control" (change)="ChangeUserType($event.target.value)">
+                                        <option value="Customer">Customer</option>
+                                        <option value="User">Customer User</option>
+                                        <option value="Retailer">Retailer</option>
+                                        <option [style.display]="CMOList" value="Zonal Manager">Zonal Manager</option>
+                                        <option [style.display]="ZoneList" value="Regional Manager">Regional Manager</option>
+                                        <option [style.display]="RegionList" value="Branch Manager">Branch Manager</option>
+                                        <option [style.display]="BranchList" value="Territory Sales Executive">Territory Sales Executive</option>
+                                        <option [style.display]="CMOList"  value="CF Agent">CF Agent</option>
+                                        <option [style.display]="CMOList"  value="CF Agent User">CF Agent User</option>
+                                        <option [style.display]="CMOList"  value="Sales Promoter">Sales Promoter</option>
+                                        <option [style.display]="CMOList"  value="Sales Promoter User">Sales Promoter User</option>
+                                        <option [style.display]="CMOList"  value="Order Analyst">Order Analyst</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row align-items-center">
+                                <div [style.display]="CMOList" class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <select class=" form-control" (change)="ChangeZone($event.target.value)">
+                                        <option value="NoSearch">Select Zone</option>
+                                        <option *ngFor="let Area of ZoneDate"
+                                            value={{Area.ZoneCodevtxt}}>
+                                            {{Area.ZoneDescriptionvtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div [style.display]="ZoneList"  class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <select class=" form-control" (change)="ChangeRegion($event.target.value)">
+                                        <option value="NoSearch">Select Region</option>
+                                        <option *ngFor="let Area of RegionDate"
+                                            value={{Area.RegionCodevtxt}}>
+                                            {{Area.RegionDescriptionvtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div [style.display]="RegionList" class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <select class=" form-control" (change)="ChangeBranch($event.target.value)">
+                                        <option value="NoSearch">Select Branch</option>
+                                        <option *ngFor="let Area of BranchDate"
+                                            value={{Area.BranchCodevtxt}}>
+                                            {{Area.BranchNamevtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                             <div [style.display]="BranchList" class="row align-items-center">
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <select class=" form-control" (change)="ChangeTerritory($event.target.value)">
+                                        <option value="NoSearch">Select Territory</option>
+                                        <option *ngFor="let Area of TerritoryDate"
+                                            value={{Area.SalesOfficeCodevtxt}}>
+                                            {{Area.SalesOfficeNamevtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <button class="btn btn-dark btn-sm" type="submit" title="bigger"><i
+                                            class="fa fa-search ml-2 ml-md-0"></i><span
+                                            class="d-none d-md-inline-block ml-2">Search</span></button>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--end: Search Form -->
+            </div>
+        </form>
+        <div class="kt-portlet__body  ">
+            <div class=" table table-responsive">
+                <table class="table table-striped">
+                    <thead style="background-color: #CDCDCD;">
+                        <tr>
+                            <th *ngFor="let  Column of Columns1" class=" font-weight-bold align-text-top"
+                                scope="col">{{Column}}</th>
+                            <th *ngFor="let  Column of Columns2" class=" font-weight-bold align-text-top"
+                            scope="col"><label class="date ">{{Column}}</label></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let  Report of Reports">
+                            <td *ngFor="let  Column of Columns1">{{Report[Column] }}</td>
+                            <td *ngFor="let  Column of Columns2"><label class="datecontain ">{{Report[Column] }}</label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <h4 *ngIf="this.Reports[0]==null">No Data Available</h4>
+
+        </div>
+    </div>
+</div>

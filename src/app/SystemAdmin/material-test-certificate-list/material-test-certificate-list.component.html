@@ -1,0 +1,167 @@
+<div class="kt-container  kt-container--fluid ">
+  <div class="kt-portlet kt-portlet--mobile">
+    <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm">
+      <div class="kt-portlet__head-label">
+        <h3 class="kt-portlet__head-title"> Material Test Certificate List
+        </h3>
+      </div>
+      <div class="kt-portlet__head-toolbar">
+
+        <button class="btn btn-brand mr-2 btn-sm btn-bold  " (click)="Add()">
+          <i class="fa fa-file-excel"></i> <span class=" m-2">Upload</span>
+        </button>
+      </div>
+    </div>
+
+
+    <form (ngSubmit)="ChangeFilter()">
+      <div class="p-4 bg-light border-top border-bottom">
+        <!--begin: Search Form -->
+        <div class="kt-form kt-form--label-right ">
+          <div class="row align-items-center">
+
+            <div class="col-xl-12 order-2 order-xl-1">
+              <div class="row align-items-center">
+
+                <div class="col-12 col-md-6 col-lg-4 mb-2 mb-lg-0">
+                  <div class="kt-input-icon kt-input-icon--left">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Date</mat-label>
+                      <input matInput autocomplete="off" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="DocDatedatetime" [matDatepicker]="picker1">
+                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                      <mat-datepicker #picker1></mat-datepicker>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-2 mb-lg-0">
+                  <div class="row">
+                    <label class="col-lg-2 col-form-label">Year :</label>
+                    <div class="col-lg-10">
+                      <select class="form-control  " [(ngModel)]="year" [ngModelOptions]="{standalone: true}">
+                        <option value="0">Select Year</option>
+                        <option *ngFor="let year of Years " value="{{year}}">
+                          {{year}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-2 mb-lg-0">
+                  <div class="row">
+                    <label class="col-lg-2 col-form-label">Grade :</label>
+                    <div class="col-lg-10">
+                      <select class=" form-control form-control-sm text-right"  [(ngModel)]="Gradetxt" [ngModelOptions]="{standalone: true}">
+                        <option value="0">Select Item</option>
+                        <option *ngFor="let Item of AllItemMasterData" value={{Item?.ItemCodevtxt}}>
+                          {{Item?.ItemCodevtxt}}
+                        </option>
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-2 mb-lg-0">
+                  <div class="row">
+                    <label class="col-lg-2 col-form-label">Days:</label>
+                    <div class="col-lg-10">
+                      <select class="form-control  " [(ngModel)]="Days" [ngModelOptions]="{standalone: true}">
+                        <option value="All">Select Days</option>
+                        <option value="7 Days">7 Days</option>
+                        <option value="28 Days">28 Days</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-2 mb-lg-0">
+                  <div class="row">
+                    <label class="col-lg-2 col-form-label">Week:</label>
+                    <div class="col-lg-10">
+                        <select class="form-control  " [(ngModel)]="week" [ngModelOptions]="{standalone: true}">
+                          <option value="0">Select week</option>
+                          <option *ngFor="let week of weeks " value="{{week}}">
+                            {{week}}
+                          </option>
+                        </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-auto">
+                  <button class="btn btn-dark btn-sm" type="submit" title="bigger"><i
+                      class="fa fa-search ml-2 ml-md-0"></i><span
+                      class="d-none d-md-inline-block ml-2">Search</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--end: Search Form -->
+      </div>
+    </form>
+
+
+
+    <div class="kt-portlet__body ">
+      <div class=" table table-responsive">
+        <table class="table table-striped">
+          <thead style="background-color: #CDCDCD;">
+            <tr>
+              <th class=" font-weight-bold align-text-top" scope="col">Sr No</th>
+              <th class=" font-weight-bold align-text-top" scope="col">Doc No</th>
+              <th class=" font-weight-bold align-text-top" scope="col">Date</th>
+              <th class=" font-weight-bold align-text-top" scope="col">Year</th>
+              <th class=" font-weight-bold align-text-top" scope="col">Grade</th>
+              <th class=" font-weight-bold align-text-top" scope="col">Days</th>
+              <th class=" font-weight-bold align-text-top"  scope="col">Week</th>
+              <th class=" font-weight-bold align-text-top" scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let data of LoyalityPoints; index as i">
+              <th scope="row">{{i + Indexing +1 }}</th>
+              <td>{{ data?.DocNovtxt }}</td>
+              <td>{{ data?.DocDatedatetime | date :'dd/MM/yyyy'}}</td>
+              <td>{{ data?.Yeartxt }}</td>
+              <td>{{ data?.Gradetxt }}</td>
+              <td>{{ data?.Daystxt }}</td>
+              <td>{{ data?.Weektxt }}</td>
+              <td>
+                <button class="btn btn-brand btn-icon mr-2 btn-sm btn-bold rounded-circle"
+                  (click)="View(data.IDbint)"><i class="fa fa-eye"></i></button>
+                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="Delete(data.IDbint)"><i
+                    class="fa fa-trash"></i></button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 *ngIf="this.LoyalityPoints[0]==null">No Data Available</h4>
+      <div *ngIf="LoyalityPoints[0] !=null" class="kt-pagination kt-pagination--brand">
+        <ul class="kt-pagination__links">
+          <li *ngIf="this.pageField.length < paginationService.exactPageList" class="kt-pagination__link--prev">
+            <a (click)="showPrevLoyalityPoints()"
+              [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                class="fa fa-angle-left kt-font-brand"></i></a>
+          </li>
+          <li *ngFor="let page of pageField;let i=index">
+            <a (click)="showLoyalityPointsByPageNumber(page,i)"
+              [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''" style="cursor: pointer;">{{page}}</a>
+          </li>
+          <li *ngIf="this.pageField.length < paginationService.exactPageList" class="kt-pagination__link--next"><a
+              (click)="showNextLoyalityPoints()"
+              [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                class="fa fa-angle-right kt-font-brand"></i></a> </li>
+        </ul>
+        <div class="kt-pagination__toolbar">
+          <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of page
+            <span class="kt-font-bold">{{paginationService.exactPageList}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

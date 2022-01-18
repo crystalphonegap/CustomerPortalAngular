@@ -1,0 +1,178 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+    <div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
+        <!--begin::Portlet-->
+
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">Balance Confirmation Information
+                </h3>
+            </div>
+        </div>
+
+        <div class="kt-portlet__body">
+            <div *ngIf="BCheader.AttachmentFilevtxt!='' && BCheader.AttachmentFilevtxt!=null" class="mb-2">
+                <a (click)="download()" type="button" class="alert-link"><i class="fa fa-download" aria-hidden="true"></i>
+                    {{this.BCheader?.AttachmentFilevtxt}}   </a>
+            </div>
+            <div class="table-responsive" style="overflow: hidden;">
+
+
+                <table class="text-dark col-md-12">
+
+                    <tbody>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Request No : </th>
+                            <td class="col-sm-3">{{this.BCheader?.RequestNovtxt}}</td>
+                            <th class="col-sm-3" scope="row">Customer Code : </th>
+                            <td class="col-sm-3">{{this.BCheader?.CustomerCodevtxt}} - {{this.BCheader?.CustomerNamevtxt}}</td>
+
+
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">From Date : </th>
+                            <td class="col-sm-3">{{this.BCheader?.FromDatedatetime | date :'dd/MM/yyy'}}</td>
+                            <th class="col-sm-3" scope="row">To Date : </th>
+                            <td class="col-sm-3">{{this.BCheader?.ToDatedatetime | date :'dd/MM/yyy'}}</td>
+
+                        </tr>
+
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row"> Confirmation Before Date : </th>
+                            <td class="col-sm-3">{{this.BCheader?.ExpiryDatedatetime | date :'dd/MM/yyy'}}</td>
+                            <th class="col-sm-3" scope="row">Remark : </th>
+                            <td class="col-sm-3">{{this.BCheader?.Remarksvtxt }}</td>
+                        </tr>
+                        <tr class="row">
+                            <th class="col-sm-3" scope="row">Action</th>
+                            <td class="col-sm-3">
+                                <div class="row pl-3">
+                                    :
+                                    <span class="kt-font-bold">
+                                        <div *ngIf="this.BCheader?.BalanceConfirmationAction=='A'">
+                                            Agree
+                                        </div>
+                                        <div *ngIf="this.BCheader?.BalanceConfirmationAction=='B'">
+                                            Disagree
+                                        </div>
+                                        <div *ngIf="this.BCheader?.BalanceConfirmationAction!='A'">
+                                            <div *ngIf="this.BCheader?.BalanceConfirmationAction!='B'">
+                                                Pending
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+
+                            </td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+            <h5 class="mt-4">Balance Confirmation Details</h5>
+            <div class="table-responsive" style="height: 400px;">
+                <table class="table table-striped ">
+                    <thead style="background-color: #CDCDCD;">
+                        <tr>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                Sr. No.
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                POST DATE
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                DOC. NO.
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                DOC. DT.
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                ASSIGNMENT
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                DOC. AMOUNT
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                TYPE
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                TDS
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                GROSS AMT
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                NARRATION
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                Updated Amount
+                            </th>
+                            <th class=" font-weight-bold align-text-top" scope="col">
+                                Updated Remark
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Ledger of BalanceConfirmations; index as i ">
+                            <th scope="row">{{ i + 1 }} </th>
+                            <td>
+                                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                                    <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                                        {{Ledger.PostingDatedate | date :'dd/MM/yyyy'}}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                                    <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                                        {{Ledger.DocumentNovtxt }}
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td>
+                                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                                    <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                                        {{Ledger.DocumentDatedate | date :'dd/MM/yyyy'}}
+                                    </div>
+                                </div>
+
+                            </td>
+                            <td>{{Ledger.RefDocumentNovtxt}}</td>
+                            <td>
+                                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                                    <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                                        {{Ledger.Quantitydcl}}</div>
+                                </div>
+                            </td>
+                            <td>{{Ledger.DocumentTypevtxt}}</td>
+                            <td>{{Ledger.TDSdcl}}</td>
+                            <td>{{Ledger.Balancedcl}}
+                            </td>
+                            <td>
+                                <div *ngIf="Ledger.DocumentTypevtxt!='Opening Balance'">
+                                    <div *ngIf="Ledger.DocumentTypevtxt!='Closing Balance'">
+                                        {{Ledger.ItemDescvtxt}}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div *ngIf="Ledger.DocumentTypevtxt=='D'">
+                                    {{Ledger.EditDebitdcl}}
+                                </div>
+                                <div *ngIf="Ledger.DocumentTypevtxt=='C'">
+                                    {{Ledger.EditCreditdcl}}
+                                </div>
+                            </td>
+                            <td>
+                                {{ Ledger.Remarksvtxt}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <button [routerLink]="['/Emp/BalanceConfirmationListForCFSP']" class="btn  btn-brand ">Back</button>
+            </div>
+        </div>

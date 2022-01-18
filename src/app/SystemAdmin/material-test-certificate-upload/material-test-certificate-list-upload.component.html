@@ -1,0 +1,151 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+  <div class="kt-portlet">
+      <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+          <div class="kt-portlet__head-label">
+              <h3 class="kt-portlet__head-title">Upload Material Test Certificate
+              </h3>
+          </div>
+      </div>
+      <form>
+          <div class="kt-portlet__body">
+
+              <div class="row mt-2">
+                  <label class="col-lg-2 col-form-label">Doc No:</label>
+                  <div class="col-lg-10">
+                      {{DocNovtxt}}
+                  </div>
+              </div>
+
+              <div class="row mt-2">
+                  <label class="col-lg-2 col-form-label">Date :</label>
+                  <div class="col-lg-2">
+                      <mat-form-field appearance="outline">
+                          <mat-label>Date </mat-label>
+                          <input [ngModelOptions]="{standalone: true}" [(ngModel)]="DocDatedatetime" matInput autocomplete="off" [matDatepicker]="picker1">
+                          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
+
+                  </div>
+              </div>
+              <div class="row mt-2">
+                  <label class="col-lg-2 col-form-label">Year :</label>
+                  <div class="col-lg-10">
+                      <select class="form-control  " [(ngModel)]="year" [ngModelOptions]="{standalone: true}">
+            <option value="All">Select Year</option>
+            <option *ngFor="let year of Years " value="{{year}}">
+              {{year}}
+            </option>
+          </select>
+
+                  </div>
+              </div>
+              <div class="row mt-2">
+                  <label class="col-lg-2 col-form-label">Grade :</label>
+                  <div class="col-lg-10">
+                      <select class=" form-control form-control-sm text-right" [(ngModel)]="Gradetxt" [ngModelOptions]="{standalone: true}">
+            <option value="0">Select Item</option>
+            <option *ngFor="let Item of AllItemMasterData" value={{Item?.ItemCodevtxt}}>
+              {{Item?.ItemCodevtxt}}
+            </option>
+          </select>
+
+                  </div>
+              </div>
+              <div class="row mt-2">
+                  <label class="col-lg-2 col-form-label">Days:</label>
+                  <div class="col-lg-10">
+                      <select class="form-control  " [(ngModel)]="Days" [ngModelOptions]="{standalone: true}">
+            <option value="All">Select Days</option>
+            <option value="7 Days">7 Days</option>
+            <option value="28 Days">28 Days</option>
+          </select>
+
+
+
+                  </div>
+              </div>
+              <div class="row mt-2">
+                  <label class="col-lg-2 col-form-label">Week:</label>
+                  <div class="col-lg-10">
+                      <div>
+                          <select class="form-control  " [(ngModel)]="week" [ngModelOptions]="{standalone: true}">
+              <option value="0" >Select week</option>
+              <option *ngFor="let week of weeks " value="{{week}}">
+                {{week}}
+              </option>
+            </select>
+
+
+                      </div>
+                  </div>
+
+
+
+              </div>
+              <div class="row mt-2">
+                  <label class="col-lg-2 col-form-label">Upload File:</label>
+                  <div class="col-lg-7">
+                      <div class="kt-uppy" id="kt_uppy_5">
+                          <div class="kt-uppy__wrapper">
+                              <div class="uppy-Root uppy-FileInput-container">
+                                  <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)">
+                              </div>
+                          </div>
+                          <div class="kt-uppy__list"></div>
+                          <div class="kt-uppy__status kt-uppy__status--hidden">
+                              <div class="uppy-Root uppy-StatusBar is-waiting" aria-hidden="true">
+                                  <div class="uppy-StatusBar-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" style="width: 0%;">
+                                  </div>
+                                  <div class="uppy-StatusBar-actions"></div>
+                              </div>
+                          </div>
+                          <div class="kt-uppy__informer kt-uppy__informer--min">
+                              <div class="uppy uppy-Informer" aria-hidden="true">
+                                  <p role="alert"></p>
+                              </div>
+                          </div>
+                      </div>
+
+                  </div>
+              </div>
+
+              <div class="kt-portlet__body  mt-2 ">
+                  <div class=" table table-responsive">
+                      <table class="table table-striped">
+                          <thead style="background-color: #CDCDCD;">
+                              <tr>
+                                  <th class=" font-weight-bold align-text-top" scope="col" style="width: 60px;">Sr No</th>
+                                  <th class=" font-weight-bold align-text-top" scope="col">File</th>
+                                  <th class=" font-weight-bold align-text-top" scope="col" style="width: 60px;">Action</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let User of MTCDetail; index as i">
+                                  <th scope="row">{{i +1 }}</th>
+                                  <td>{{ User?.AttachmentFileNamevtxt }}</td>
+                                  <td>
+                                      <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle" (click)="DeleteFile(i)"><i class="fa fa-trash" aria-hidden="true"></i>
+                                      </button>
+                                  </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+              <div class="kt-portlet__foot kt-portlet__foot">
+                  <div class="kt-form__actions">
+                      <div class="row">
+                          <div class="col-lg-2"></div>
+                          <div class="col-lg-10">
+
+                              <button type="button" class="btn mr-2 btn-brand btn-sm" (click)="Submit()">Submit</button>
+                              <button type="button" class="btn btn-secondary btn-sm" (click)="Back()">Cancel</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>

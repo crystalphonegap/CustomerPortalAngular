@@ -1,0 +1,71 @@
+<div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
+    <div id="kt_aside_menu" class="kt-aside-menu" data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
+        <ul class="kt-menu__nav ">
+            <li class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/dashboard']" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-chart-area"></i><span class="kt-menu__link-text">Home Page</span></a></li>
+            <li [style.display]="Retailer"  class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/RetailerList']" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-people-carry"></i><span class="kt-menu__link-text">Retailer List</span></a></li>
+
+            <li [style.display]="GroupA"    class="kt-menu__item kt-menu__item--submenu kt-menu__item--rel " [routerLinkActive]="['kt-menu__item--active']"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon fa fa-user"></i><span class="kt-menu__link-text">User Management</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left" kt-hidden-height="80">
+                    <ul class="kt-menu__subnav">
+                        <li [style.display]="UserList"  class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/UserList']" class="kt-menu__link "><i class="kt-menu__link-icon "></i><span class="kt-menu__link-text">User List</span></a></li>
+                        <li [style.display]="UserCreate" class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/UserCreate']" class="kt-menu__link "><i class="kt-menu__link-icon"></i><span class="kt-menu__link-text">Create User</span></a></li>
+                    </ul>
+                </div>
+            </li>
+            <li [style.display]="GroupB"   class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" [routerLinkActive]="['kt-menu__item--active']"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon fa fa-box-open"></i><span class="kt-menu__link-text">Order Management</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+                    <ul class="kt-menu__subnav">
+
+                        <li  [style.display]="PlaceOrderRequest" class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/CreateOrderRequest']" class="kt-menu__link "><i class=" fa kt-menu__link-icon"><span></span></i><span class="kt-menu__link-text">Place Order Request</span></a></li>
+                        <li  [style.display]="OrdersPlaced" class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/OrderList']" class="kt-menu__link "><i class="kt-menu__link-icon"></i><span class="kt-menu__link-text">Orders Placed</span></a></li>
+                        <li  [style.display]="MyOrderList" class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/SalesOrderDetail']" class="kt-menu__link "><i class="kt-menu__link-icon"></i><span class="kt-menu__link-text">SAP Order</span></a></li>
+                        <li  [style.display]="MyRetailList" class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/RetailOrderDetail']" class="kt-menu__link "><i class="kt-menu__link-icon"></i><span class="kt-menu__link-text">My Retailer Order</span></a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li [style.display]="CustomerType" class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/MaterialTestCertificateList']" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-dolly"></i><span class="kt-menu__link-text">MTC List</span></a></li>
+            <li [style.display]="Dispatches" class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/DispatchOrderDetail']" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-dolly"></i><span class="kt-menu__link-text">Delivery List</span></a></li>
+            <li [style.display]="Invoices" class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/InvoiceDetail']" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-clipboard-list"></i><span class="kt-menu__link-text">My Invoices</span></a></li>
+
+            <!-- <li [style.display]="Dispatches"  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" [routerLinkActive]="['kt-menu__item--active']"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon fa fa-dolly"></i><span class="kt-menu__link-text">Dispatches</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+                    <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/DispatchOrderDetail']" class="kt-menu__link "><i class="kt-menu__link-icon"></i><span class="kt-menu__link-text">List of Delivery Doc</span></a></li>
+                    </ul>
+                </div>
+            </li>
+            <li  [style.display]="Invoices"  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" [routerLinkActive]="['kt-menu__item--active']"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon fa fa-clipboard-list"></i><span class="kt-menu__link-text">Invoices</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+                    <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/InvoiceDetail']" class="kt-menu__link "><i class="kt-menu__link-icon "></i><span class="kt-menu__link-text">My Invoices</span></a></li>
+                    </ul>
+                </div>
+            </li> -->
+            <li  [style.display]="GroupC"    class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" [routerLinkActive]="['kt-menu__item--active']"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon fa fa-layer-group"></i><span class="kt-menu__link-text">Accounts Management</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+                    <ul class="kt-menu__subnav">
+                        <li  [style.display]="AccountStatement" class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/AccountStatement']" class="kt-menu__link "><i class="kt-menu__link-icon"></i><span class="kt-menu__link-text">Account Statement</span></a></li>
+                        <li  [style.display]="Outstanding" class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/OutStanding']" class="kt-menu__link "><i class="kt-menu__link-icon"></i><span class="kt-menu__link-text">Outstanding</span></a></li>
+                        <li  [style.display]="CurrentLedger"  class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/CurrentLedger']" class="kt-menu__link "><i class="kt-menu__link-icon"></i><span class="kt-menu__link-text">View Ledger</span></a></li>
+                        <li  [style.display]="BalanceConfirmation"  class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']">
+
+                          <a [routerLink]="['/Customer/BalanceConfirmationView']" ></a>
+                            <a [routerLink]="['/Customer/BalanceConfirmation']" class="kt-menu__link ">
+                          <i class="kt-menu__link-icon"></i><span class="kt-menu__link-text">My Ledger</span></a></li>
+                    </ul>
+                </div>
+            </li>
+
+            <li   [style.display]="GroupD"  class="kt-menu__item  kt-menu__item--submenu kt-menu__item--rel" [routerLinkActive]="['kt-menu__item--active']"><a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon fa fa-ticket-alt"></i><span class="kt-menu__link-text">Feedback</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                <div class="kt-menu__submenu kt-menu__submenu--classic kt-menu__submenu--left">
+                    <ul class="kt-menu__subnav">
+                        <li  [style.display]="CreateTicket"  class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/CreateTicket']" class="kt-menu__link "><i class="kt-menu__link-icon "></i><span class="kt-menu__link-text">Raise Ticket</span></a></li>
+                        <li   [style.display]="TicketStatus" class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/TicketStatus']" class="kt-menu__link "><i class="kt-menu__link-icon "></i><span class="kt-menu__link-text">Ticket Status</span></a></li>
+                    </ul>
+                </div>
+            </li>
+            <li [style.display]="Invoices" class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Customer/ImageUpload']" class="kt-menu__link "><i class="kt-menu__link-icon fa fa-clipboard-list"></i><span class="kt-menu__link-text">Upload Image</span></a></li>
+        </ul>
+    </div>
+</div>

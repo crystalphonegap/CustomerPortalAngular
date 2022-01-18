@@ -1,0 +1,106 @@
+
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+	<div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
+		<!--begin::Portlet-->
+
+		<div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+			<div class="kt-portlet__head-label">
+				<h3 class="kt-portlet__head-title">Dispatch Order Information
+				</h3>
+			</div>
+		</div>
+
+		<div class="kt-portlet__body">
+			<div class="table-responsive">
+
+
+				<table class="text-dark col-md-12">
+
+					<tbody>
+						<tr class="mt-4">
+							<th scope="row">Sold To </th>
+							<td>: {{this.OrderInfo.SoldToPartyCodevtxt}} - {{this.OrderInfo.SoldTopPartyNamevtxt}}</td>
+							<th scope="row">Ship To </th>
+							<td>: {{this.OrderInfo.ShipToPartyCodevtxt}} - {{this.OrderInfo.ShipToPartyNamevtxt}}</td>
+
+
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Delivery Order No</th>
+							<td>: {{this.OrderInfo.DeliveryOrderNovtxt}}</td>
+							<th scope="row">Delivery Date</th>
+							<td>: {{this.OrderInfo.DeliveryDatedate | date :'dd/MM/yyy'}}</td>
+
+						</tr>
+
+						<tr class="mt-4">
+							<th scope="row">Invoice No</th>
+							<td>: {{this.OrderInfo.InvoiceNumbervtxt}}</td>
+							<th scope="row">Invoice Date </th>
+							<td>: {{this.OrderInfo.BillingDatedate | date : 'dd/MM/yyy'}}</td>
+
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Truck No </th>
+							<td>: {{this.OrderInfo.TruckNovtxt}}</td>
+							<th scope="row">Transporter </th>
+							<td>: {{this.OrderInfo.Transportervtxt}}</td>
+
+
+						</tr>
+						<tr class="mt-4">
+
+							<th scope="row">LR No </th>
+							<td>: {{this.OrderInfo.Lrnumbervtxt}}</td>
+							<th scope="row">LR date </th>
+							<td>: {{this.OrderInfo.Lrdatedate  | date :'dd/MM/yyyy'}}</td>
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Driver Mobile No </th>
+							<td>: {{this.OrderInfo.DriverMobileNovtxt}}</td>
+							<th scope="row">Driver </th>
+							<td>: {{this.OrderInfo.Drivervtxt}}</td>
+						</tr>
+						<tr class="mt-4">
+							<th scope="row">Sales Order No :</th>
+							<td>: {{this.OrderInfo.SalesOrderNovtxt}}</td>
+							<th scope="row">Status :</th>
+							<td>: {{this.OrderInfo.DeliveryStatusvtxt}}</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<h5 class="mt-4">Dispatch Order Detail</h5>
+			<div class="table-responsive">
+				<div class="kt-portlet__body ">
+
+					<div>
+						<div *ngFor="let Order of Orders" class="customerCustomers-list border shadow-sm p-3 mb-3">
+							<div class="row col-11">
+								<div class="col-md-3 ">
+
+										Material : <span class="kt-font-bold">{{Order.MaterialCodevtxt}}</span>
+
+								</div>
+								<div class="col-md-3 ">
+
+										UOM : <span class="kt-font-bold">{{Order.UOMvtxt}}</span>
+
+								</div>
+
+
+								<div class="col-md-3 ">
+
+										Quantity in MT : <span class="kt-font-bold">{{Order.QtyMt}}</span>
+
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+				<button  (click)="Back()" class="btn  btn-brand ">Back</button>
+			</div>
+		</div>

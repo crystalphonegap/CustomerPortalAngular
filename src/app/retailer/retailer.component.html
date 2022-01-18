@@ -1,0 +1,65 @@
+<!-- begin:: Page -->
+<div class="spinner_background" [style.display]="loading">
+    <div class="spinner_overlay"><mat-spinner></mat-spinner></div>
+    
+  </div>
+
+<!-- begin:: Header Mobile -->
+<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+    <div class="kt-header-mobile__logo">
+        <img src="assets/media/app_images/johnson-logo.png" class="img-fluid py-2" alt="Logo" runat="server" id="logo">
+    </div>
+    <div class="kt-header-mobile__toolbar">
+        <button class="kt-header-mobile__toolbar-toggler kt-header-mobile__toolbar-toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
+        <button class="kt-header-mobile__topbar-toggler" id="kt_header_mobile_toggler"><i class="flaticon-user"></i></button>
+    </div>
+</div>
+
+<!-- end:: Header Mobile -->
+<div class="kt-grid kt-grid--hor kt-grid--root">
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+
+        <!-- begin:: Aside -->
+        <button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
+        <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+
+            <!-- begin:: Aside -->
+            <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+                <div class="kt-aside__brand-logo">
+                    <img src="assets/media/app_images/johnson-logo.png" class="img-fluid" alt="Logo" runat="server" id="logo1">
+                </div>
+            </div>
+
+            <!-- end:: Aside -->
+
+            <div class="Side_Nav">
+            <!-- begin:: Aside Men  u -->
+            <app-Retailer-aside></app-Retailer-aside>
+            <!-- end:: Aside Menu -->
+            </div>
+        </div>
+
+        <!-- end:: Aside -->
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+
+            <!-- begin:: Header -->
+            <app-Retailernavigation-bar></app-Retailernavigation-bar>
+            <!-- end:: Header -->
+            <div class="kt-content  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor" id="kt_content">
+                <alert></alert>
+                <router-outlet></router-outlet>
+            </div>
+
+            <!-- begin:: Footer -->
+            <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
+                <div class="kt-container  kt-container--fluid ">
+                    <div class="kt-footer__copyright">
+                          {{ this.Year }}&nbsp;&copy;&nbsp;<a class="kt-link">Prism Johnson Limited</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- end:: Footer -->
+        </div>
+    </div>
+</div>

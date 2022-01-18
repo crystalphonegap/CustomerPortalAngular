@@ -1,0 +1,218 @@
+
+<!-- begin:: Header Mobile -->
+<div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+    <div class="kt-header-mobile__logo">
+        <img src="assets/media/app_images/johnson-logo.png" class="img-fluid py-2" alt="Logo" id="logo">
+    </div>
+    <div class="kt-header-mobile__toolbar">
+
+        <button type="button" class="kt-header-mobile__topbar-toggler" id="kt_header_mobile_toggler"><i class="flaticon-user"></i></button>
+    </div>
+</div>
+
+<!-- end:: Header Mobile -->
+<div class="kt-grid kt-grid--hor kt-grid--root ">
+    <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper pl-0" id="kt_wrapper">
+           <!-- begin:: Header -->
+<div id="kt_header" class="kt-header kt-grid__item">
+
+    <div class="kt-padding-r-25  kt-padding-l-25 d-flex align-items-center  ">
+        <a >
+            <img style="border-bottom: 2px solid #151515;" class="kt-aside__brand kt-aside__brand-logo img" src="assets/media/app_images/johnson-logo.png" alt="Logo" runat="server" >
+        </a>
+    </div>
+
+    <!-- begin: Header Menu -->
+    <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i
+            class="la la-close"></i></button>
+    <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
+        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
+            <ul class="kt-menu__nav ">
+                <li class="kt-menu__item" aria-haspopup="false" id="logoutClick"><a (click)="onLogout()" class="kt-menu__link "><i
+                            class="kt-menu__link-icon flaticon-logout"></i><span class="kt-menu__link-text">Log
+                            Out</span></a></li>
+            </ul>
+            <!-- begin: Custom User-->
+            <div class="kt-custom-user">
+                <div class="kt-header-custom-user">
+                    <div class="kt-header-custom-user">
+                        <span class="kt-header__topbar-welcome kt-hidden-mobile">Hi,</span>
+                        <span class="kt-header__topbar-username">{{UserName}}
+                           <!-- ( {{UserType}} ) -->
+                          </span>
+                    </div>
+                </div>
+            </div>
+            <!-- end: Custom User-->
+        </div>
+    </div>
+    <!-- end: Header Menu -->
+</div>
+            <div class="kt-content kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor ml-0" id="kt_content">
+
+
+<div class="kt-container  kt-container--fluid ">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title text-dark">
+                    <b>
+                        Error List
+                    </b>
+                    <small>
+                        <span class="kt-font-brand kt-font-bold mr-3">({{this.FromDate}}) - ({{this.Todate}})</span>
+
+                        <span>Todays Error Count : <span class="kt-font-success kt-font-bold mr-3">{{Todays}}</span></span>
+                    </small>
+                </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <button class="btn mr-2 btn-brand btn-sm btn-bold  " (click)="Delete()">
+                    <i class="fa fa-file-excel"></i> <span class=" m-2">Delete</span>
+                </button>
+            </div>
+        </div>
+        <form [formGroup]="SearchFilter" (ngSubmit)="ChangeFilter()">
+        <div class="p-4 bg-light border-top border-bottom">
+            <!--begin: Search Form -->
+            <div class="kt-form kt-form--label-right ">
+                <div class="row align-items-center">
+
+                        <div class="col-xl-12 order-2 order-xl-1">
+                            <div class="row align-items-center">
+
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>From Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('From')"
+                                                formControlName="FromDate" [matDatepicker]="picker1">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>To Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('To')"
+                                                formControlName="Todate" [matDatepicker]="picker2">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Type To Search...</mat-label>
+                                        <input formControlName="search" matInput placeholder="Placeholder">
+                                        <mat-icon matSuffix>search</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-dark btn-sm" type="submit" title="bigger"><i
+                                            class="fa fa-search ml-2 ml-md-0"></i><span
+                                            class="d-none d-md-inline-block ml-2">Search</span></button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+            <!--end: Search Form -->
+        </div>
+    </form>
+
+    <div class="kt-portlet__body  ">
+        <div class=" table table-responsive">
+            <table class="table table-striped">
+                <thead style="background-color: #CDCDCD;">
+                    <tr>
+                        <th class=" font-weight-bold align-text-top" scope="col">Sr No</th>
+                        <th class=" font-weight-bold align-text-top" scope="col">Date</th>
+                        <th class=" font-weight-bold align-text-top" scope="col">Error Message</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let  Customer of Errors; index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{Customer?.Date  | date :'MMM d, y, h:mm:ss a'}}</td>
+                        <td>{{ Customer?.ExceptionMessage}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <h4 *ngIf="this.Errors[0]==null">No Data Available</h4>
+        <div *ngIf="Errors[0] !=null" class="kt-pagination kt-pagination--brand">
+            <ul class="kt-pagination__links">
+                <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                    class="kt-pagination__link--prev">
+                    <a (click)="showPrevErrors()"
+                        [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                            class="fa fa-angle-left kt-font-brand"></i></a></li>
+                <li *ngFor="let page of pageField;let i=index" >
+                    <a [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''" (click)="showErrorsByPageNumber(page,i)" style="cursor: pointer;">{{page}}</a>
+                </li>
+                <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                    class="kt-pagination__link--next"><a (click)="showNextErrors()"
+                        [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                            class="fa fa-angle-right kt-font-brand"></i></a> </li>
+            </ul>
+            <div class="kt-pagination__toolbar">
+                <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of
+                    <span class="kt-font-bold">{{paginationService.exactPageList}}</span></div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+            </div>
+
+            <!-- begin:: Footer -->
+            <div class="kt-footer  kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer" style="left: 0;">
+                <div class="kt-container  kt-container--fluid ">
+                    <div class="kt-footer__copyright">
+                          {{ this.Year }}&nbsp;&copy;&nbsp;<a class="kt-link">Prism Johnson Limited</a>
+                    </div>
+                </div>
+            </div>
+            <!-- end:: Footer -->
+        </div>
+    </div>
+</div>
+
+
+<jw-modal id="custom-modal-1">
+
+    <div class="col-md-12 row mt-4">
+        <h4 class="row">
+          Delete Error Log
+        </h4>
+
+    </div>
+
+    <div class="col-md-12 row mt-4">
+       Before Date's (Enter Number)   <input autocomplete="off" type="number" onlyNumber matInput class=" mat-input-element1 form-control form-control-sm "
+       (input)="updateDateValue($event.target.value)">
+
+    </div>
+
+    <div class="col-md-12 row mt-3">
+        {{ErrorDelMessage}}
+
+    </div>
+
+    <p></p>
+     <div class="row  mt-4">
+        <a (click)="saveModal();" class="btn btn-brand mr-2 btn-sm">Submit</a>
+        <a (click)="closeModal();" class="btn btn-brand mr-2  btn-sm">Back</a>
+    </div>
+
+</jw-modal>

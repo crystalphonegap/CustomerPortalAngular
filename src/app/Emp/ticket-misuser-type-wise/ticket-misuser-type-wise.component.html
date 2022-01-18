@@ -1,0 +1,67 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid mt-4">
+	<div class="kt-portlet kt-portlet--height-fluid kt-portlet--mobile ">
+		<!--begin::Portlet-->
+
+		<div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm bg-light">
+			<div class="kt-portlet__head-label">
+				<h3 class="kt-portlet__head-title">Ticket MIS Report UserType Wise
+				</h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <button class="btn mr-2 btn-brand btn-sm btn-bold  " (click)="download()">
+                    <i class="fa fa-file-excel"></i> <span class=" m-2">Export To Excel </span> </button>
+
+            </div>
+		</div>
+
+		<div class="kt-portlet__body">
+			<div class="table-responsive">
+				<table class="table table-striped  table-bordered">
+                    <thead style="background-color: #CDCDCD;">
+                        <tr>
+                            <th  class="font-weight-bold align-text-top" rowspan="2">SrNo</th>
+                            <th class=" font-weight-bold align-text-top" rowspan="2">User Type</th>
+                            <th style="background-color: #fdc9ca;" class=" font-weight-bold align-text-top" colspan="3">Complaint</th>
+                            <th style="background-color: #c9fde7;" class=" font-weight-bold align-text-top" colspan="3">Feedback </th>
+                             <th class=" font-weight-bold align-text-top" rowspan="2">Total</th>
+                            <th class=" font-weight-bold align-text-top" rowspan="2">0 - 7 Days</th>
+                            <th class=" font-weight-bold align-text-top" rowspan="2">8 - 15 Days</th>
+                            <th class=" font-weight-bold align-text-top" rowspan="2">16 - 30 Days</th>
+                            <th class=" font-weight-bold align-text-top" rowspan="2">31 - 60 Days</th>
+                            <th class=" font-weight-bold align-text-top" rowspan="2">60 and Above</th>
+
+                        </tr>
+                        <tr>
+                            <th>Low</th>
+                            <th>Normal</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Normal</th>
+                            <th>High</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let Report of MISReport; index as i">
+                            <th scope="row">{{i +1 }}</th>
+                            <td>{{Report?.AssignTovtxt}}</td>
+                            <td> <a type="button" (click)="passuserTypeByType('Low','Complaint',Report.AssignTovtxt)">{{Report?.LowComplaintCount}} </a> </td>
+                            <td> <a type="button" (click)="passuserTypeByType('Normal','Complaint',Report.AssignTovtxt)">{{Report?.NormalComplaintCount}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByType('High','Complaint',Report.AssignTovtxt)">{{Report?.HighComplaintCount}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByType('Low','FeedBack',Report.AssignTovtxt)">{{Report?.LowFeedBackCount}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByType('Normal','FeedBack',Report.AssignTovtxt)">{{Report?.NormalFeedBackCount}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByType('High','FeedBack',Report.AssignTovtxt)">{{Report?.HighFeedBackCount}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByDays(Report.AssignTovtxt,0,-1)">{{Report?.Total}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByDays(Report.AssignTovtxt,0,7)">{{Report?.FirstDays}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByDays(Report.AssignTovtxt,8,15)">{{Report?.SecondDays}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByDays(Report.AssignTovtxt,16,30)">{{Report?.ThirdDays}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByDays(Report.AssignTovtxt,31,60)">{{Report?.FourthDays}}</a></td>
+                            <td> <a type="button" (click)="passuserTypeByDays(Report.AssignTovtxt,0,-2)">{{Report?.FithDays}}</a></td>
+
+
+                        </tr>
+
+                    </tbody>
+                </table>
+
+			</div>
+ 		</div>

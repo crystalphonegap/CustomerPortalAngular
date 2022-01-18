@@ -1,0 +1,53 @@
+<!-- begin:: Content -->
+<div class="kt-container kt-container--fluid kt-grid__item kt-grid__item--fluid">
+    <div class="kt-portlet">
+        <div class="kt-portlet__head">
+            <div class="kt-portlet__head-label">
+                <span class="kt-portlet__head-icon kt-hidden"><i class="la la-gear"></i></span>
+                <h3 class="kt-portlet__head-title">User's Details :</h3>
+            </div>
+        </div>
+        <div class="kt-portlet__body">
+            <form [formGroup]="userAdd" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">UserCode</label>
+                            <div class="col-lg-9 col-xl-9">
+                                <input class="form-control" type="text" formControlName="UserCodetxt" placeholder="UserCode" required disabled />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">UserName</label>
+                            <div class="col-lg-9 col-xl-9">
+                                <input class="form-control" type="text" placeholder="UserName" formControlName="UserNametxt" required />
+                            </div>
+                        </div>
+                      
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Mobile</label>
+                            <div class="col-lg-9 col-xl-9">
+                                <div class="input-group">
+                                    <input type="text"  minlength="10" maxlength="10" class="form-control" formControlName="Mobilevtxt" placeholder="Mobile" aria-describedby="basic-addon1" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-xl-3 col-lg-3 col-form-label">Email Address</label>
+                            <div class="col-lg-9 col-xl-9">
+                                <div class="input-group">
+                                    <input type="email" class="form-control" formControlName="Emailvtxt" placeholder="Email" aria-describedby="basic-addon1" disabled required />
+                                </div>
+                            </div>
+                        </div>
+                   
+                        <span *ngIf="userAdd.errors?.invalid">Password doesn't match</span>
+                        <div class="form-group mt-3 mb-0">
+                            <button class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" type="submit" [disabled]="this.userAdd.invalid"> Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

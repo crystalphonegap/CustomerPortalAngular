@@ -1,0 +1,252 @@
+
+
+<!-- <h1>Coming Soon</h1> -->
+
+<div class="kt-container   kt-container--fluid  kt-grid__item kt-grid__item--fluid">
+    <!-- <div class=" row">
+        <div class=" col-md-12">
+            <div class="row center  text-center">
+
+                <div class="col-md-2 col-lg-2 ml-2  border border-dark col-xl-1 kt-portlet">
+                    <div class=" mt-2">
+                        <b>
+                            Dealer Appt. Target
+                        </b>
+                    </div>
+                    <div class=" mb-2">
+                       Data Required
+                    </div>
+                </div>
+                <div class="col-md-2 col-lg-2 ml-2 mr-2  border border-dark  col-xl-1 kt-portlet">
+                    <div class=" mt-2">
+                        <b>
+                            Dealer Appt. Actual
+
+
+                        </b>
+                    </div>
+                    <div class=" mb-2">
+                    Data Required
+                    </div>
+
+                </div>
+                <div class="col-md-2 col-lg-2 ml-2 mr-2  border border-dark  col-xl-1 kt-portlet">
+                    <div class=" mt-2">
+                        <b>
+                            Retailer Appt. Target
+
+                        </b>
+                    </div>
+                    <div class=" mb-2">
+                        Data Required
+                    </div>
+                </div>
+                <div class="col-md-2 col-lg-2 ml-2  border border-dark  col-xl-1 kt-portlet">
+                    <div class=" mt-2">
+                        <b>
+                            Retailer Appt. Actual
+                        </b>
+                    </div>
+                    <div class=" mb-2">
+                     Data Required
+                    </div>
+                </div>
+                <div class="col-md-1 text-center center  col-lg-1  col-xl-1">
+
+                    <i class="  flaticon  align-text-bottom   flaticon-rotate"></i>
+                </div>
+                <div class="col-md-3 text-center center  col-lg-2  col-xl-2 ">
+                    <div class="  mt-2 ">
+                        <b class=" text-center ">
+                            OutStanding Updated on 08/08/2020
+
+                        </b>
+                    </div>
+                    <div class=" mb-2">
+                        <button class=" btn btn-sm btn-glow btn-brand">Refresh</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div> -->
+
+
+    <div class="row">
+        <div class="col-xl-10 order-lg-1 order-xl-1">
+            <div style="background-color: beige; "
+                class="col-md-12  text-center center  border border-dark pt-2 pb-2  bg  bg-darken-2">
+
+                <b>
+                    Outstanding
+                </b>
+
+                ₹ {{Outstanding}}
+
+            </div>
+            <div class="row mb-2 mt-2">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6 m-3 p-2  text-center center  kt-portlet border border-dark ">
+                            <b>
+                                Outstanding < 30 D </b>
+
+                                ₹ {{DealersLOA}}
+
+                        </div>
+                        <div class="col-md-4  text-center center  m-3 p-2 kt-portlet border border-dark ">
+                            <b>
+                                No of Dealers
+                            </b>
+                            # {{ NoofDealerLOC}}
+
+                        </div>
+                    </div>
+                    <div class=" table table-responsive">
+                        <table class="table table-striped" style='font-family:"Courier New", Courier, monospace; font-size:90%'>
+                            <thead style="background-color: #CDCDCD;">
+                                <tr>
+                                    <th class="  align-text-top" scope="col">Sr No</th>
+                                    <th class="  align-text-top" scope="col">Customer Code
+                                    </th>
+                                    <th class="  align-text-top" scope="col">Name</th>
+                                    <th class="  align-text-top" scope="col">City</th>
+                                    <th class="  align-text-top" scope="col">Amount</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Dealer of DealerLL; index as i">
+                                    <th scope="row">{{ i + 1 }}</th>
+                                    <td>{{ Dealer.CustCodevtxt }}</td>
+                                    <td>{{ Dealer.CustNamevtxt }}</td>
+                                    <td>{{Dealer.City}}</td>
+                                    <td>{{Dealer.Amount}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6  text-center center  m-3 p-2 kt-portlet border border-dark ">
+                            <b>
+                                Outstanding > 30 D
+                            </b>
+                            ₹ {{DealersGOA}}
+
+                        </div>
+                        <div class="col-md-4  text-center center  m-3 p-2 kt-portlet border border-dark ">
+                            <b>
+                                No of Dealers
+                            </b>
+                            # {{NoofDealersGOC}}
+
+                        </div>
+                    </div>
+                    <div  class=" table table-responsive">
+                        <table class="table table-striped" style='font-family:"Courier New", Courier, monospace; font-size:90%'>
+                            <thead style="background-color: #CDCDCD;">
+                                <tr>
+                                    <th class="   align-text-top" scope="col">Sr No</th>
+                                    <th class="  align-text-top" scope="col">Customer Code
+                                    </th>
+                                    <th class="  align-text-top" scope="col">Name</th>
+                                    <th class="  align-text-top" scope="col">City</th>
+                                    <th class="  align-text-top" scope="col">Amount</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let Dealer of DealerGL; index as i">
+                                    <th scope="row">{{ i + 1 }}</th>
+                                    <td>{{ Dealer.CustCodevtxt }}</td>
+                                    <td>{{ Dealer.CustNamevtxt }}</td>
+                                    <td>{{Dealer.City}}</td>
+                                    <td>{{Dealer.Amount}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+            <!-- <div class="">
+                <div class="chart-container">
+                    <canvas id="canvas">{{ this.Linechart }}</canvas>
+                </div>
+            </div> -->
+        </div>
+
+
+
+        <div class="col-xl-2  center  text-center  order-lg-1 order-xl-1">
+
+
+
+            <div class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        Monthly Target
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{this.TargetSales}} Tons
+                </div>
+            </div>
+
+
+            <div class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        MTD Sales
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{ this.ActualSales}} Tons
+                </div>
+            </div>
+
+            <div class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        % Achievement
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{ this.Achivement}}
+                </div>
+            </div>
+
+            <div class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        Premium Sales
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{ this.ProrateSale}}
+                </div>
+            </div>
+
+            <div class="kt-portlet  border border-dark ">
+                <div class=" mt-2">
+                    <b>
+                        % Premium
+                    </b>
+                </div>
+                <div class=" mb-2 ">
+                    {{ this.Premium}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> 

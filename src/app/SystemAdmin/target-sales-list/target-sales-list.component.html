@@ -1,0 +1,91 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item kt-grid__item--fluid ">
+    <div class="kt-portlet ">
+        <div class="kt-portlet__head kt-portlet__head--lg kt-portlet__head--break-sm">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title">Target Sales List
+                </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+              <button class="btn mr-2 btn-brand btn-sm btn-bold  " (click)="download()">
+                <i class="fa fa-file-excel"></i> <span class=" m-2">Export To Excel </span>
+             </button>
+             <button class="btn btn-brand mr-2 btn-sm btn-bold  " (click)="Add()" >
+                <i class="fa fa-file-excel"></i> <span class=" m-2">Upload</span>
+             </button>
+              </div>
+        </div>
+
+          <div class="p-4 bg-light border-top border-bottom">
+            <!--begin: Search Form -->
+            <div class="kt-form kt-form--label-right ">
+              <div class="row align-items-center">
+                <div class="col-xl-12 order-2 order-xl-1">
+                  <div class="row align-items-center">
+                    <div class="col-md kt-margin-b-20-tablet-and-mobile">
+                      <div class="kt-input-icon kt-input-icon--left">
+                        <input type="text" class="form-control" [(ngModel)]="search" placeholder="Type To Search...">
+                        <span class="kt-input-icon__icon kt-input-icon__icon--left">
+                          <span><i class="la la-search"></i></span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-1">
+                      <button class="btn btn-dark" (click)="ngOnInit()" title="bigger">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--end: Search Form -->
+          </div>
+        <div class="kt-portlet__body  table table-responsive ">
+          <table class="table table-striped">
+            <thead style="background-color: #CDCDCD;" >
+              <tr>
+               <th class=" font-weight-bold align-text-top"  scope="col">Sr No</th>
+                <th class=" font-weight-bold align-text-top"  scope="col">Customer Code</th>
+                <th class=" font-weight-bold align-text-top"  scope="col">Customer Name</th>
+                <th class=" font-weight-bold align-text-top"  scope="col">Month</th>
+                <th class=" font-weight-bold align-text-top"  scope="col">Year</th>
+                <th class=" font-weight-bold align-text-top"  scope="col">Target Sales (in MT)</th>
+
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let Sales of TargetSales; index as i">
+                <th scope="row">{{i + Indexing +1 }}</th>
+                <td>{{ Sales?.CustomerCodevtxt }}</td>
+                <td>{{ Sales?.CustomerNamevtxt }}</td>
+                <td>{{Sales?.Monthvtxt}}</td>
+                <td>{{Sales?.Yearvtxt}}</td>
+                <td class=" text-center">{{Sales?.TargetSalesdcl}}</td>
+
+              </tr>
+              </tbody>
+            </table>
+
+            <div *ngIf="TargetSales[0] !=null" class="kt-pagination kt-pagination--brand">
+              <ul class="kt-pagination__links">
+                  <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                      class="kt-pagination__link--prev">
+                      <a (click)="showPrevCustomers()"
+                          [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                              class="fa fa-angle-left kt-font-brand"></i></a></li>
+                  <li *ngFor="let page of pageField;let i=index"
+                     >
+                      <a [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''" (click)="showCustomersByPageNumber(page,i)" style="cursor: pointer;">{{page}}</a>
+                  </li>
+                  <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                      class="kt-pagination__link--next"><a (click)="showNextCustomers()"
+                          [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                              class="fa fa-angle-right kt-font-brand"></i></a> </li>
+              </ul>
+              <div class="kt-pagination__toolbar">
+                  <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of
+                      <span class="kt-font-bold">{{paginationService.exactPageList}}</span></div>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
