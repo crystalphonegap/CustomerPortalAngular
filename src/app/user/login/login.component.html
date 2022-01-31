@@ -31,8 +31,8 @@
 
                                             </div>
                                             <div class="kt-login__actions"  >
+                                                <button  (click)="onSubmit()" *ngIf="Mobile" class="btn btn-brand btn-pill btn-elevate" [disabled]="this.loginForm.invalid">Login </button>
                                                 <button  (click)="LoginWithOtp()" *ngIf="Mobile" class="btn btn-brand btn-pill btn-elevate" [disabled]="this.loginForm.invalid">Login With OTP</button>
-                                                <button  (click)="onSubmit()" *ngIf="Mobile" class="btn btn-brand btn-pill btn-elevate" [disabled]="this.loginForm.invalid">Login</button>
                                               </div>
 
                                             <div class="kt-login__actions" >
