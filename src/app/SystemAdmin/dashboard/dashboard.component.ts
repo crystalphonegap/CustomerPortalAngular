@@ -80,8 +80,8 @@ export class SystemAdminDashboardComponent implements OnInit {
   ngOnInit() {
     var today = new Date();
     this.Todate = new Date();
-    this.monthtoshow = this.Todate;
-    this.month = today.getMonth();
+   this.monthtoshow = this.Todate;
+   this.month = today.getMonth();
     this.Todate = this.datepipe.transform(this.Todate, 'dd-MM-yyyy');
     this.Userid = localStorage.getItem(constStorage.IDbint);
     this.UserType = localStorage.getItem(constStorage.UserType);
@@ -96,7 +96,7 @@ export class SystemAdminDashboardComponent implements OnInit {
     }else  {
       this.Performancefor = 'Company'
     }
-    this.Year = new Date().getFullYear();
+   this.Year = new Date().getFullYear();
     this.Outstanding = 0;
     this.Linechart = [];
     this.Month = [];
@@ -350,6 +350,7 @@ export class SystemAdminDashboardComponent implements OnInit {
     this.getdashboardCount();
 
   }
+
   onMonthYearChange(value, type) {
     var today = new Date();
     var mm = today.getMonth();
@@ -507,7 +508,13 @@ export class SystemAdminDashboardComponent implements OnInit {
   GetbottomDealerListInEmployeeDashboard(values) {
     this._EmpComponent.setLoading(true);
     this._EmployeeService.GetAdminbottomDealerListInEmployeeDashboard(localStorage.getItem(constStorage.UserCode), this.UserType, this.Todate,this.Trade,values).subscribe((data: any) => {
+     if(data!=null)
+     {
       this.BottomDealer = data;
+     }else{
+      this.BottomDealer[0] = null;
+     }
+
       this._EmpComponent.setLoading(false);
     },
     err => {
@@ -521,7 +528,13 @@ export class SystemAdminDashboardComponent implements OnInit {
 
     this._EmpComponent.setLoading(true);
     this._EmployeeService.GetAdminTopDealerListInEmployeeDashboard(localStorage.getItem(constStorage.UserCode), this.UserType, this.Todate,this.Trade,values).subscribe((data: any) => {
+      if(data!=null)
+      {
         this.TopDealers = data;
+      }  else{
+        this.TopDealers[0] = null;
+      }
+
       this._EmpComponent.setLoading(false);
     },
     err => {

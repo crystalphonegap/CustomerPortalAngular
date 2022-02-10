@@ -479,6 +479,7 @@ export class EmpDashboardComponent implements OnInit {
   getdashboardCount() {
     this._EmployeeService.GetEmployeeDashboardCount(localStorage.getItem(constStorage.UserCode), this.UserType).subscribe((data: any) => {
       if(data!=null&& data !=''){
+        console.log(data);
       this.MyDealers = data[0].DealerCount;
       this.OutStanding = (data[0].Outstanding * -1);
       this.DataDate = data[0].SystemDateTimedatetime;
@@ -494,7 +495,14 @@ export class EmpDashboardComponent implements OnInit {
 
   GetbottomDealerListInEmployeeDashboard(value) {
     this._EmployeeService.GetbottomDealerListInEmployeeDashboard(localStorage.getItem(constStorage.UserCode), this.UserType, this.Todate,value).subscribe((data: any) => {
+     console.log(data);
+     if(data!=null)
+     {
       this.BottomDealer = data;
+     }else{
+      this.BottomDealer[0]=null;
+     }
+
       this._EmpComponent.setLoading(false);
     },
     err => {
@@ -506,7 +514,13 @@ export class EmpDashboardComponent implements OnInit {
   GetTopDealerListInEmployeeDashboard(value) {
 
     this._EmployeeService.GetTopDealerListInEmployeeDashboard(localStorage.getItem(constStorage.UserCode), this.UserType, this.Todate,value).subscribe((data: any) => {
-      this.TopDealers = data;
+      if(data!=null)
+      {
+        this.TopDealers = data;
+      }else{
+        this.TopDealers[0]=null;
+      }
+
       this._EmpComponent.setLoading(false);
     },
     err => {
