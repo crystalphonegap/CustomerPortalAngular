@@ -126,6 +126,7 @@ AreaChanegd(notself:boolean){
 
 
   if(this.UserType=="Territory Sales Executive"){
+    debugger;
     this._SystemAdminService.GetArea("SalesOffice", this.Area.value).subscribe((data: any) => {
       this._SystemAdminComponent.setLoading(false);
       if(data!=null){
