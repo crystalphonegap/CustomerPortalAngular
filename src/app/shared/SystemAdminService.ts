@@ -173,11 +173,27 @@ LoginReportDownloadExcel(fromdate, todate ,KeyWord) {
 NewLoginReportDownloadExcel(FromDate,Todate,Zone,Region,Branch,Territory,UserType,Type,SearchType) {
   return this.http.get(this.BaseURI + '/LoginReport/NewLoginReportDownload/'+FromDate+','+Todate+','+Zone+','+Region+','+Branch+','+Territory+','+UserType+','+Type+','+SearchType, { responseType: 'blob' });
 }
+// GetArea(Type,KeyWord) {
+//   if (KeyWord == null || KeyWord == "") {
+//     KeyWord = "NoSearch";
+//   }
+//   return this.http.get(this.BaseURI + '/LoginReport/GetArea/'+Type+','+KeyWord);
+// }
+
 GetArea(Type,KeyWord) {
+  debugger;
   if (KeyWord == null || KeyWord == "") {
     KeyWord = "NoSearch";
   }
-  return this.http.get(this.BaseURI + '/LoginReport/GetArea/'+Type+','+KeyWord);
+  let model={
+
+  }
+   model={
+    'Type':Type,
+    'KeyWord':KeyWord
+  }
+  return this.http.post(this.BaseURI + '/LoginReport/GetAreaNew',model);
+
 }
 
 
