@@ -46,6 +46,7 @@ export class CustomerBalanceConfirmationComponent implements OnInit {
   currentPage = 1;
 
   ngOnInit() {
+    debugger;
     this.Refresh();
   }
   getBalanceConfirmationData( pageNo)
@@ -61,13 +62,13 @@ export class CustomerBalanceConfirmationComponent implements OnInit {
       UserCode=localStorage.getItem('CustCode');
     }
     this._BalanceConfirmation.GetBalConfHeaderDataForCustomer(UserCode, this.pageNo, this.OrdersPerPage).subscribe((data: any) => {
-     
+
       this.BalanceConfirmations = data ;
       this._CustomerComponent.setLoading(false);
       this.getBalanceConfirmationDataCount();
-      
+
     },
-    err => { 
+    err => {
       this._CustomerComponent.setLoading(false);
       if (err.status == 400)
         this.alertService.error('Due to some error order not inserted.');
@@ -100,7 +101,7 @@ export class CustomerBalanceConfirmationComponent implements OnInit {
       this.totalOrdersCount = res;
       this.totalNoOfPages();
     },
-    err => { 
+    err => {
       this._CustomerComponent.setLoading(false);
       if (err.status == 400)
         this.alertService.error('Due to some error order not inserted.');
@@ -108,7 +109,7 @@ export class CustomerBalanceConfirmationComponent implements OnInit {
         console.log(err);
     })
   }
- //Method For Pagination  
+ //Method For Pagination
  totalNoOfPages() {
 
   this.paginationData = Number(this.totalOrdersCount / this.OrdersPerPage);
@@ -127,7 +128,7 @@ export class CustomerBalanceConfirmationComponent implements OnInit {
   else{
     this.pageField = [1];
   }
- 
+
 
 }
 showDataByPageNumber(page, i) {
@@ -138,7 +139,7 @@ showDataByPageNumber(page, i) {
   this.getBalanceConfirmationData(this.currentPage);
 }
 
-//Pagination Start  
+//Pagination Start
 
 showPrevBalanceConfirmation() {
 

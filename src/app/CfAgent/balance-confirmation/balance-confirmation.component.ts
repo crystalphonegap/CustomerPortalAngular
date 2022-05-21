@@ -48,29 +48,32 @@ export class BalanceConfirmationComponent implements OnInit {
 
   ngOnInit() {
     this.Refresh();
+
+
   }
-  
+
   Refresh(){
     this._CfAgentComponent.setLoading(true);
   this.pageNumber[0] = true;
   this.paginationService.temppage = 0;
-   
+
       this.getBalanceConfirmationData(1);
   }
   getBalanceConfirmationData( pageNo)
   {
+    debugger;
     this.pageNo=pageNo;
     this.Indexing=pageNo-1;
     this.Indexing=this.Indexing * 10;
-   
+
     this._BalanceConfirmation.GetBalConfHeaderDataForSPCFA(localStorage.getItem('UserCode'), this.pageNo, this.OrdersPerPage).subscribe((data: any) => {
-     
+
       this.BalanceConfirmations = data ;
       this._CfAgentComponent.setLoading(false);
       this.getBalanceConfirmationDataCount();
-      
+
     },
-    err => { 
+    err => {
       this._CfAgentComponent.setLoading(false);
       if (err.status == 400)
         this.alertService.error('Due to some error order not inserted.');
@@ -79,12 +82,12 @@ export class BalanceConfirmationComponent implements OnInit {
     })
   }
   getBalanceConfirmationDataCount() {
-    
+
     this._BalanceConfirmation.GetBalConfHeaderDataForSPCFACount(localStorage.getItem('UserCode')).subscribe((res: any) => {
       this.totalOrdersCount = res;
       this.totalNoOfPages();
     },
-    err => { 
+    err => {
       this._CfAgentComponent.setLoading(false);
       if (err.status == 400)
         this.alertService.error('Due to some error order not inserted.');
@@ -92,7 +95,7 @@ export class BalanceConfirmationComponent implements OnInit {
         console.log(err);
     })
   }
- //Method For Pagination  
+ //Method For Pagination
  totalNoOfPages() {
 
   this.paginationData = Number(this.totalOrdersCount / this.OrdersPerPage);
@@ -111,7 +114,7 @@ export class BalanceConfirmationComponent implements OnInit {
   else{
     this.pageField = [1];
   }
- 
+
 
 }
 showDataByPageNumber(page, i) {
@@ -122,7 +125,7 @@ showDataByPageNumber(page, i) {
   this.getBalanceConfirmationData(this.currentPage);
 }
 
-//Pagination Start  
+//Pagination Start
 
 showPrevBalanceConfirmation() {
 
