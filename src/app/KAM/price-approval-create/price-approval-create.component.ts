@@ -138,6 +138,7 @@ export class PriceApprovalCreateComponent implements OnInit {
   }
 
   GetShiptoNameByCust(value) {
+    debugger;
     this._KAMComponent.setLoading(true);
     this.ConsigneeList =null;
     this.ConsigneeName='';
