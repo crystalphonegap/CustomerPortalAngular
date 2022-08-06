@@ -99,6 +99,7 @@ this.loadedFromDate=false
 
   }
   getAllInvoicesCount() {
+    debugger;
     let UserCode;
     let UserTypetxt=  localStorage.getItem('UserType');
     if(UserTypetxt=='Customer'){
@@ -108,6 +109,7 @@ this.loadedFromDate=false
     }
     this._InvoiceService.getAllInvoiceCount(this.FromDate,this.Todate,this.Status,UserCode, this.search).subscribe((res: any) => {
       this.totalInvoicesCount = res;
+      console.log(this.totalInvoicesCount);
       this.totalNoOfPages();
     })
   }

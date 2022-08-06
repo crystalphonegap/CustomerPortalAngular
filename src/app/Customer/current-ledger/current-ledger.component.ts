@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 import { RFCCallService } from 'src/app/shared/RFCCallService';
 import { CustomerComponent } from '../Customer.component';
 import { AlertService } from 'src/app/component/alert.service';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-current-ledger',
@@ -59,7 +60,9 @@ export class CustomerCurrentLedgerComponent implements OnInit {
     }
     if(this.SearchFilter.controls['FromDate'].value._d !=''||this.SearchFilter.controls['FromDate'].value._d!=null){
       var today = new Date();
-      today.setMonth(today.getMonth() - 3);
+      console.log(this.Todate);
+      console.log(this.FromDate);
+      today.setMonth(today.getMonth() - 7);
       let tempfromdate = this.SearchFilter.controls['FromDate'].value._d;
       if (tempfromdate < today) {
         this._AlertService.error('Only Last three month data can viewed');
@@ -140,16 +143,16 @@ this.loadedFromDate=false
         this.getLedgerData(1);
       }
       if (data == 0) {
-        this._AlertService.error('We can not get the data for you because there is no data in SAP server for selected period');
+        this._AlertService.error('Data not Found.......!');
       }
       if (data == 1) {
-        this._AlertService.error('We can not get the data for you because the SAP server connection is down');
+        this._AlertService.error('Data not Found.......!');
       }
       if (data == 3) {
-        this._AlertService.error('We can not get the data for you because There is Some Issue with SAP server');
+        this._AlertService.error('Data not Found.......!');
       }
       if (data == 4) {
-        this._AlertService.error('We can not get the data for you because there is no data in SAP server for selected period');
+        this._AlertService.error('Data not Found.......!');
       }
       this._CustomerComponent.setLoading(false);
     },

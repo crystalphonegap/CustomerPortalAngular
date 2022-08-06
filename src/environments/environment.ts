@@ -8,7 +8,8 @@ export const environment = {
   // http://127.0.0.1:5000
   // ApiUrl: 'http://192.168.1.101:5000',
   //  ApiUrl: 'http://localhost:5006',
-    ApiUrl: 'https://localhost:44335',
+     ApiUrl: 'https://localhost:44335',
+    //ApiUrl: 'https://bandhan1.prismcement.com',
    // ApiUrl: 'http://172.20.1.124:8003',
  // ApiUrl: 'https://bandhanapi.prismcement.com', // Unblock when Create build.
 
