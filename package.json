@@ -37,6 +37,7 @@
         "chartist": "^0.11.4",
         "classlist.js": "^1.1.20150312",
         "core-js": "^3.4.5",
+        "cors": "^2.8.5",
         "crypto-js": "^4.0.0",
         "file-saver": "^2.0.2",
         "file-server": "^2.1.0",

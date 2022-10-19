@@ -1,0 +1,203 @@
+<div class="kt-container  kt-container--fluid  kt-grid__item">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title text-dark">
+                    <b>
+                        Balance Confirmation list
+                    </b>
+                    <small>
+                        <span class="kt-font-brand kt-font-bold mr-3">({{this.FromDate}}) - ({{this.Todate}})</span>
+                    </small>
+                </h3>
+            </div>
+
+        </div>
+        <form [formGroup]="SearchFilter" (ngSubmit)="ChangeFilter()">
+            <div class="p-4 bg-light border-top border-bottom">
+                <!--begin: Search Form -->
+                <div class="kt-form kt-form--label-right ">
+                    <div class="row align-items-center">
+
+                        <div class="col-xl-12 order-2 order-xl-1">
+                            <div class="row align-items-center">
+
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>From Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('From')"
+                                                formControlName="FromDate" [matDatepicker]="picker1">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>To Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('To')"
+                                                formControlName="Todate" [matDatepicker]="picker2">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div *ngIf="this.UserType=='Accounting Head'||this.UserType=='Zonal Manager'" class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <select class=" form-control" (change)="ChangeRegion($event.target.value)">
+                                        <option value="NoSearch">Select Region</option>
+                                        <option *ngFor="let Area of RegionDate" value={{Area.RegionCodevtxt}}>
+                                            {{Area.RegionCodevtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div *ngIf="this.UserType=='Accounting Head'||this.UserType=='Zonal Manager'||this.UserType=='Regional AccountingHead'||this.UserType=='Regional Manager'" class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <select class=" form-control" (change)="ChangeBranch($event.target.value)">
+                                        <option value="NoSearch">Select Branch</option>
+                                        <option *ngFor="let Area of BranchDate" value={{Area.BranchCodevtxt}}>
+                                            {{Area.BranchNamevtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div *ngIf="this.UserType!='Territory Sales Executive'" class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <select class=" form-control" (change)="ChangeTerritory($event.target.value)">
+                                        <option value="NoSearch">Select Territory</option>
+                                        <option *ngFor="let Area of TerritoryDate" value={{Area.SalesOfficeCodevtxt}}>
+                                            {{Area.SalesOfficeNamevtxt}}
+                                        </option>
+                                    </select>
+                                </div>
+
+
+
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <mat-form-field appearance="outline">
+                                        <mat-label>Type To Search...</mat-label>
+                                        <input formControlName="search" matInput placeholder="Placeholder">
+                                        <mat-icon matSuffix>search</mat-icon>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-dark btn-sm" type="submit" title="bigger"><i
+                                            class="fa fa-search ml-2 ml-md-0"></i><span
+                                            class="d-none d-md-inline-block ml-2">Search</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--end: Search Form -->
+            </div>
+        </form>
+
+        <div class="kt-portlet__body">
+            <div>
+                <div *ngFor="let Order of  BalanceConfirmations" class="custom-list-view row border shadow-sm p-3 mb-3">
+
+
+                    <div class="col-md-11">
+                        <div class="row">
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Request No :<span class="kt-font-bold">{{Order?.RequestNovtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Region :<span class="kt-font-bold">{{Order?.RegionNamevtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Branch :<span class="kt-font-bold">{{Order?.BranchNamevtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Territory :<span class="kt-font-bold">{{Order?.TerritoryNamevtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Customer Code :<span class="kt-font-bold">{{Order?.CustomerCodevtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Customer Name :<span class="kt-font-bold">{{Order?.CustomerNamevtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Opening Balance :<span class="kt-font-bold">{{Order?.OpeningBalancedcl}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Security Deposit :<span class="kt-font-bold">{{Order?.Securitydeposit}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Pending At :<span class="kt-font-bold">{{Order?.PendingAt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                BalanceConfirmation Status :<span
+                                    class="kt-font-bold">{{Order?.BalanceConfirmationStatus}}</span>
+                            </div>
+                            <!-- <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                From Date :<span class="kt-font-bold">{{Order?.FromDatedatetime | date :'dd/MM/yyyy'}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                To Date :<span class="kt-font-bold">{{Order?.ToDatedatetime | date :'dd/MM/yyyy'}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Confirmation Before Date :<span class="kt-font-bold">{{Order?.ExpiryDatedatetime | date :'dd/MM/yyyy'}}</span>
+                            </div> -->
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                Remark :<span class="kt-font-bold">{{Order?.Remarksvtxt}}</span>
+                            </div>
+                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                <div class="row pl-3">
+                                    Action :<span class="kt-font-bold">
+                                        <div *ngIf="Order?.BalanceConfirmationAction=='A'">
+                                            Agree
+                                        </div>
+                                        <div *ngIf="Order?.BalanceConfirmationAction=='B'">
+                                            Disagree
+                                        </div>
+                                        <div *ngIf="Order?.BalanceConfirmationAction!='A'">
+                                            <div *ngIf="Order?.BalanceConfirmationAction!='B'">
+                                                Pending
+                                            </div>
+                                        </div>
+                                    </span>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                            (click)="pass(Order?.IDbint,Order?.CustomerCodevtxt,Order,Order?.PendingAt)"><i class="fa fa-eye"></i>
+                        </button>
+                    </div>
+
+
+                </div>
+                <h4 *ngIf="this. BalanceConfirmations[0]==null">No Data Available</h4>
+
+                <div *ngIf=" BalanceConfirmations[0]!=null" class="kt-pagination kt-pagination--brand">
+                    <ul class="kt-pagination__links">
+                        <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                            class="kt-pagination__link--prev">
+                            <a (click)="showPrevBalanceConfirmation()"
+                                [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-left kt-font-brand"></i></a>
+                        </li>
+                        <li *ngFor="let page of pageField;let i=index">
+                            <a [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''"
+                                (click)="showBalanceConfirmationByPageNumber(page,i)"
+                                style="cursor: pointer;">{{page}}</a>
+                        </li>
+                        <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                            class="kt-pagination__link--next"><a (click)="showNextBalanceConfirmation()"
+                                [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-right kt-font-brand"></i></a> </li>
+                    </ul>
+                    <div class="kt-pagination__toolbar">
+                        <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of
+                            <span class="kt-font-bold">{{paginationService.exactPageList}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

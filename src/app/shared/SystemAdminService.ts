@@ -85,6 +85,9 @@ uploadBMExcelData(formdata) {
 uploadRMExcelData(formdata) {
   return this.http.post(this.BaseURI + '/UploadEmployee/RMUpload',formdata);
 }
+uploadRegionalAccountingHeadExcelData(formdata) {
+  return this.http.post(this.BaseURI + '/UploadEmployee/RegionalAccountingHeadUpload',formdata);
+}
 uploadZMExcelData(formdata) {
   return this.http.post(this.BaseURI + '/UploadEmployee/ZMUpload',formdata);
 }
@@ -164,6 +167,13 @@ LoginReportCount(fromdate, todate ,Type,KeyWord): Observable<any> {
   return this.http.get(this.BaseURI + '/LoginReport/LoginReportCount/'+fromdate+','+todate+','+Type+','+KeyWord);
 }
 
+GetSalesHierachyforRAH(usertype,usercode,Mode,search) {
+  if (search == null || search == "") {
+    search = "NoSearch";
+  }
+  return this.http.get(this.BaseURI + '/Employee/GetSalesHierarchyforRCH/'+usertype+','+usercode+','+Mode+','+search);
+}
+
 LoginReportDownloadExcel(fromdate, todate ,KeyWord) {
   if (KeyWord == null || KeyWord == "") {
     KeyWord = "NoSearch";
@@ -201,5 +211,7 @@ GetArea(Type,KeyWord) {
 KAMUpload(formdata) {
   return this.http.post(this.BaseURI + '/UploadEmployee/KAMUpload',formdata);
 }
+
+
 
 }

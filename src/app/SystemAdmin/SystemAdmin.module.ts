@@ -85,6 +85,7 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
 import { YearPicker } from '../component/DatePickerForSystemAdmin/YearPicker';
 import { MonthPicker } from '../component/DatePickerForSystemAdmin/monthpicker';
 import { MaterailTestCertificateDetailComponent } from './materail-test-certificate-detail/materail-test-certificate-detail.component';
+import { RegionalAccountingHeadUploadComponent } from './regional-accounting-head-upload/regional-accounting-head-upload.component';
 @NgModule({
   declarations: [
     OpenOrdersViewComponent,
@@ -161,6 +162,7 @@ import { MaterailTestCertificateDetailComponent } from './materail-test-certific
     masonUploadComponent,
     CustomerProfileComponent,
     MaterailTestCertificateDetailComponent,
+    RegionalAccountingHeadUploadComponent,
   ],
   imports: [
     MatSlideToggleModule,

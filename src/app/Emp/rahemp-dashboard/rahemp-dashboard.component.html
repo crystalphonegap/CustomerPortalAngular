@@ -1,0 +1,380 @@
+<!-- begin:: Content -->
+<div class="kt-container  kt-container--fluid  kt-grid__item">
+    <div class="kt-portlet kt-portlet--mobile">
+        <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+            <div class="kt-portlet__head-label">
+                <h3 class="kt-portlet__head-title text-dark">
+                    <b>
+                        Employee Dashboard
+                    </b>
+                    <small>
+                        <span class="kt-font-brand kt-font-bold mr-3">({{this.FromDate}}) - ({{this.Todate}})</span>
+                    </small>
+                </h3>
+            </div>
+            <div class="kt-portlet__head-toolbar">
+                <button class="btn mr-2 btn-brand btn-sm btn-bold  " (click)="download()">
+                    <i class="fa fa-file-excel"></i> <span class=" m-2">Export To Excel  </span> </button>
+
+            </div>
+        </div>
+        <form [formGroup]="SearchFilter" (ngSubmit)="ChangeFilter()">
+            <div class="p-4 bg-light border-top border-bottom">
+                <!--begin: Search Form -->
+                <div class="kt-form kt-form--label-right ">
+                    <div class="row align-items-center">
+
+                        <div class="col-xl-12 order-2 order-xl-1">
+                            <div class="row align-items-center">
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>From Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('From')"
+                                                formControlName="FromDate" [matDatepicker]="picker1">
+                                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker1></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 col-lg mb-2 mb-lg-0">
+                                    <div class="kt-input-icon kt-input-icon--left">
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>To Date</mat-label>
+                                            <input matInput autocomplete="off" (dateChange)="changeDateLoad('To')"
+                                                formControlName="Todate" [matDatepicker]="picker2">
+                                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker2></mat-datepicker>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-dark btn-sm" type="submit" title="bigger"><i
+                                            class="fa fa-search ml-2 ml-md-0"></i><span
+                                            class="d-none d-md-inline-block ml-2">Search</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--end: Search Form -->
+            </div>
+        </form>
+        <div class="kt-portlet__body">
+            <div class="col-md-12">
+                <div [style.display]="CMOList" class="kt-container  kt-container--fluid ">
+                    <div class="kt-portlet kt-portlet--mobile">
+                        <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                            <div class="kt-portlet__head-label">
+                                <h3 class="kt-portlet__head-title text-dark">
+                                    <b>
+                                        Zone List
+                                    </b>
+                                </h3>
+                            </div>
+
+                        </div>
+
+                        <div class=" table table-responsive">
+                            <style>
+                                table,
+                                th,
+                                td {
+                                    border: 1px solid black;
+                                }
+                            </style>
+                            <table class="table table-striped ">
+                                <thead style="background-color: #CDCDCD;">
+                                    <tr>
+                                        <th class=" font-weight-bold align-text-top" scope="col">SrNo</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col">Zone Name</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col" colspan="3"
+                                            style="text-align: center;">Dealers</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col" colspan="3"
+                                            style="text-align: center;">Status of Balance confirmations</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th class=" font-weight-bold align-text-top" scope="col">NoOfDealers</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col">ActiveDealers</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col">InActiveDealers</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col">Pending
+                                        </th>
+                                        <th class=" font-weight-bold align-text-top" scope="col">Agreed</th>
+                                        <th class=" font-weight-bold align-text-top" scope="col">Disagreed
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    <tr *ngFor="let Zonedata of CMO; index as i">
+                                        <th scope="row">{{ i + 1 }}</th>
+                                        <td>{{Zonedata?.Name}}</td>
+                                        <td>{{Zonedata?.NoOfDealers}}</td>
+                                        <td>{{Zonedata?.ActiveDealers}}</td>
+                                        <td>{{Zonedata?.InActiveDealers}}</td>
+                                        <td>{{Zonedata?.BalancePendingCount}}</td>
+                                        <td>{{Zonedata?.BalanceAgreedCount}}</td>
+                                        <td>{{Zonedata?.BalanceDisagreedCount}}</td>
+                                        <td>
+                                            <div *ngIf="Zonedata?.Name!=SelectedZone">
+                                                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                                    (click)="GetZoneData(Zonedata?.Code,Zonedata?.Name)"><i
+                                                        class="fa fa-plus"></i></button>
+                                            </div>
+                                            <div *ngIf="Zonedata?.Name==SelectedZone">
+                                                <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                                    (click)="CloseZone('All')"><i class="fa fa-minus"></i></button>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div [style.display]="ZoneList">
+                    <div class="kt-container  kt-container--fluid ">
+                        <div class="kt-portlet kt-portlet--mobile">
+                            <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title text-dark">
+                                        <b>
+                                            Region List For {{SelectedZone}} Zone
+                                        </b>
+                                    </h3>
+                                </div>
+                                <div *ngIf="this.UserType!='Zonal Manager'" class="kt-portlet__head-toolbar">
+
+                                    <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                        (click)="CloseZone('this')">
+                                        <i class="flaticon-cancel"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+
+                                <table class="table table-striped mt-2">
+                                    <thead style="background-color: #CDCDCD;">
+                                        <tr>
+                                            <th class=" font-weight-bold align-text-top" scope="col">SrNo</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Region Name</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col" colspan="3"
+                                                style="text-align: center;">Dealers</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col" colspan="3"
+                                                style="text-align: center;">Status of Balance confirmations</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">NoOfDealers</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">ActiveDealers</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">InActiveDealers
+                                            </th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Pending
+                                            </th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Agreed
+                                            </th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">
+                                                Disagreed</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr *ngFor="let Region of Zone; index as i">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td>{{Region?.Name}}</td>
+                                            <td>{{Region?.NoOfDealers}}</td>
+                                            <td>{{Region?.ActiveDealers}}</td>
+                                            <td>{{Region?.InActiveDealers}}</td>
+                                            <td>{{Region?.BalancePendingCount}}</td>
+                                            <td>{{Region?.BalanceAgreedCount}}</td>
+                                            <td>{{Region?.BalanceDisagreedCount}}</td>
+                                            <td>
+                                                <div *ngIf="Region?.Name!=SelectedRedgion">
+                                                    <button
+                                                        class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                                        (click)="GetRegionData(Region?.Code,Region?.Name)"><i
+                                                            class="fa fa-plus"></i></button>
+                                                </div>
+                                                <div *ngIf="Region?.Name==SelectedRedgion">
+                                                    <button
+                                                        class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                                        (click)="CloseRegion('All')"><i
+                                                            class="fa fa-minus"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div [style.display]="BranchList">
+                    <div class="kt-container  kt-container--fluid ">
+                        <div class="kt-portlet kt-portlet--mobile">
+                            <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title text-dark">
+                                        <b>
+                                            Branch List For {{SelectedRedgion}} Region
+                                        </b>
+                                    </h3>
+                                </div>
+                                <div *ngIf="this.UserType!='Regional Manager'" class="kt-portlet__head-toolbar">
+
+                                    <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                        (click)="CloseRegion('this')">
+                                        <i class="flaticon-cancel"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped mt-2">
+                                    <thead style="background-color: #CDCDCD;">
+                                        <tr>
+                                            <th class=" font-weight-bold align-text-top" scope="col">SrNo</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Branch Name</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col" colspan="3"
+                                                style="text-align: center;">Dealers</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col" colspan="3"
+                                                style="text-align: center;">Status of Balance confirmations</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Action</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">NoOfDealers</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">ActiveDealers</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">InActiveDealers
+                                            </th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Pending
+                                            </th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Agreed
+                                            </th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">
+                                                Disagreed</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr *ngFor="let Branch of Region; index as i">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td>{{Branch?.Name}}</td>
+                                            <td>{{Branch?.NoOfDealers}}</td>
+                                            <td>{{Branch?.ActiveDealers}}</td>
+                                            <td>{{Branch?.InActiveDealers}}</td>
+                                            <td>{{Branch?.BalancePendingCount}}</td>
+                                            <td>{{Branch?.BalanceAgreedCount}}</td>
+                                            <td>{{Branch?.BalanceDisagreedCount}}</td>
+                                            <td>
+                                                <div *ngIf="Branch?.Name!=SelectedBranch">
+                                                    <button
+                                                        class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                                        (click)="GetBranchData(Branch?.Code,Branch?.Name)"><i
+                                                            class="fa fa-plus"></i></button>
+                                                </div>
+                                                <div *ngIf="Branch?.Name==SelectedBranch">
+                                                    <button
+                                                        class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                                        (click)="CloseBranch('All')"><i
+                                                            class="fa fa-minus"></i></button>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div [style.display]="TerritoryList">
+                    <div class="kt-container  kt-container--fluid ">
+                        <div class="kt-portlet kt-portlet--mobile">
+                            <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+                                <div class="kt-portlet__head-label">
+                                    <h3 class="kt-portlet__head-title text-dark">
+                                        <b>
+                                            Territory List For {{SelectedBranch}} Branch
+                                        </b>
+                                    </h3>
+                                </div>
+                                <div *ngIf="this.UserType!='Branch Manager'" class="kt-portlet__head-toolbar">
+                                    <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                        (click)="CloseBranch('this')">
+                                        <i class="flaticon-cancel"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped mt-2">
+                                    <thead style="background-color: #CDCDCD;">
+                                        <tr>
+                                            <th class=" font-weight-bold align-text-top" scope="col">SrNo</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Territory Name</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col" colspan="3"
+                                                style="text-align: center;">Dealers</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col" colspan="3"
+                                                style="text-align: center;">Status of Balance confirmations</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">NoOfDealers</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">ActiveDealers</th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">InActiveDealers
+                                            </th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Pending
+                                            </th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">Agreed
+                                            </th>
+                                            <th class=" font-weight-bold align-text-top" scope="col">
+                                                Disagreed</th>
+                                        </tr>
+                                        <tr *ngFor="let Territory of Branch; index as i">
+                                            <th scope="row">{{ i + 1 }}</th>
+                                            <td>{{Territory?.Name}}</td>
+                                            <td>{{Territory?.NoOfDealers}}</td>
+                                            <td>{{Territory?.ActiveDealers}}</td>
+                                            <td>{{Territory?.InActiveDealers}}</td>
+                                            <td>{{Territory?.BalancePendingCount}}</td>
+                                            <td>{{Territory?.BalanceAgreedCount}}</td>
+                                            <td>{{Territory?.BalanceDisagreedCount}}</td>
+                                            <!-- <td>
+                                    <div *ngIf="Territory?.Name==SelectedTerritory">
+                                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                            (click)="CloseTerritory()"><i class="fa fa-minus"></i></button>
+                                    </div>
+
+                                </td> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- end:: Content -->

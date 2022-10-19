@@ -49,6 +49,10 @@ export class EmployeeService {
     return this.http.get(this.BaseURI + '/Employee/GetEmployeeWiseReport/'+mode+','+code+','+Date+',All');
   }
 
+  GetAccountingHeadEmployeeWiseReport(mode,code,fdate,tdate): Observable<any> {
+    return this.http.get(this.BaseURI + '/Employee/GetAccountingHeadEmployeeWiseReport/'+mode+','+code+','+fdate+','+tdate);
+  }
+
   GetAdminEmployeeWiseReport(mode,code,Date,Type): Observable<any> {
     return this.http.get(this.BaseURI + '/Employee/GetEmployeeWiseReport/'+mode+','+code+','+Date+','+Type);
   }

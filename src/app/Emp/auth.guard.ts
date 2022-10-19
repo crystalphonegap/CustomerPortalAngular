@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
       if (localStorage.getItem(constStorage.token) != null && localStorage.getItem(constStorage.refreshToken) != null && 
       (localStorage.getItem(constStorage.UserType) ==UserConstant.BranchManager || localStorage.getItem(constStorage.UserType) ==UserConstant.MarketingHead
       || localStorage.getItem(constStorage.UserType) ==UserConstant.RegionalManager || localStorage.getItem(constStorage.UserType) ==UserConstant.TerritorySalesExecutive
-      || localStorage.getItem(constStorage.UserType) ==UserConstant.ZonalManager || localStorage.getItem(constStorage.UserType) ==UserConstant.AccountingHead ) )
+      || localStorage.getItem(constStorage.UserType) ==UserConstant.ZonalManager || localStorage.getItem(constStorage.UserType) ==UserConstant.AccountingHead || localStorage.getItem(constStorage.UserType) ==UserConstant.RegionalAccountingHead ) )
         return true;
       else {
         this.router.navigate(['/user/login']);

@@ -12,6 +12,8 @@ import * as Bowser from "bowser";
 import { HttpClient } from '@angular/common/http';
 import { Encrypt } from 'src/app/component/Encrypt';
 import { UserServiceWithoutToken } from 'src/app/shared/UserServiceWithoutToken';
+import { BalanceConfirmation } from 'src/app/shared/BalanceConfirmation';
+//import { BalanceConfirmation } from 'src/app/shared/BalanceConfirmation';
 
 @Component({
   selector: 'app-login',
@@ -30,9 +32,11 @@ Mobile: boolean=true;
   IPError = null;
   resmobile="";
   constructor(private _Encrypt :Encrypt,private router: Router, private _UserService: UserService, private http: HttpClient,
-    private authService: AuthService, private _CustomerService: CustomerService,
+    private authService: AuthService, private _CustomerService: CustomerService,private _balanceconfService:BalanceConfirmation,
     private alertService: AlertService, private _UserComponent: UserComponent,private _UserServiceWithoutToken:UserServiceWithoutToken) { }
   ngOnInit() {
+    debugger
+    this.onloadCallAPi();
     $('body, #kt_header_menu_wrapper').removeClass('kt-header-menu-wrapper--on');
 
     // this._UserComponent.setLoading(true);
@@ -47,6 +51,18 @@ Mobile: boolean=true;
     // });
 
 
+  }
+
+  onloadCallAPi(){
+    debugger;
+    this._CustomerService.CallApI().subscribe((res: any)=>{
+console.log(res);
+    }), err => {
+
+      let errorMessage = err && err.error;
+      console.log(errorMessage);
+      this.alertService.error(errorMessage);
+    }
   }
 
 
@@ -91,6 +107,7 @@ Mobile: boolean=true;
 
         });
       }
+      debugger
       let UserTypetxt = localStorage.getItem(constStorage.UserType);
       this._UserComponent.setLoading(false);
       if (UserTypetxt == UserConstant.SuperAdmin) {
@@ -144,10 +161,11 @@ Mobile: boolean=true;
         );
 
       } else if (
-        UserTypetxt == UserConstant.BranchManager || UserTypetxt == UserConstant.AccountingHead ||
+        UserTypetxt == UserConstant.BranchManager || UserTypetxt == UserConstant.AccountingHead || UserTypetxt == UserConstant.RegionalAccountingHead ||
         UserTypetxt == UserConstant.RegionalManager || UserTypetxt == UserConstant.TerritorySalesExecutive
         || UserTypetxt == UserConstant.MarketingHead || UserTypetxt == UserConstant.ZonalManager
       ) {
+        debugger
         this.router.navigateByUrl('/Emp/dashboard');
       } else if (UserTypetxt == UserConstant.CustomerUser) {
         this._CustomerService.getCustomerDataByhisUserCode(localStorage.getItem(constStorage.UserCode)).subscribe(
@@ -298,7 +316,8 @@ if(res.MOBILE!=''){
         );
 
       } else if (
-        UserTypetxt == UserConstant.BranchManager || UserTypetxt == UserConstant.AccountingHead ||
+        UserTypetxt == UserConstant.BranchManager || UserTypetxt == UserConstant.AccountingHead || 
+        UserTypetxt == UserConstant.RegionalAccountingHead ||
         UserTypetxt == UserConstant.RegionalManager || UserTypetxt == UserConstant.TerritorySalesExecutive
         || UserTypetxt == UserConstant.MarketingHead || UserTypetxt == UserConstant.ZonalManager
       ) {

@@ -71,6 +71,7 @@ import { masonUploadComponent } from './mason-upload/mason-upload';
 import { masonListComponent } from './mason-list/mason-list.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { MaterailTestCertificateDetailComponent } from './materail-test-certificate-detail/materail-test-certificate-detail.component';
+import { RegionalAccountingHeadUploadComponent } from './regional-accounting-head-upload/regional-accounting-head-upload.component';
 const routes: Routes = [
   {
     path: '', component: SystemAdminComponent,
@@ -144,6 +145,7 @@ const routes: Routes = [
       { path: 'masonUploadComponent', component: masonUploadComponent, canActivate: [AuthGuard] },
       { path: 'CustomerProfile', component: CustomerProfileComponent, canActivate: [AuthGuard] },
       { path: 'MaterailTestCertificateDetail', component: MaterailTestCertificateDetailComponent, canActivate: [AuthGuard] },
+      { path: 'RegionalAccountingHeadUpload', component: RegionalAccountingHeadUploadComponent, canActivate: [AuthGuard] },
 
     ]
   },

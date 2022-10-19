@@ -13,7 +13,10 @@
                         class="kt-menu__link-icon   fa fa-shopping-cart "></i><span class="kt-menu__link-text">Open
                         Order's
                     </span></a></li>
-
+           <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/RegionalHead']" class="kt-menu__link "><i
+                        class="kt-menu__link-icon   fa fa-lock"></i><span class="kt-menu__link-text">Employee
+                        Master
+                    </span></a></li>
             <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/BlockOrders']" class="kt-menu__link "><i
                         class="kt-menu__link-icon   fa fa-lock"></i><span class="kt-menu__link-text">Block
                         Order's
@@ -33,11 +36,16 @@
 
                         <li class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/BalanceConfirmationListA']" class="kt-menu__link "><i
                                     class=" fa kt-menu__link-icon"><span></span></i><span class="kt-menu__link-text">
-                                    Customer</span></a></li>
+                                    For Customer</span></a></li>
                         <li class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']">
                             <a [routerLink]="['/Emp/BalanceConfirmationListForCFSP']" class="kt-menu__link "><i
-                                    class="kt-menu__link-icon"></i><span class="kt-menu__link-text">CF Agent
+                                    class="kt-menu__link-icon"></i><span class="kt-menu__link-text"> For CF Agent
                                     / SP</span></a>
+                        </li>
+                        <li class="kt-menu__item " [routerLinkActive]="['kt-menu__item--active']">
+                            <a [routerLink]="['/Emp/BalanceConfirmationViewForRAH']" class="kt-menu__link "><i
+                                    class="kt-menu__link-icon"></i><span class="kt-menu__link-text">Balance Confirmation
+                                    List for RAH</span></a>
                         </li>
                     </ul>
                 </div>
@@ -57,6 +65,7 @@
                                     class="kt-menu__link-icon"></i><span class="kt-menu__link-text">Balance Confirmation
                                     List</span></a>
                         </li>
+                        
                     </ul>
                 </div>
             </li>
@@ -67,6 +76,11 @@
                 <div class="kt-menu__submenu ">
                     <span class="kt-menu__arrow"></span>
                     <ul class="kt-menu__subnav">
+                        <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']">
+                            <a [routerLink]="['/Emp/BalanceConfLog']" class="kt-menu__link "><i
+                                    class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span
+                                    class="kt-menu__link-text">Balance Confirmation Action Report</span></a>
+                        </li>
                         <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']">
                             <a [routerLink]="['/Emp/TicketMISUserTypeWise']" class="kt-menu__link "><i
                                     class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span

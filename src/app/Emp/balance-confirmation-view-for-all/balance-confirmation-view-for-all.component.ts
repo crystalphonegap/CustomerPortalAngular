@@ -21,16 +21,21 @@ export class BalanceConfirmationViewForAllComponent implements OnInit {
      @Inject(SESSION_STORAGE) private storage: WebStorageService, private router: Router) { }
   BalanceConfirmations:any=[];
   BCheader:any=[];
+  hideme = [];  
+  Index: any;  
+  BCAttachments:any=[];
   CreditAmount: number=0;
   DebitAmount: number=0;
+  UserType;
   lengthofBalanceConfirmations:number;
   remark;
   BalanceConfirmationLog;
+  selectedFiles = [];
   ngOnInit() {
-
     this.BCheader=this.storage.get('BCheader');
     this.storage.get('BCNo');
     this.storage.get('CustomerCode');
+    this.UserType = localStorage.getItem(constStorage.UserType);
     this.GetBalanceConfLog(this.storage.get('BCNo'));
  this.GetBalConfDetailDataByID(this.storage.get('BCNo'),this.storage.get('CustomerCode'));
   }
@@ -76,13 +81,13 @@ export class BalanceConfirmationViewForAllComponent implements OnInit {
     });
   }
 
-  download() {
+  download(no,attachmentname) {
     this._EmpComponent.setLoading(true);
-    this._BalanceConfirmation.downloadFileForEMP("Customer",this.storage.get('BCNo')).subscribe(response => {
+    this._BalanceConfirmation.downloadBalanceConfAttachmentfile(no).subscribe(response => {
 			let blob:any = new Blob([response], { type: 'text/json; charset=utf-8' });
 			const url = window.URL.createObjectURL(blob);
       this._EmpComponent.setLoading(false);
-			fileSaver.saveAs(blob, this.BCheader.AttachmentFilevtxt);
+			fileSaver.saveAs(blob, attachmentname);
 		},
     err => {
       this._EmpComponent.setLoading(false);
@@ -94,30 +99,87 @@ onRemarkChange(value) {
   this.remark = value;
 }
 
+Redirect(status) {
+  if (status == 0) {
+    this._EmpComponent.setLoading(false);
+    this.router.navigateByUrl('/Emp/BalanceConfirmationViewForRAH');
+    this.alertService.success('Balance Confirmation Updated.');
+  }
+}
+
+public uploadFile = (files) => {
+  if (files.length === 0) {
+    return ;
+  }
+  //this.fileToUpload =  files[0] as File;
+  for (let i = 0; i < files.length; i++) {
+    this.selectedFiles.push(files[i]);
+  }
+}
+
 sendRemark() {
   if(this.remark==null|| this.remark==''){
     this.alertService.error("Please enter remark");
     return;
   }
   this._EmpComponent.setLoading(true);
-  let Model ={
-    HeaderIDbint:this.storage.get('BCNo'),
-    UserTypevtxt:UserConstant.AccountingHead,
-    UserCodevtxt:localStorage.getItem(constStorage.UserCode),
-    Remarksvtxt: this.remark ,
-    Statusvtxt:'B',
-  }
-  this._BalanceConfirmation.InsertBalanceConfLog(Model).subscribe(response => {
+  // let Model ={
+  //   HeaderIDbint:this.storage.get('BCNo'),
+  //   UserTypevtxt:localStorage.getItem(constStorage.UserType),
+  //   UserCodevtxt:localStorage.getItem(constStorage.UserCode),
+  //   Remarksvtxt: this.remark ,
+  //   Statusvtxt:'B',
+  // }
+  const formData = new FormData();
+    if (this.selectedFiles != null || this.selectedFiles.length === 0) {
+      this.selectedFiles.forEach((f) => formData.append('files', f));
+      //formData.append('file', this.fileToUpload, this.fileToUpload.name);
+    }
+    this._BalanceConfirmation.UpdateBalanceConfirmationByEmp(this.storage.get('BCNo'), this.BCheader.RequestNovtxt, 'B', localStorage.getItem(constStorage.UserType),localStorage.getItem(constStorage.UserCode), this.remark, formData).subscribe(
+      (res: any) => {
+      },
+      err => {
+        const error = err.error.text;
+        if (error == 'file is  uploaded Successfully.') {
+          this.router.navigateByUrl('/Emp/BalanceConfirmationViewForRAH');
+          this.alertService.success('Balance Confirmation Updated.');
+        } else if (err.status == 400) {
+          this._EmpComponent.setLoading(false);
+          this.alertService.error('Failed to upload Attachments...');
+        } else {
+          this._EmpComponent.setLoading(false);
+          console.log(err);
+          return;
+        }
+      }
+    );
+  // this._BalanceConfirmation.InsertBalanceConfLog(Model).subscribe(response => {
 
-    this.GetBalanceConfLog(this.storage.get('BCNo'));
-    this._EmpComponent.setLoading(false);
+  //   this.GetBalanceConfLog(this.storage.get('BCNo'));
+  //   this._EmpComponent.setLoading(false);
 
-  },
-  err => {
-    this._EmpComponent.setLoading(false);
-    console.log(err);
-  });
+  // },
+  // err => {
+  //   this._EmpComponent.setLoading(false);
+  //   console.log(err);
+  // });
 }
 
+GetAttachments(index,detailID) {
+  console.log(detailID);
+  this._EmpComponent.setLoading(true);
+    this._BalanceConfirmation.GetBalanceConfAttachments(detailID).subscribe(
+      data => {
+        this.BCAttachments[index] = data;
+        this.changeDetection.detectChanges();
+        this._EmpComponent.setLoading(false);
+      },
+      err => {
+          this._EmpComponent.setLoading(false);
+        }
+    );
+    this.hideme[index] = !this.hideme[index];  
+    this.Index = index; 
+}
 
 }
