@@ -128,6 +128,20 @@ this.loadedFromDate=false
     })
   }
 
+  download() {
+    this._EmpComponent.setLoading(false);
+    this._BalanceConfirmation.GetBalConfHeaderDataForActionReportDownload(this.FromDate,this.Todate,localStorage.getItem(constStorage.UserType),  this.UserCode,this.Region,this.Branch,this.Territory).subscribe(response => {
+			let blob:any = new Blob([response], { type: 'text/json; charset=utf-8' });
+			const url = window.URL.createObjectURL(blob);
+      this._EmpComponent.setLoading(false);
+			fileSaver.saveAs(blob, 'BalanceConfirmationActionLog.xlsx');
+		},
+    err => { 
+      this._EmpComponent.setLoading(false);
+        console.log(err);
+    })
+  }
+
   GetBranchData() {
    this._EmpComponent.setLoading(true);
    debugger

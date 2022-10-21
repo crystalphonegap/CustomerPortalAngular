@@ -39,6 +39,10 @@ export class BalanceConfirmation {
     return this.http.get(this.BaseURI + '/BalanceConfirmation/GetBalConfHeaderDataForActionReportCount/'+ fromdate + ',' + todate + ',' + usertype + ','+usercode+','+Region+',' + Branch+ ',' + Territory);
   }
 
+  GetBalConfHeaderDataForActionReportDownload(fromdate, todate,usertype,usercode,Region,Branch,Territory) {
+    return this.http.get(this.BaseURI + '/BalanceConfirmation/GetBalConfHeaderDataForActionReportDownload/'+ fromdate + ',' + todate + ',' + usertype + ','+usercode+','+Region+',' + Branch+ ',' + Territory,{ responseType: 'blob' });
+  }
+
   GetBalConfActionReport(fromdate, todate,usertype,usercode,Region,Branch,Territory,pageNo, DataPerPage) {
     return this.http.get(this.BaseURI + '/BalanceConfirmation/GetBalConfHeaderDataForActionReport/'+ fromdate + ',' + todate + ',' +usertype    + ','+usercode+','+Region+',' + Branch+ ',' + Territory+ ',' + pageNo + ',' + DataPerPage);
   }
