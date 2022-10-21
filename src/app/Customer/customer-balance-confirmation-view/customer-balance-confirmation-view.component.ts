@@ -9,6 +9,7 @@ import { BalanceConfirmation } from 'src/app/shared/BalanceConfirmation';
 import { CustomerComponent } from '../Customer.component';
 import * as fileSaver from 'file-saver';
 import { UserConstant } from 'src/app/models/Userconstant';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-balance-confirmation-view',
@@ -17,26 +18,39 @@ import { UserConstant } from 'src/app/models/Userconstant';
 })
 export class CustomerBalanceConfirmationViewComponent implements OnInit {
   bodyText;
+  myGroup: FormGroup;
   constructor(private changeDetection: ChangeDetectorRef, private _CustomerComponent: CustomerComponent, private alertService: AlertService, private modalService: ModalService,
               private _BalanceConfirmation: BalanceConfirmation, private router: Router, @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
   BalanceConfirmations: any = [];
   BalanceConfirmationInfo: any = [];
   BalanceConfirmationLog: any = [];
   remark: string;
+  hideme = [];  
+  Index: any;  
+  BCAttachments:any=[];
   savetemp = true;
   Save = true;
+  showconfirmation=false;
   CreditAmount: number=0;
   DebitAmount: number=0;
   fileToUpload;
+  selectedFiles = [];
   lengthofBalanceConfirmations: number;
   Userid;
   loader;
+  mobilenumber;
+  AgreeDesagree=false;
+
+  
   ngOnInit() {
     this.Userid = localStorage.getItem('UserCode');
     const BalanceConfirmationNo = this.storage.get('BC');
     this.getBalanceConfirmationHeaderDataByBalanceConfirmationNo(BalanceConfirmationNo);
     this.GetBalanceConfLog(BalanceConfirmationNo);
     this.getAllBalanceConfirmationDataByBalanceConfirmationNo(BalanceConfirmationNo);
+    this.myGroup = new FormGroup({
+      Passwordvtxt: new FormControl()
+   });
   }
 
   openModal(id: string) {
@@ -47,7 +61,10 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
     if (files.length === 0) {
       return;
     }
-    this.fileToUpload =  files[0] as File;
+    //this.fileToUpload =  files[0] as File;
+    for (let i = 0; i < files.length; i++) {
+      this.selectedFiles.push(files[i]);
+    }
   }
   onDebitChange(Ledger, value) {
     Ledger.Debit = value;
@@ -162,13 +179,16 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
     this.router.navigateByUrl('/Customer/BalanceConfirmation');
   }
   Agree() {
-    this.Submit('A');
-    this.sendRemark('ts', 'A');
+    this.showconfirmation=true;
+    this.AgreeDesagree=true;
+    this.sendOTP();
+ 
 
   }
   Disagree() {
-    this.Submit('B');
-    this.sendRemark('ts', 'B');
+    this.AgreeDesagree =false;
+    this.sendOTP();
+  
   }
   hideSave() {
     this.savetemp = true;
@@ -192,8 +212,9 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
     this.loader = 0;
     this._CustomerComponent.setLoading(true);
     const formData = new FormData();
-    if (this.fileToUpload != null) {
-      formData.append('file', this.fileToUpload, this.fileToUpload.name);
+    if (this.selectedFiles != null || this.selectedFiles.length === 0) {
+      this.selectedFiles.forEach((f) => formData.append('files', f));
+      //formData.append('file', this.fileToUpload, this.fileToUpload.name);
     }
     this._BalanceConfirmation.UpdateBalanceConfirmationByDealer(this.BalanceConfirmationInfo.IDbint, this.BalanceConfirmationInfo.RequestNovtxt, type, localStorage.getItem(constStorage.UserCode), this.remark, formData).subscribe(
       (res: any) => {
@@ -257,20 +278,32 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
   }
 
 
-  download() {
+  // download() {
+  //   this._CustomerComponent.setLoading(true);
+  //   this._BalanceConfirmation.downloadFileForEMP('Customer', this.storage.get('BC')).subscribe(response => {
+  //     const blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
+  //     const url = window.URL.createObjectURL(blob);
+  //     this._CustomerComponent.setLoading(false);
+  //     fileSaver.saveAs(blob, this.BalanceConfirmationInfo.AttachmentFilevtxt);
+  //   },
+  //     err => {
+  //       this._CustomerComponent.setLoading(false);
+  //       console.log(err);
+  //     });
+  // }
+  download(no,attachmentname) {
     this._CustomerComponent.setLoading(true);
-    this._BalanceConfirmation.downloadFileForEMP('Customer', this.storage.get('BC')).subscribe(response => {
-      const blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
-      const url = window.URL.createObjectURL(blob);
+    this._BalanceConfirmation.downloadBalanceConfAttachmentfile(no).subscribe(response => {
+			let blob:any = new Blob([response], { type: 'text/json; charset=utf-8' });
+			const url = window.URL.createObjectURL(blob);
       this._CustomerComponent.setLoading(false);
-      fileSaver.saveAs(blob, this.BalanceConfirmationInfo.AttachmentFilevtxt);
-    },
-      err => {
-        this._CustomerComponent.setLoading(false);
-        console.log(err);
-      });
-  }
-
+			fileSaver.saveAs(blob, attachmentname);
+		},
+    err => {
+      this._CustomerComponent.setLoading(false);
+      console.log(err);
+    });
+}
 
   sendRemark(type, status) {
     if (type != 'ts') {
@@ -287,18 +320,69 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
       Remarksvtxt: this.remark,
       Statusvtxt: status,
     };
-    this._BalanceConfirmation.InsertBalanceConfLog(Model).subscribe(response => {
+    // this._BalanceConfirmation.InsertBalanceConfLog(Model).subscribe(response => {
 
-      this.GetBalanceConfLog(this.storage.get('BC'));
-      this._CustomerComponent.setLoading(false);
+    //   this.GetBalanceConfLog(this.storage.get('BC'));
+    //   this._CustomerComponent.setLoading(false);
 
-    },
-      err => {
-        this._CustomerComponent.setLoading(false);
-        console.log(err);
-      });
+    // },
+    //   err => {
+    //     this._CustomerComponent.setLoading(false);
+    //     console.log(err);
+    //   });
+  }
+  GetAttachments(index,detailID) {
+    console.log(detailID);
+    this._CustomerComponent.setLoading(true);
+      this._BalanceConfirmation.GetBalanceConfAttachments(detailID).subscribe(
+        data => {
+          this.BCAttachments[index] = data;
+          this.changeDetection.detectChanges();
+          this._CustomerComponent.setLoading(false);
+        },
+        err => {
+            this._CustomerComponent.setLoading(false);
+          }
+      );
+      this.hideme[index] = !this.hideme[index];  
+      this.Index = index; 
   }
 
+  sendOTP(){
+    this._CustomerComponent.setLoading(true);
+    this._BalanceConfirmation.GetOTPFORcONFIRM(this.BalanceConfirmationInfo.CustomerCodevtxt).subscribe(res=>{
+      this.mobilenumber=res.MOBILE;
+      this.alertService.success(res.MESSAGE);
+      this._CustomerComponent.setLoading(false);
+    },err=>
+    {
+      this._CustomerComponent.setLoading(false);
+    });
+  }
 
+  ValidatOTP(){
+    debugger;
+    let OPTValue=this.myGroup.get('Passwordvtxt').value
+    this._CustomerComponent.setLoading(true);
+    this._BalanceConfirmation.SubmitOTPcONFIRM(this.mobilenumber,OPTValue,this.BalanceConfirmationInfo.CustomerCodevtxt).subscribe(res=>{
+      this._CustomerComponent.setLoading(false);
+      if(res.MESSAGE=="Invalid OTP"){
+this.alertService.warn(res.MESSAGE);
+      }else{
+        if(this.AgreeDesagree==true){
+         this.Submit('A');
+         this.sendRemark('ts', 'A');
+         }
+         else{
+          this.Submit('B');
+          this.sendRemark('ts', 'B');
+        }
+      }
+      
+    },err=>
+    {
+      this._CustomerComponent.setLoading(false);
+    });
+  }
 }
 

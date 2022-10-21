@@ -29,7 +29,7 @@
       </div>
       <div>
         <span class="kt-font-bolder">To</span> ,
-      </div>
+      </div>/
       <div>
         <span class="ToName kt-font-bolder">
 
@@ -69,7 +69,8 @@
             | date :'dd/MM/yyyy'}}.
           </p>
           <p>
-            Your Security Deposit as on {{this.BalanceConfirmationInfo?.BalanceConfirmationDateTime| date :'dd/MM/yyyy'}} is {{this.BalanceConfirmationInfo?.Securitydeposit}}
+            Your Security Deposit as on {{this.BalanceConfirmationInfo?.BalanceConfirmationDateTime| date
+            :'dd/MM/yyyy'}} is {{this.BalanceConfirmationInfo?.Securitydeposit}}
           </p>
           <p>
             In case you need any further including statement of account to reconcile the differences if any please do
@@ -121,13 +122,11 @@
               <th class=" font-weight-bold align-text-top" scope="col">
                 Remark
               </th>
-              <th
-                *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'"
+              <th *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'"
                 class=" font-weight-bold align-text-top" scope="col">
                 Updated Amount
               </th>
-              <th
-                *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'"
+              <th *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'"
                 class=" font-weight-bold align-text-top" scope="col">
                 Updated Remark
               </th>
@@ -179,8 +178,7 @@
                     {{Ledger.ChequeNovtxt}}</div>
                 </div>
               </td>
-              <td
-                *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'">
+              <td *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'">
                 <div *ngIf="Ledger.Debitdcl >0">
                   {{Ledger.EditDebitdcl}}
                 </div>
@@ -191,14 +189,12 @@
               <td>
                 {{ Ledger.Narrationvtxt}}
               </td>
-              <td
-                *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'">
+              <td *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'">
                 {{ Ledger.Remarksvtxt}}
               </td>
               <td>
                 <div class="row ml-4">
-                  <div class="row"
-                    *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+                  <div class="row" *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
                     <div class="inputcheck">
                       <input type="checkbox" checked="checked"
                         (change)="onStatusChange($event.target.checked,'checkbox',Ledger)">
@@ -214,8 +210,7 @@
 
                   </div>
 
-                  <div class="row"
-                    *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'">
+                  <div class="row" *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' || this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B'">
 
                     <input type="checkbox" [(ngModel)]="Ledger.edit" disabled>
                     <span></span>
@@ -248,8 +243,7 @@
                   <div class="col-md-12 row mt-4">
                     <h4 class="col-md-3"> Amount</h4>
                     <div class=" col-md-9">
-                      <div
-                        *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+                      <div *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
                         <input class=" form-control" (change)="onRowChange(Ledger,$event.target.value,'amount')">
                       </div>
 
@@ -259,8 +253,7 @@
                   <div class="col-md-12 row mt-4">
                     <h4 class="col-md-3">Remark</h4>
                     <div class=" col-md-9">
-                      <div
-                        *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+                      <div *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
                         <textarea (change)="onRowChange(Ledger,$event.target.value,'remark')" class=" form-control"
                           type="text"></textarea>
                       </div>
@@ -269,8 +262,7 @@
 
                   <p></p>
                   <div class="row">
-                    <div
-                      *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+                    <div *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
                       <a (click)="saveModal('custom-modal-'+Ledger.IDbint,Ledger);"
                         class="btn btn-brand mr-2 btn-sm">Save</a>
                     </div>
@@ -290,10 +282,10 @@
 
       <div class="MainContent row mt-4">
         <div class="col-10 mx-auto">
-           <p>
-           <b>Total Credit Amount : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Creditdcl}}
-           <b>Total Debit Amount : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Debitdcl}}
-           <b>Closing Balance : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Balancedcl}}
+          <p>
+            <b>Total Credit Amount : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Creditdcl}}
+            <b>Total Debit Amount : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Debitdcl}}
+            <b>Closing Balance : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Balancedcl}}
           </p>
           <p>
             This is Computer generated bill so no need to any required rubber stamp or signature.
@@ -306,81 +298,120 @@
               <div>Prism Cement</div>
             </div>
           </div>
-          <div  *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'" class="col-md-12 row mt-4">
+          <div *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'"
+            class="col-md-12 row mt-4">
             <h4 class="col-md-3  col-lg-2 ">Remark :</h4>
             <div class="col-md-9  col-lg-10 ">
-                <textarea (change)="onRemarkChange($event.target.value)" class=" form-control" type="text"></textarea>
+              <textarea (change)="onRemarkChange($event.target.value)" class=" form-control" type="text"></textarea>
             </div>
           </div>
-          <div
-            *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+          <div *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
             <div class="col-md-12 row mt-4">
               <h4 class="col-md-2">Attachment :</h4>
-              <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)">
+              <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files)" multiple>
             </div>
           </div>
         </div>
       </div>
 
-      <div  *ngIf=" this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B' "  class="col-md-12 row mt-4">
+      <div *ngIf=" this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B' " class="col-md-12 row mt-4">
         <h4 class="col-md-2">Remark :</h4>
         <div class="col-md-9">
           <textarea (change)="onRemarkChange($event.target.value)" class=" form-control" type="text"></textarea>
         </div>
-        <div  class="col-md-9">
+        <div class="col-md-9">
           <div class="row mt-2">
             <a (click)="sendRemark('html','B')" class="btn btn-sm btn-brand mr-2 ">Send Back To Accounts</a>
-            <div >
+            <div>
               <a *ngIf="this.Save==true" (click)="sendRemark('html','A')" class="btn btn-brand mr-2 btn-sm">I Agree</a>
             </div>
           </div>
 
         </div>
       </div>
-      <div  *ngIf=" this.BalanceConfirmationInfo?.BalanceConfirmationAction=='B' ||  this.BalanceConfirmationInfo?.BalanceConfirmationAction=='A' " >
-        <h5  class="mt-4">Balance Confirmation History</h5>
+      <div class="kt-portlet__head kt-portlet__head--lg bg-light">
+        <div class="row mt-3">
+          <div *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
+            <a *ngIf="this.Save==true" (click)="Agree()" class="btn btn-brand mr-2 btn-sm">I Agree</a>
+            <a (click)="Disagree()" class="btn btn-brand mr-2  btn-sm">I Disagree</a>
+          </div>
+          <div>
+            <a (click)="Back()" class="btn btn-sm btn-brand "> Back </a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h5 class="mt-4">Balance Confirmation History</h5>
         <h4 *ngIf="this.BalanceConfirmationLog==null">No Data Available</h4>
-       <div *ngFor="let log of BalanceConfirmationLog" class="custom-list-view row bTicket shadow-sm p-3 m-3 ">
-
-         <div  *ngIf="this.log.Remarksvtxt!=null&&this.log.Remarksvtxt!=''"   style="width: 100%;">
-           <div class=" row">
-             <div class="col-12 col-md-8 "><b>Updated By :</b> &nbsp;
-               {{log?.UserTypevtxt}} - {{log?.UserCodevtxt }} -{{log?.UserNametxt}}
-
-
-             </div>
-             <div class="col-12 col-md-4 ">
-               <b>{{log?.CreatedDatetime | date:'dd-MM-yyyy, h:mm a' }}</b>
-             </div>
-           </div>
-           <div class="row">
-             <div class="col-12 col-md-2 col-lg-1 col-xl-1">
-               <b>Remark :</b>
-             </div>
-             <div class="col-12 col-md-8 col-lg-8 col-xl-8">
-                 {{log?.Remarksvtxt}}
-             </div>
-           </div>
-         </div>
-       </div>
+        <table class="table table-bordered heading-hvr">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Remarks</th>
+              <th>Action Date</th>
+              <th>Attachment</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let log of BalanceConfirmationLog; let i = index">
+            <tr>
+              <td>{{log?.UserTypevtxt}} - {{log?.UserCodevtxt }}</td>
+              <td>{{log?.Remarksvtxt}}</td>
+              <td>{{log?.CreatedDatetime | date:'dd-MM-yyyy, h:mm a' }}</td>
+              <td>
+                {{log?.AttachmentCount}}
+                <a class="expand-row" *ngIf="!hideme[i]" class="fa fa-plus" (click)="GetAttachments(i,log?.IDbint)">
+                </a>
+                <a class="expand-row" *ngIf="hideme[i]" class="flaticon-cancel" (click)="hideme[i] = !hideme[i]">
+                </a>
+              </td>
+            </tr>
+            <tr [hidden]="!hideme[i]" class="sub-table no-bg">
+              <td> </td>
+              <td colspan="15" class="p-0">
+                <table class="table mb-0 table-striped">
+                  <thead class="bg-dark text-white">
+                    <tr>
+                      <th>FileName</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let attachment of BCAttachments[i]">
+                      <td>
+                        <a (click)="download(attachment.AttachID,attachment.AttachmentFilevtxt)" type="button"
+                          class="alert-link"><i class="fa fa-download" aria-hidden="true"></i>
+                          {{attachment.AttachmentFileNamevtxt}} </a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- </div> -->
+        <!-- </div> -->
       </div>
 
-
-
-
-    </div>
-
-    <div class="kt-portlet__head kt-portlet__head--lg bg-light">
-      <div class="row mt-3">
-        <div
-          *ngIf="this.BalanceConfirmationInfo?.BalanceConfirmationAction!='A' && this.BalanceConfirmationInfo?.BalanceConfirmationAction!='B'">
-          <a *ngIf="this.Save==true" (click)="Agree()" class="btn btn-brand mr-2 btn-sm">I Agree</a>
-          <a (click)="Disagree()" class="btn btn-brand mr-2  btn-sm">I Disagree</a>
-        </div>
-        <div>
-          <a (click)="Back()" class="btn btn-sm btn-brand "> Back </a>
-        </div>
+     
+    
+      <div class="kt-portlet__head kt-portlet__head--lg bg-light" *ngIf="showconfirmation" [formGroup]="myGroup">
+        <div class="col-md-12">
+          <label  class="form-control-label">Enter OTP</label>
+          <input class="form-control form-control-sm"  formControlName="Passwordvtxt"   type="password">
+         
+          <br />
+          <a  (click)="ValidatOTP()" class="btn btn-brand  btn-sm" >Validate</a>
+        
+          </div>
       </div>
-    </div>
+      
+    </div> 
   </div>
+
+
+  
+  
 </div>
+
+
+

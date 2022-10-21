@@ -1,0 +1,9 @@
+{
+    "/empapi": {
+      "target": "https://meetpro.pilportal.com:11692",
+      "secure": true,
+      "changeOrigin":true,
+      "logLevel":"debug"
+    }
+  }
+ 

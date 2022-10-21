@@ -7,6 +7,7 @@ export const UserConstant = {
     CFAgent:'CF Agent',
     CFAgentUser:'CF Agent User',
     AccountingHead:'Accounting Head',
+    RegionalAccountingHead:'Regional AccountingHead',
     SalesPromoter:'Sales Promoter',
     SalesPromoterUser:'Sales Promoter User',
     OrderAnalyst:'Order Analyst',

@@ -29,10 +29,15 @@ import { OpenOrdersComponent } from './open-orders/open-orders.component';
 import { TechnicianOpenTicketsViewComponent } from './open-tickets-view/open-tickets-view.component';
 import { TechnicianOpenTicketsComponent } from './open-tickets/open-tickets.component';
 import { EmpProfileComponent } from './profile/profile.component';
+import { RegionalheadComponent } from './regionalhead/regionalhead.component';
+import { BalanceConfirmationViewForRAHComponent } from './balance-confirmation-view-for-rah/balance-confirmation-view-for-rah.component';
 import { TicketMisListForCategoryComponent } from './ticket-mis-list-for-category/ticket-mis-list-for-category.component';
 import { TicketMisListForUsertypeComponent } from './ticket-mis-list-for-usertype/ticket-mis-list-for-usertype.component';
 import { TicketMISCategoryTypeWiseComponent } from './ticket-miscategory-type-wise/ticket-miscategory-type-wise.component';
 import { TicketMISUserTypeWiseComponent } from './ticket-misuser-type-wise/ticket-misuser-type-wise.component';
+import { RAHEmpDashboardComponent } from './rahemp-dashboard/rahemp-dashboard.component';
+import { BalanceActionLogComponent } from './balance-action-log/balance-action-log.component';
+
 const routes: Routes = [
   {
     path: '',component: EmpComponent,
@@ -49,8 +54,10 @@ const routes: Routes = [
       { path: 'BalanceConfirmationEdit', component: BalanceConfirmationEditComponent, canActivate: [AuthGuard] },
       { path: 'BalanceConfirmationListA', component: BalanceConfirmationListForAllComponent, canActivate: [AuthGuard] },
       { path: 'BalanceConfirmationViewA', component: BalanceConfirmationViewForAllComponent, canActivate: [AuthGuard] },
+      { path: 'BalanceConfirmationViewForRAH', component: BalanceConfirmationViewForRAHComponent, canActivate: [AuthGuard] },
       { path: 'OpenOrders', component: OpenOrdersComponent, canActivate: [AuthGuard] },
       { path: 'OpenOrdersView', component: OpenOrdersViewComponent, canActivate: [AuthGuard] },
+      { path: 'Regionalhead', component: RegionalheadComponent, canActivate: [AuthGuard] },
       { path: 'BlockOrders', component: BlockOrderListComponent, canActivate: [AuthGuard] },
       { path: 'OpenTicketsDetail', component: TechnicianOpenTicketsComponent, canActivate: [AuthGuard] },
       { path: 'OpenTicketsView', component: TechnicianOpenTicketsViewComponent, canActivate: [AuthGuard] },
@@ -68,6 +75,8 @@ const routes: Routes = [
       { path: 'BalanceConfirmationListForCFSP', component: BalanceConfirmationListForCFSPComponent, canActivate: [AuthGuard] },
       { path: 'BalanceConfirmationViewForCFSP', component: BalanceConfirmationViewForCFSPComponent, canActivate: [AuthGuard] },
       { path: 'CustomerProfile', component: CustomerProfileComponent, canActivate: [AuthGuard] },
+      { path: 'RAHEmpDashboard',component:RAHEmpDashboardComponent,canActivate:[AuthGuard] },
+      { path: 'BalanceConfLog',component:BalanceActionLogComponent,canActivate:[AuthGuard] },
       { path: '**', redirectTo: 'LoginComponent' },
     ]
   },

@@ -70,6 +70,7 @@ export class EmpDashboardComponent implements OnInit {
   User;
   Performancefor: string;
   ngOnInit() {
+    debugger
     var today = new Date();
     this.Todate = new Date();
     this.monthtoshow = this.Todate;
@@ -97,6 +98,7 @@ export class EmpDashboardComponent implements OnInit {
     this.MyARs =0;
     this.getTargetSalesforDashboard();
     this.getbarchart();
+    debugger
     this.LoadContain();
     // this.GetRegionData(this.Todate);
     // this.GetBranchData(this.Todate);
@@ -315,7 +317,8 @@ export class EmpDashboardComponent implements OnInit {
   }
 
   LoadContain() {
-    if (this.UserType == UserConstant.MarketingHead || this.UserType == UserConstant.AccountingHead) {
+    debugger
+    if (this.UserType == UserConstant.MarketingHead || this.UserType == UserConstant.AccountingHead || this.UserType == UserConstant.RegionalAccountingHead) {
       this.GetCMOData();
     }
     else if (this.Userid !== null && this.Userid !== "") {

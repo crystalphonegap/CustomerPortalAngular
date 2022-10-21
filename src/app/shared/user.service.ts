@@ -152,6 +152,29 @@ getAllUsers(pageNo,pageSize) {
     return this.http.get(this.BaseURI + '/UserMaster/GetAllUserMasterforDivisionalAdminSearch/' + pageNo+','+pageSize+','+keyword);
   }
 
+  getAllRegionalHeadEMployees(usercode,usertype,pageNo,pageSize,keyword)
+  {
+    if (keyword == null || keyword == "") {
+      keyword = "NoSearch";
+    }
+    return this.http.get(this.BaseURI + '/UserMaster/GetRegionalHeadList/'+usertype+','+usercode+',' + pageNo+','+pageSize+','+keyword);
+  }
+
+  GetRegionalHeadListCount(usercode,usertype,KeyWord) {
+    if (KeyWord == null || KeyWord == "") {
+      KeyWord = "NoSearch";
+    }
+    return this.http.get(this.BaseURI + '/UserMaster/GetRegionalHeadListCount/'+usertype+','+usercode+','+KeyWord);
+  }
+
+  ExportToExceRegionalHeadList(KeyWord) {
+    if (KeyWord == null || KeyWord == "") {
+      KeyWord = "NoSearch";
+    }
+    return this.http.get(this.BaseURI + '/UserMaster/RegionalHeadListExcelToExcel/'+KeyWord, { responseType: 'blob' });
+  }
+
+
   getAllUsersForDivisionalAdminCount(KeyWord) {
     if (KeyWord == null || KeyWord == "") {
       KeyWord = "NoSearch";

@@ -123,6 +123,21 @@ DownloadSampleMasonExcel() {
   return this.http.get(this.BaseURI + '/CustomerMaster/DownloadSampleMasonExcel', { responseType: 'blob' });
 }
 
+CallApI() {
+  debugger;
+
+ let body = new URLSearchParams();
+ body.set('grant_type', 'password');
+ body.set('username', 'Prod_meetpro');
+ body.set('password', 'm#+wlxi-wu3EsTecrIgahacr');
+ 
+ let options = {
+     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+ };
+ return this.http.post('https://meetpro.pilportal.com:11692/token', body.toString(), options);
+ //return this.http.post('https://meetpro.pilportal.com:11692/token', body.toString(), options);
+}
+
 
 MasonExcelUpload(formdata) {
   return this.http.post(this.BaseURI + '/CustomerMaster/MasonExcelUpload',formdata);

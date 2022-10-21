@@ -46,6 +46,10 @@ import { MisReportViewOpenTicketByUserTypeComponent } from './mis-report-view-op
 import { BalanceConfirmationListForCFSPComponent } from './balance-confirmation-list-for-CFSP/balance-confirmation-list-for-all.component';
 import { BalanceConfirmationViewForCFSPComponent } from './balance-confirmation-view-ForCFSP/balance-confirmation-view-ForCFSP.component';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
+import { RegionalheadComponent } from './regionalhead/regionalhead.component';
+import { BalanceConfirmationViewForRAHComponent } from './balance-confirmation-view-for-rah/balance-confirmation-view-for-rah.component';
+import { RAHEmpDashboardComponent } from './rahemp-dashboard/rahemp-dashboard.component';
+import { BalanceActionLogComponent } from './balance-action-log/balance-action-log.component';
 @NgModule({
   declarations: [
     EmpProfileEditComponent ,
@@ -61,6 +65,7 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
     YearPicker,
     MonthPicker,
     OpenOrdersComponent,
+    RegionalheadComponent,
     OpenOrdersViewComponent,
     BalanceConfirmationUploadComponent,
     BalanceConfirmationListComponent,
@@ -84,6 +89,10 @@ import { CustomerProfileComponent } from './customer-profile/customer-profile.co
     MisReportViewOpenTicketByUserTypeComponent,
     BalanceConfirmationListForCFSPComponent,
     CustomerProfileComponent,
+    RegionalheadComponent,
+    BalanceConfirmationViewForRAHComponent,
+    RAHEmpDashboardComponent,
+    BalanceActionLogComponent,
   ],
   imports: [
     MatSlideToggleModule,
