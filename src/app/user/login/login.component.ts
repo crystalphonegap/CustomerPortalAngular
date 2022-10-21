@@ -38,8 +38,6 @@ Mobile: boolean=true;
     debugger
     $('body, #kt_header_menu_wrapper').removeClass('kt-header-menu-wrapper--on');
     
-  
-
   }
 
   onloadCallAPi(){
