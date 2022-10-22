@@ -167,6 +167,11 @@ export class BalanceConfirmation {
     return this.http.get(this.BaseURI + '/BalanceConfirmation/GetBalanceConfLogAttachmentDownload/'+ID , { responseType: 'blob' });
   }
 
+  downloadBalConfHeaderDataForRH(fromdate, todate,usertype,usercode,Region,Branch,Territory): Observable<any> {
+    debugger
+    return this.http.get(this.BaseURI + '/BalanceConfirmation/downloadBalConfHeaderDataForRH/'+ fromdate + ',' + todate + ','+usertype+',' + usercode + ','+Region+',' + Branch+ ',' + Territory,{responseType: 'blob'});
+  }
+
   GetOTPFORcONFIRM(UserCode) {
     return this.http.get<any>(
       `${environment.ApiUrl}/Mail/GetOTPFORConfirmation/`+UserCode).pipe(

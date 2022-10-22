@@ -283,9 +283,10 @@
       <div class="MainContent row mt-4">
         <div class="col-10 mx-auto">
           <p>
+            <b>Total Quantity : </b> {{TotalQty}}
             <b>Total Credit Amount : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Creditdcl}}
             <b>Total Debit Amount : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Debitdcl}}
-            <b>Closing Balance : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Balancedcl}}
+            <b>Closing Balance : </b> {{this.BalanceConfirmations[BalanceConfirmations.length-1]?.Balancedcl}} 
           </p>
           <p>
             This is Computer generated bill so no need to any required rubber stamp or signature.
@@ -321,7 +322,7 @@
         </div>
         <div class="col-md-9">
           <div class="row mt-2">
-            <a (click)="sendRemark('html','B')" class="btn btn-sm btn-brand mr-2 ">Send Back To Accounts</a>
+            <a (click)="sendRemark('html','B')" class="btn btn-sm btn-brand mr-2 ">Send Back</a>
             <div>
               <a *ngIf="this.Save==true" (click)="sendRemark('html','A')" class="btn btn-brand mr-2 btn-sm">I Agree</a>
             </div>
@@ -368,7 +369,7 @@
             </tr>
             <tr [hidden]="!hideme[i]" class="sub-table no-bg">
               <td> </td>
-              <td colspan="15" class="p-0">
+              <td >
                 <table class="table mb-0 table-striped">
                   <thead class="bg-dark text-white">
                     <tr>

@@ -69,6 +69,20 @@ export class BalanceConfirmationViewForRAHComponent implements OnInit {
      this.Search();
    }
  
+   download() {
+    this._EmpComponent.setLoading(false);
+    this._BalanceConfirmation.downloadBalConfHeaderDataForRH(this.FromDate,this.Todate,localStorage.getItem(constStorage.UserType),  this.UserCode,this.Region,this.Branch,this.Territory).subscribe(response => {
+			let blob:any = new Blob([response], { type: 'text/json; charset=utf-8' });
+			const url = window.URL.createObjectURL(blob);
+      this._EmpComponent.setLoading(false);
+			fileSaver.saveAs(blob, 'BalanceConfirmationList.xlsx');
+		},
+    err => { 
+      this._EmpComponent.setLoading(false);
+        console.log(err);
+    })
+  }
+
    changeDateLoad(value){
      if(value=='From'){
  this.loadedFromDate=false

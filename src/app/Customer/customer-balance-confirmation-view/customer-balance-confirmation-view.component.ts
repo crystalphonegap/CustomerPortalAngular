@@ -23,6 +23,7 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
               private _BalanceConfirmation: BalanceConfirmation, private router: Router, @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
   BalanceConfirmations: any = [];
   BalanceConfirmationInfo: any = [];
+  private TotalQty=0;
   BalanceConfirmationLog: any = [];
   remark: string;
   hideme = [];  
@@ -102,6 +103,7 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
       //     this.BalanceConfirmations.push(data[count]);
       // }
       this.BalanceConfirmations = data;
+      this.findsum(this.BalanceConfirmations);
       this.changeDetection.detectChanges();
       this._CustomerComponent.setLoading(false);
       this.lengthofBalanceConfirmations = this.BalanceConfirmations.length - 1;
@@ -138,8 +140,8 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
     this._BalanceConfirmation.GetBalConfHeaderDataByID(UserCode, BalanceConfirmationNo).subscribe(
       data => {
         this.BalanceConfirmationInfo = data[0];
+        this.findsum(this.BalanceConfirmationInfo);
         this.changeDetection.detectChanges();
-
         this._CustomerComponent.setLoading(false);
       },
       err => {
@@ -147,6 +149,12 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
       }
     );
   }
+  findsum(data){    
+    for(let j=0;j<data.length;j++){   
+         this.TotalQty=this.TotalQty+data[j].Quantitydcl;
+    } 
+  }
+
   onRowChange(Ledger, value, type) {
     if (type == 'amount') {
       Ledger.amount = value;
