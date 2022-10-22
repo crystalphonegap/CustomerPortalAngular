@@ -9,6 +9,7 @@ import { BalanceConfirmation } from 'src/app/shared/BalanceConfirmation';
 import { CustomerComponent } from '../Customer.component';
 import * as fileSaver from 'file-saver';
 import { UserConstant } from 'src/app/models/Userconstant';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-customer-balance-confirmation-view',
@@ -17,6 +18,7 @@ import { UserConstant } from 'src/app/models/Userconstant';
 })
 export class CustomerBalanceConfirmationViewComponent implements OnInit {
   bodyText;
+  myGroup: FormGroup;
   constructor(private changeDetection: ChangeDetectorRef, private _CustomerComponent: CustomerComponent, private alertService: AlertService, private modalService: ModalService,
               private _BalanceConfirmation: BalanceConfirmation, private router: Router, @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
   BalanceConfirmations: any = [];
@@ -28,6 +30,7 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
   BCAttachments:any=[];
   savetemp = true;
   Save = true;
+  showconfirmation=false;
   CreditAmount: number=0;
   DebitAmount: number=0;
   fileToUpload;
@@ -35,12 +38,19 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
   lengthofBalanceConfirmations: number;
   Userid;
   loader;
+  mobilenumber;
+  AgreeDesagree=false;
+
+  
   ngOnInit() {
     this.Userid = localStorage.getItem('UserCode');
     const BalanceConfirmationNo = this.storage.get('BC');
     this.getBalanceConfirmationHeaderDataByBalanceConfirmationNo(BalanceConfirmationNo);
     this.GetBalanceConfLog(BalanceConfirmationNo);
     this.getAllBalanceConfirmationDataByBalanceConfirmationNo(BalanceConfirmationNo);
+    this.myGroup = new FormGroup({
+      Passwordvtxt: new FormControl()
+   });
   }
 
   openModal(id: string) {
@@ -169,13 +179,16 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
     this.router.navigateByUrl('/Customer/BalanceConfirmation');
   }
   Agree() {
-    this.Submit('A');
-    this.sendRemark('ts', 'A');
+    this.showconfirmation=true;
+    this.AgreeDesagree=true;
+    this.sendOTP();
+ 
 
   }
   Disagree() {
-    this.Submit('B');
-    this.sendRemark('ts', 'B');
+    this.AgreeDesagree =false;
+    this.sendOTP();
+  
   }
   hideSave() {
     this.savetemp = true;
@@ -335,5 +348,41 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
       this.Index = index; 
   }
 
+  sendOTP(){
+    this._CustomerComponent.setLoading(true);
+    this._BalanceConfirmation.GetOTPFORcONFIRM(this.BalanceConfirmationInfo.CustomerCodevtxt).subscribe(res=>{
+      this.mobilenumber=res.MOBILE;
+      this.alertService.success(res.MESSAGE);
+      this._CustomerComponent.setLoading(false);
+    },err=>
+    {
+      this._CustomerComponent.setLoading(false);
+    });
+  }
+
+  ValidatOTP(){
+    debugger;
+    let OPTValue=this.myGroup.get('Passwordvtxt').value
+    this._CustomerComponent.setLoading(true);
+    this._BalanceConfirmation.SubmitOTPcONFIRM(this.mobilenumber,OPTValue,this.BalanceConfirmationInfo.CustomerCodevtxt).subscribe(res=>{
+      this._CustomerComponent.setLoading(false);
+      if(res.MESSAGE=="Invalid OTP"){
+this.alertService.warn(res.MESSAGE);
+      }else{
+        if(this.AgreeDesagree==true){
+         this.Submit('A');
+         this.sendRemark('ts', 'A');
+         }
+         else{
+          this.Submit('B');
+          this.sendRemark('ts', 'B');
+        }
+      }
+      
+    },err=>
+    {
+      this._CustomerComponent.setLoading(false);
+    });
+  }
 }
 

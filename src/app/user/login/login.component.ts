@@ -36,21 +36,8 @@ Mobile: boolean=true;
     private alertService: AlertService, private _UserComponent: UserComponent,private _UserServiceWithoutToken:UserServiceWithoutToken) { }
   ngOnInit() {
     debugger
-    
     $('body, #kt_header_menu_wrapper').removeClass('kt-header-menu-wrapper--on');
-    //this.onloadCallAPi();
-    // this._UserComponent.setLoading(true);
-    // this.authService.IpAdress().subscribe(() => {
-    //   this._UserComponent.setLoading(false);
-    // }, err => {
-    //   this._UserComponent.setLoading(false);
-    //   // this.IPError = err.error;
-    //   // let errorMessage = err && err.error;
-    //   // console.log(errorMessage);
-
-    // });
-
-
+    
   }
 
   onloadCallAPi(){
@@ -66,8 +53,10 @@ console.log(res);
   }
 
 
+
   onSubmit(): void {
-    debugger;
+   
+
     this._UserComponent.setLoading(true);
 
     let loginForm ={

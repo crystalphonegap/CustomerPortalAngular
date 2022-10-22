@@ -167,84 +167,6 @@ export class BalanceConfirmation {
     return this.http.get(this.BaseURI + '/BalanceConfirmation/GetBalanceConfLogAttachmentDownload/'+ID , { responseType: 'blob' });
   }
 
-  getmeetproToken() {
-//     let body = new URLSearchParams();
-//     body.set("grant_type","password");
-//     body.set("username","Prod_meetpro");
-//     body.set("password","m#+wlxi-wu3EsTecrIgahacr");
-//   //   var reqbody = {
-//   //     'Content-Type': "application/x-www-form-urlencoded",
-//   //     'grant_type': "password",
-//   //     'username':"Prod_meetpro",
-//   //     'password':"m#+wlxi-wu3EsTecrIgahacr",  
-//   // }
-//   let headers = new HttpHeaders(
-//     {
-//       'Content-Type': "application/x-www-form-urlencoded"
-//     }
-//   );
-//   let options={headers:headers};
-// debugger
-// //return this.http.post('https://meetpro.pilportal.com:11692/token', body, {headers:{'Content-Type': 'application/x-www-form-urlencoded'}});
-//     return this.http.post('https://meetpro.pilportal.com:11692/token', body,options).subscribe((response:any)=>{
-//       console.log(response);
-//     });
-debugger
-//const formData = new FormData();
-let body = new URLSearchParams();
-body.set("grant_type","password");
-body.set("username","Prod_meetpro");
-body.set("password","m#+wlxi-wu3EsTecrIgahacr");
-  const httpOptions = {
-    headers: new HttpHeaders({
-        'Content-Type': 'application/x-www-form-urlencoded'
-    })
-};
-return this.http.post('https://meetpro.pilportal.com:11692/token', body.toString(), httpOptions)
-             .subscribe((res: any) => {
-                 console.log(res);
-                 // sessionStorage.setItem('access_token', res.access_token);
-                 // sessionStorage.setItem('refresh_token', res.refresh_token);
-             },
-                 err => console.log(err)
-             );
-
-        // formData.append('username', 'Uat_meetpro');
-        // formData.append('password', 'TO511^xLM@qjEN$5xT1*8%Hx');
-        // formData.append('grant_type', 'password');
-        
-
-        // return this.http.post("https://meetpro.pilportal.com:11692/token",formdata,
-        //               {
-        //                   headers: new HttpHeaders({
-        //                     'Content-Type':'application/x-www-form-urlencoded'
-        //                   })
-        //               }
-        //             )
-        //             .subscribe(
-        //                 (res:any) => {
-        //                     console.log(res);
-        //                 },
-        //                 err => console.log(err)
-        //             );
-
-  }
-
-
-
-  
-  // ObtendoNovoToken(): Observable<string> {
-  //   const header = new Headers();
-  //   header.append('Content-Type', 'application/x-www-form-urlencoded');
-  
-  //   let grant_type = 'password';
-  //   let username = 'varejo_user';
-  //   let password = 'w6h5xgtl';
-  //   let body = 'grant_type=${grant_type}&username=${username}&password=${password}';
-  
-  //   return this.http.post('${ApiDeSegurança}', body, new Options({headers: header})).map(response=> response.json())
-  // }
-
   GetOTPFORcONFIRM(UserCode) {
     return this.http.get<any>(
       `${environment.ApiUrl}/Mail/GetOTPFORConfirmation/`+UserCode).pipe(
@@ -261,7 +183,4 @@ return this.http.post('https://meetpro.pilportal.com:11692/token', body.toString
         })
     );
   }
-
-  
-
 }
