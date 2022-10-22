@@ -82,7 +82,7 @@ this.loadedFromDate=false
   Search(){
     this.pageNumber[0] = true;
     this.paginationService.temppage = 0;
-    this.UserCode= localStorage.getItem(constStorage.UserCode);
+    this.UserCode= localStorage.getItem(constStorage.UserCode); 
     
     this.getAllBalanceConfirmation(1);
   }
