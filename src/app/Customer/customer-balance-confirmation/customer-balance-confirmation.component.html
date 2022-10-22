@@ -20,8 +20,8 @@
                             <th class=" font-weight-bold align-text-top" scope="col">Reference No</th>
                             <th class=" font-weight-bold align-text-top" scope="col">Ledger Confirmation From Date</th>
                             <th class=" font-weight-bold align-text-top" scope="col">Ledger Confirmation To Date</th>
-                            <th class=" font-weight-bold align-text-top" scope="col">Confirmation Before Date</th>
-                            <th class=" font-weight-bold align-text-top" scope="col">Status</th>
+                            <!-- <th class=" font-weight-bold align-text-top" scope="col">Confirmation Before Date</th> -->
+                            <th class=" font-weight-bold align-text-top" scope="col">Integration Status</th>
                             <th class=" font-weight-bold align-text-top" scope="col">action</th>
                         </tr>
                     </thead>
@@ -31,7 +31,7 @@
                             <td>{{BC?.RequestNovtxt}}</td>
                             <td> {{BC?.FromDatedatetime | date :'dd/MM/yyyy'}} </td>
                             <td> {{BC?.ToDatedatetime | date :'dd/MM/yyyy'}} </td>
-                            <td> {{BC?.ExpiryDatedatetime | date :'dd/MM/yyyy'}} </td>
+                            <!-- <td> {{BC?.ExpiryDatedatetime | date :'dd/MM/yyyy'}} </td> -->
                             <td>
                                 <div *ngIf="BC?.BalanceConfirmationStatus==true">
                                     Completed
