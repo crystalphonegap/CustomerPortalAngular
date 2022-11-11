@@ -11,8 +11,19 @@ import { UserConstant } from 'src/app/models/Userconstant';
 export class EmpAsideComponent implements OnInit {
 
   constructor( private router: Router) { }
+  showEmp=false;
+  showHO=false;
   BalanceConfirmation= 'none';
   ngOnInit() {
+    let UserTypetxt = localStorage.getItem(constStorage.UserType);
+    if(UserTypetxt==UserConstant.RegionalAccountingHead){
+      this.showHO=true;
+      this.showEmp=false;
+    }else{
+      this.showEmp=true;
+      this.showHO=false;
+    }
+
     if(localStorage.getItem(constStorage.UserType)==UserConstant.AccountingHead)
     {
     this.BalanceConfirmation = 'block';

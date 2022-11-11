@@ -115,7 +115,10 @@ console.log(res);
         this.router.navigateByUrl('/Customer/dashboard');
       } else if (UserTypetxt == UserConstant.CFAgent) {
         this.router.navigateByUrl('/CfAgent/dashboard');
-      } else if (UserTypetxt == UserConstant.KAM) {
+      } else if (UserTypetxt == UserConstant.RegionalAccountingHead) {
+        this.router.navigateByUrl('/Emp/RAHEmpDashboard');
+      }
+      else if (UserTypetxt == UserConstant.KAM) {
         this.router.navigateByUrl('/KAM/dashboard');
       } else if (UserTypetxt == UserConstant.CFAgentUser) {
         this._UserService.getUserData(localStorage.getItem(constStorage.IDbint)).subscribe(

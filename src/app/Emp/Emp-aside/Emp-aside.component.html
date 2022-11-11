@@ -1,9 +1,12 @@
 <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid" id="kt_aside_menu_wrapper">
     <div id="kt_aside_menu" class="kt-aside-menu" data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
         <ul class="kt-menu__nav">
-            <li class="kt-menu__item" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/dashboard']" class="kt-menu__link "><i
+            <li class="kt-menu__item" *ngIf="showEmp" id="Home1" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/dashboard']" class="kt-menu__link "><i
                         class="kt-menu__link-icon fa fa-chart-area"></i><span class="kt-menu__link-text">Home
                         Page</span></a></li>
+                        <li class="kt-menu__item" *ngIf="showHO" id="Home2" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/RAHEmpDashboard']" class="kt-menu__link "><i
+                            class="kt-menu__link-icon fa fa-chart-area"></i><span class="kt-menu__link-text">Home
+                            Page</span></a></li>
 
 
             <li class="kt-menu__item " aria-haspopup="true" [routerLinkActive]="['kt-menu__item--active']"><a [routerLink]="['/Emp/CustomerList']" class="kt-menu__link "><i
