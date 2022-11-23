@@ -11,7 +11,7 @@
 
     <div class="kt-portlet__body">
       <div *ngIf="BCheader.AttachmentFilevtxt!='' && BCheader.AttachmentFilevtxt!=null" class="mb-2">
-        <a (click)="download()" type="button" class="alert-link"><i class="fa fa-download" aria-hidden="true"></i>
+        <a (click)="download(BCheader?.AttachmentFilevtxt)" type="button" class="alert-link"><i class="fa fa-download" aria-hidden="true"></i>
           {{this.BCheader?.AttachmentFilevtxt}} </a>
       </div>
       <div class="table-responsive1">
@@ -260,7 +260,7 @@
                   <tbody>
                     <tr *ngFor="let attachment of BCAttachments[i]">
                       <td>
-                        <a (click)="download(attachment.AttachID,attachment.AttachmentFilevtxt)" type="button" class="alert-link"><i class="fa fa-download" aria-hidden="true"></i>
+                        <a (click)="download(attachment.AttachmentFilevtxt)" type="button" class="alert-link"><i class="fa fa-download" aria-hidden="true"></i>
                           {{attachment.AttachmentFileNamevtxt}} </a> </td>
                     </tr>
                     </tbody>

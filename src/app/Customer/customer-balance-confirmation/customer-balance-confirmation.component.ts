@@ -34,7 +34,7 @@ export class CustomerBalanceConfirmationComponent implements OnInit {
   Todate = null;
   pageNumber: boolean[] = [];
   sortOrder: any = 'CompanyName_ASC';
-  order: any = 'CompanyName';
+  Order: any = 'CompanyName';
   pageField = [];
   exactPageList: any;
   paginationData: number;

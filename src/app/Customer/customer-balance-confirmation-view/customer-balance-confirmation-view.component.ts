@@ -23,7 +23,7 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
               private _BalanceConfirmation: BalanceConfirmation, private router: Router, @Inject(SESSION_STORAGE) private storage: WebStorageService) { }
   BalanceConfirmations: any = [];
   BalanceConfirmationInfo: any = [];
-  private TotalQty=0;
+  TotalQty=0;
   BalanceConfirmationLog: any = [];
   remark: string;
   hideme = [];  

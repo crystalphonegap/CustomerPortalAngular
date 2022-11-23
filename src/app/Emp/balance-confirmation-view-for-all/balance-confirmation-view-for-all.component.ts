@@ -81,9 +81,9 @@ export class BalanceConfirmationViewForAllComponent implements OnInit {
     });
   }
 
-  download(no,attachmentname) {
+  download(attachmentname) {
     this._EmpComponent.setLoading(true);
-    this._BalanceConfirmation.downloadBalanceConfAttachmentfile(no).subscribe(response => {
+    this._BalanceConfirmation.downloadBalanceConfAttachmentfile(this.storage.get('BCNo')).subscribe(response => {
 			let blob:any = new Blob([response], { type: 'text/json; charset=utf-8' });
 			const url = window.URL.createObjectURL(blob);
       this._EmpComponent.setLoading(false);
