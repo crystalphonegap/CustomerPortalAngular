@@ -37,13 +37,16 @@ import { TicketMISCategoryTypeWiseComponent } from './ticket-miscategory-type-wi
 import { TicketMISUserTypeWiseComponent } from './ticket-misuser-type-wise/ticket-misuser-type-wise.component';
 import { RAHEmpDashboardComponent } from './rahemp-dashboard/rahemp-dashboard.component';
 import { BalanceActionLogComponent } from './balance-action-log/balance-action-log.component';
+import { AHEmpDashboardComponent } from './ahemp-dashboard/ahemp-dashboard.component';
 
 const routes: Routes = [
   {
     path: '',component: EmpComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: EmpDashboardComponent, canActivate: [AuthGuard] },
+      { path: 'AHDashboard', component: AHEmpDashboardComponent, canActivate: [AuthGuard] },
+      // { path: 'dashboard', component: EmpDashboardComponent, canActivate: [AuthGuard] },
+      // { path: 'dashboard', component: RAHEmpDashboardComponent, canActivate: [AuthGuard] },
       { path: 'CustomerList', component: EmpCustomerListComponent, canActivate: [AuthGuard] },
       { path: 'Profile', component: EmpProfileComponent, canActivate: [AuthGuard] },
       { path: 'Editprofile', component: EmpProfileEditComponent, canActivate: [AuthGuard] },

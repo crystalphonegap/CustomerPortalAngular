@@ -19,9 +19,15 @@ export class BalanceConfirmation {
   DownloadSampleBalanceConf() {
     return this.http.get(this.BaseURI + '/BalanceConfirmation/DownloadSampleBalanceConf', { responseType: 'blob' });
   }
-  UploadBalanceConfirmation(fromdate, todate, expirydate, CreatedBy,Type, Data): Observable<any> {
-    return this.http.post(this.BaseURI + '/BalanceConfirmation/UploadBalanceConfirmation/' + fromdate + ',' + todate + ',' + expirydate + ',' + CreatedBy+ ',' + Type, Data);
+  // UploadBalanceConfirmation(fromdate, todate, expirydate, CreatedBy,Type, Data): Observable<any> {
+  //   return this.http.post(this.BaseURI + '/BalanceConfirmation/UploadBalanceConfirmation/' + fromdate + ',' + todate + ',' + expirydate + ',' + CreatedBy+ ',' + Type, Data);
+  // }
+  //to show data on page loading
+
+  SubmitBalanceConfirmationforRAH(fromdate, todate, Todate, CreatedBy,usercode,Type, Data): Observable<any> {
+    return this.http.post(this.BaseURI + '/BalanceConfirmation/SubmitBalanceConfirmationforRAH/'+ fromdate + ',' + todate + ',' + Todate + ',' + CreatedBy+ ',' + usercode+','+Type, Data );
   }
+
   UpdateExpiryDate(Data): Observable<any> {
     return this.http.put(this.BaseURI + '/BalanceConfirmation/UpdateExpiryDate',Data );
   }
@@ -188,4 +194,9 @@ export class BalanceConfirmation {
         })
     );
   }
+  // to show
+  // GetCustomerDataForRCH(UserCode,pageNo, CustomersPerPage) {
+
+  //   return this.http.get(this.BaseURI + '/CustomerMaster/GetCustomerDataForRCH/' + UserCode + ',' + pageNo +  ',' + CustomersPerPage);
+  // }
 }

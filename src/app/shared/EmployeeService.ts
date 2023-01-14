@@ -92,7 +92,7 @@ export class EmployeeService {
   }
 
   GetEmployeeDashboardCount(UserCode,UserTytpe): Observable<any> {
-    debugger;
+    // debugger;
     return this.http.get(this.BaseURI + '/Employee/GetEmployeeDashboardCount/'+UserCode+','+UserTytpe+',All');
   }
 

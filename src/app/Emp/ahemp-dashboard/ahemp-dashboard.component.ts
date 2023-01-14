@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CFAgentService } from 'src/app/shared/CFAgentService';
 import { SESSION_STORAGE, WebStorageService } from 'ngx-webstorage-service';
@@ -13,12 +13,13 @@ import { UserConstant } from 'src/app/models/Userconstant';
 import { EmpComponent } from '../Emp.component';
 import { constStorage } from 'src/app/models/Storege';
 
+
 @Component({
-  selector: 'app-rahemp-dashboard',
-  templateUrl: './rahemp-dashboard.component.html',
-  styleUrls: ['./rahemp-dashboard.component.css']
+  selector: 'app-ahemp-dashboard',
+  templateUrl: './ahemp-dashboard.component.html',
+  styleUrls: ['./ahemp-dashboard.component.css']
 })
-export class RAHEmpDashboardComponent implements OnInit {
+export class AHEmpDashboardComponent implements OnInit {
 
   constructor(private _EmpComponent: EmpComponent, private service: UserService,
     private _TargetSales: TargetSales, private _EmployeeService: EmployeeService,
@@ -69,7 +70,7 @@ export class RAHEmpDashboardComponent implements OnInit {
       Todate: new FormControl( this.Todate , [Validators.required, Validators.maxLength(256)]),
       search: new FormControl('', [Validators.required, Validators.maxLength(256)]),
     });
-     if (this.UserType == UserConstant.RegionalAccountingHead) {
+     if (this.UserType == UserConstant.AccountingHead) {
       this.Performancefor = 'Regional'
     }else  {
        this.Performancefor = 'Company'
@@ -344,7 +345,5 @@ this.loadedFromDate=false
          console.log(err);
      })
    }
- 
- 
- }
- 
+
+}

@@ -55,7 +55,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-12">
+                    <!-- <div class="col-lg-12">
 
                         <div class="row">
                             <label class="col-lg-3 col-form-label">Ledger Confirmation Before Date
@@ -70,13 +70,13 @@
                                 </mat-form-field>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 
 
 
-                    <label class="col-lg-2 col-form-label">Upload File:</label>
-                    <div class="col-lg-10">
+                    <!-- <label class="col-lg-2 col-form-label">Upload File:</label> -->
+                    <!-- <div class="col-lg-10">
                         <div class="kt-uppy" id="kt_uppy_5">
                             <div class="kt-uppy__wrapper">
                                 <div class="uppy-Root uppy-FileInput-container">
@@ -106,7 +106,54 @@
                                 Download Sample File
                             </div>
                         </div>
+                    </div> -->
+                    
+                    <label for="" class="col-lg-2 col-form-label">Customer Details</label>
+                    <div class="col-lg-10 mt-3">
+                        <table class="table table-striped">
+                            <thead style="background-color: #CDCDCD;">
+                            <tr>
+                            <th class=" font-weight-bold align-text-top" scope="col">Sr No</th>
+                            <th class=" font-weight-bold align-text-top" scope="col">Customer Code</th>
+                            <th class=" font-weight-bold align-text-top" scope="col">Customer Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  *ngFor="let Data of data; index as i">
+                            <th>{{i + Indexing +1 }}</th>
+                            <td>{{Data.CustCodevtxt}}</td>
+                            <td>{{Data.CustNamevtxt}}</td>
+                        </tr>
+                    </tbody>
+                    </table>
                     </div>
+
+                <!-- pagination -->
+
+                <div *ngIf="data[0]!=null" class="kt-pagination kt-pagination--brands">
+                    <ul class="kt-pagination__links">
+                        <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                            class="kt-pagination__link--prev">
+                            <a (click)="showPrevOrders()"
+                                [ngClass]="(paginationService.showNoOfCurrentPage ==1)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-left kt-font-brand"></i></a></li>
+                        <li *ngFor="let page of pageField;let i=index">
+                            <a [ngClass]="pageNumber[i] ? 'kt-pagination__link--active':''" (click)="showOrdersByPageNumber(page,i)" style="cursor: pointer;">{{page}}</a>
+                        </li>
+                        <li *ngIf="this.pageField.length < paginationService.exactPageList"
+                            class="kt-pagination__link--next"><a (click)="showNextOrders()"
+                                [ngClass]="(paginationService.disabledNextBtn)?'notAllowed':'kt-font-brand'"><i
+                                    class="fa fa-angle-right kt-font-brand"></i></a> </li>
+                    </ul>
+                    <div class="kt-pagination__toolbar">
+                        <div class="pagination__desc">Page <span class="kt-font-bold">{{currentPage}}</span> of
+                            <span class="kt-font-bold">{{paginationService.exactPageList}}</span></div>
+                    </div>
+                </div>
+                
+                    
+
+
                 </div>
             </div>
             <div class="kt-portlet__foot kt-portlet__foot--sm bg-light">
@@ -114,7 +161,9 @@
                     <div class="row">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-10">
-                            <button type="submit" type="button" class="btn ml-2 btn-brand btn-sm"
+                            <!-- <button type="submit" type="button" class="btn ml-2 btn-brand btn-sm"
+                                (click)="Submit()">Submit</button> -->
+                                <button type="submit"  class="btn ml-2 btn-brand btn-sm"
                                 (click)="Submit()">Submit</button>
                             <button type="button" class="btn btn-secondary btn-sm" (click)="back()">Cancel</button>
                         </div>

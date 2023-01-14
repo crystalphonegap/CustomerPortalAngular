@@ -19,6 +19,7 @@ export class EmpAsideComponent implements OnInit {
     if(UserTypetxt==UserConstant.RegionalAccountingHead){
       this.showHO=true;
       this.showEmp=false;
+      this.BalanceConfirmation = 'block';
     }else{
       this.showEmp=true;
       this.showHO=false;
@@ -26,7 +27,7 @@ export class EmpAsideComponent implements OnInit {
 
     if(localStorage.getItem(constStorage.UserType)==UserConstant.AccountingHead)
     {
-    this.BalanceConfirmation = 'block';
+    this.BalanceConfirmation = 'none';
     }
   }
  

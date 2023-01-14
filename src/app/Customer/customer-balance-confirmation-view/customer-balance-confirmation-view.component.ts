@@ -369,7 +369,7 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
   }
 
   ValidatOTP(){
-    debugger;
+    // debugger;
     let OPTValue=this.myGroup.get('Passwordvtxt').value
     this._CustomerComponent.setLoading(true);
     this._BalanceConfirmation.SubmitOTPcONFIRM(this.mobilenumber,OPTValue,this.BalanceConfirmationInfo.CustomerCodevtxt).subscribe(res=>{

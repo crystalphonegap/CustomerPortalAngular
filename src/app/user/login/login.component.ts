@@ -35,13 +35,13 @@ Mobile: boolean=true;
     private authService: AuthService, private _CustomerService: CustomerService,private _balanceconfService:BalanceConfirmation,
     private alertService: AlertService, private _UserComponent: UserComponent,private _UserServiceWithoutToken:UserServiceWithoutToken) { }
   ngOnInit() {
-    debugger
+    // debugger
     $('body, #kt_header_menu_wrapper').removeClass('kt-header-menu-wrapper--on');
     
   }
 
   onloadCallAPi(){
-    debugger;
+    // debugger;
     this._CustomerService.CallApI().subscribe((res: any)=>{
 console.log(res);
     }), err => {
@@ -96,7 +96,7 @@ console.log(res);
 
         });
       }
-      debugger
+      // debugger
       let UserTypetxt = localStorage.getItem(constStorage.UserType);
       this._UserComponent.setLoading(false);
       if (UserTypetxt == UserConstant.SuperAdmin) {
@@ -118,6 +118,12 @@ console.log(res);
       } else if (UserTypetxt == UserConstant.RegionalAccountingHead) {
         this.router.navigateByUrl('/Emp/RAHEmpDashboard');
       }
+      
+      else if (UserTypetxt == UserConstant.AccountingHead) {
+        this.router.navigateByUrl('/Emp/AHDashboard');
+      }
+
+
       else if (UserTypetxt == UserConstant.KAM) {
         this.router.navigateByUrl('/KAM/dashboard');
       } else if (UserTypetxt == UserConstant.CFAgentUser) {
@@ -157,7 +163,7 @@ console.log(res);
         UserTypetxt == UserConstant.RegionalManager || UserTypetxt == UserConstant.TerritorySalesExecutive
         || UserTypetxt == UserConstant.MarketingHead || UserTypetxt == UserConstant.ZonalManager
       ) {
-        debugger
+        // debugger
         this.router.navigateByUrl('/Emp/dashboard');
       } else if (UserTypetxt == UserConstant.CustomerUser) {
         this._CustomerService.getCustomerDataByhisUserCode(localStorage.getItem(constStorage.UserCode)).subscribe(

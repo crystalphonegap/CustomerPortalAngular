@@ -50,6 +50,7 @@ import { RegionalheadComponent } from './regionalhead/regionalhead.component';
 import { BalanceConfirmationViewForRAHComponent } from './balance-confirmation-view-for-rah/balance-confirmation-view-for-rah.component';
 import { RAHEmpDashboardComponent } from './rahemp-dashboard/rahemp-dashboard.component';
 import { BalanceActionLogComponent } from './balance-action-log/balance-action-log.component';
+import { AHEmpDashboardComponent } from './ahemp-dashboard/ahemp-dashboard.component';
 @NgModule({
   declarations: [
     EmpProfileEditComponent ,
@@ -93,6 +94,7 @@ import { BalanceActionLogComponent } from './balance-action-log/balance-action-l
     BalanceConfirmationViewForRAHComponent,
     RAHEmpDashboardComponent,
     BalanceActionLogComponent,
+    AHEmpDashboardComponent,
   ],
   imports: [
     MatSlideToggleModule,
