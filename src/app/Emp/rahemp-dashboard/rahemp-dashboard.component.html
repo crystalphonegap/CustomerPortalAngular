@@ -228,11 +228,11 @@
                                     </h3>
                                 </div>
                                 <div *ngIf="this.UserType!='Regional Manager'" class="kt-portlet__head-toolbar">
-
-                                    <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
+                                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle"
                                         (click)="CloseRegion('this')">
                                         <i class="flaticon-cancel"></i>
-                                    </button>
+                                        </button>
+                                        <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle ml-2" (click)="exportAsXLSX()"><i class="flaticon-download"></i></button>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -313,6 +313,7 @@
                                         (click)="CloseBranch('this')">
                                         <i class="flaticon-cancel"></i>
                                     </button>
+                                    <button class="btn btn-brand btn-icon btn-sm btn-bold rounded-circle ml-2" (click)="exportAsXLSX2()"><i class="flaticon-download"></i></button>
                                 </div>
                             </div>
                             <div class="table-responsive">

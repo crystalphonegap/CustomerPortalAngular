@@ -12,6 +12,7 @@ import { UserService } from 'src/app/shared/user.service';
 import { UserConstant } from 'src/app/models/Userconstant';
 import { EmpComponent } from '../Emp.component';
 import { constStorage } from 'src/app/models/Storege';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-rahemp-dashboard',
@@ -23,7 +24,7 @@ export class RAHEmpDashboardComponent implements OnInit {
   constructor(private _EmpComponent: EmpComponent, private service: UserService,
     private _TargetSales: TargetSales, private _EmployeeService: EmployeeService,
     public datepipe: DatePipe, private router: Router, private _CFAgentService: CFAgentService
-   , @Inject(SESSION_STORAGE) private storage: WebStorageService) {
+   , @Inject(SESSION_STORAGE) private storage: WebStorageService,private excelService:ExcelService) {
     this.FromDate = new Date();
       this.FromDate.setDate(this.FromDate.getDate() - 2590);
       this.FromDate = this.datepipe.transform(this.FromDate, 'dd-MM-yyyy');
@@ -57,6 +58,8 @@ export class RAHEmpDashboardComponent implements OnInit {
   loadedFromDate:boolean;
   LoadedToDate:boolean;
    Performancefor: string;
+   objects: Array<any> = [];
+   Indexing: number = 1;
    ngOnInit() {
      debugger
      this.loadedFromDate=true;
@@ -344,6 +347,59 @@ this.loadedFromDate=false
          console.log(err);
      })
    }
+
+   exportAsXLSX():void {
+    for (let i=-1 ; i< this.Region.length ; i++)
+    {  debugger;
+
+      debugger;
+      console.log(this.Region);
+        if(i==-1)
+        {
+          this.objects.push(['SrNo', 'Branch Name', 'NoOfDealers', 'ActiveDealers','InActiveDealers','BalanceconfirmationsPending','BalanceconfirmationsAgreed','BalanceconfirmationsDisagreed']);
+
+        }
+        else if(i< this.Region.length)
+        {
+          this.objects.push([i+this.Indexing+1, this.Region[i].Name, this.Region[i].NoOfDealers, this.Region[i].ActiveDealers,this.Region[i].InActiveDealers,this.Region[i].BalancePendingCount,this.Region[i].BalanceAgreedCount,this.Region[i].BalanceDisagreedCount]);
+        }
+        else
+        {
+
+        }
+          
+    }
+
+    this.excelService.exportAsExcelFile(this.objects, 'sample');
+  }
+
+  exportAsXLSX2():void {
+    for (let i=-1 ; i< this.Branch.length ; i++)
+    {  
+
+  
+      // console.log('Territory');
+      // console.log(this.Region);
+      // console.log('Territory');
+        if(i==-1)
+        {
+          this.objects.push(['SrNo', 'Territory Name', 'NoOfDealers', 'ActiveDealers','InActiveDealers','BalanceconfirmationsPending','BalanceconfirmationsAgreed','BalanceconfirmationsDisagreed']);
+
+        }
+        else if(i< this.Branch.length)
+        {
+          this.objects.push([i, this.Branch[i].Name, this.Branch[i].NoOfDealers, this.Branch[i].ActiveDealers,this.Branch[i].InActiveDealers,this.Branch[i].BalancePendingCount,this.Branch[i].BalanceAgreedCount,this.Branch[i].BalanceDisagreedCount]);
+        }
+        // else
+        // {
+
+        // }
+          
+    }
+
+    this.excelService.exportAsExcelFile(this.objects, 'sample');
+  }
+
  
  
  }

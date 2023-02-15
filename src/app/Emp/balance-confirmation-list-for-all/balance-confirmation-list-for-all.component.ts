@@ -10,6 +10,7 @@ import { BalanceConfirmation } from 'src/app/shared/BalanceConfirmation';
 import { constStorage } from 'src/app/models/Storege';
 import { DatePipe } from '@angular/common';
 import { EmpComponent } from '../Emp.component';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-balance-confirmation-list-for-all',
@@ -18,8 +19,9 @@ import { EmpComponent } from '../Emp.component';
 })
 export class BalanceConfirmationListForAllComponent implements OnInit {
    BalanceConfirmations: any=[];
+  action: string;
   constructor(private _EmpComponent:EmpComponent,public datepipe: DatePipe,private router: Router, private _BalanceConfirmation: BalanceConfirmation
-    , public paginationService: PaginationService, @Inject(SESSION_STORAGE) private storage: WebStorageService) {
+    , public paginationService: PaginationService, @Inject(SESSION_STORAGE) private storage: WebStorageService,private excelService:ExcelService) {
       this.FromDate = new Date();
       this.FromDate.setDate(this.FromDate.getDate() - 10);
       this.FromDate = this.datepipe.transform(this.FromDate, 'dd-MM-yyyy');
@@ -47,6 +49,8 @@ export class BalanceConfirmationListForAllComponent implements OnInit {
   Todate = null; SearchFilter;
   loadedFromDate:boolean;
   LoadedToDate:boolean;
+  objects: Array<any> = [];
+  Indexing: number = 1;
   ChangeFilter(){
     if(this.loadedFromDate==false){
       this.FromDate=  this.datepipe.transform(this.SearchFilter.controls['FromDate'].value._d, 'dd-MM-yyyy');
@@ -173,6 +177,46 @@ this.loadedFromDate=false
     this.storage.set('CustomerCode', CustomerCode);
     this.storage.set('BCheader', BCheader);
     this.router.navigateByUrl('/Emp/BalanceConfirmationViewA');
+  }
+
+
+  exportAsXLSX():void {
+    for (let i=-1 ; i< this.BalanceConfirmations.length ; i++)
+    {  debugger;
+
+     
+      debugger;
+      console.log(this.BalanceConfirmations);
+        if(i==-1)
+        {
+          this.objects.push(['SrNo', 'Request No', 'Customer Code', 'Customer Name','From Date','To Date','Remark','Action']);
+
+        }
+        else if(i< this.BalanceConfirmations.length)
+        {
+          this.action="";
+          if(this.BalanceConfirmations[i].BalanceConfirmationAction=="A")
+          {
+             this.action="Agreed";
+          }
+          else if(this.BalanceConfirmations[i].BalanceConfirmationAction=="P")
+          {
+            this.action="Pending";
+          }
+          else
+          {
+            this.action="";
+          }
+          this.objects.push([i+this.Indexing+1, this.BalanceConfirmations[i].RequestNovtxt, this.BalanceConfirmations[i].CustomerCodevtxt, this.BalanceConfirmations[i].CustomerNamevtxt,this.BalanceConfirmations[i].FromDatedatetime,this.BalanceConfirmations[i].ToDatedatetime,this.BalanceConfirmations[i].Remarksvtxt,this.action]);
+        }
+        else
+        {
+
+        }
+          
+    }
+
+    this.excelService.exportAsExcelFile(this.objects, 'sample');
   }
 
 }

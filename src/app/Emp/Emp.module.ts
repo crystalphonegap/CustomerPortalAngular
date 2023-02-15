@@ -51,6 +51,7 @@ import { BalanceConfirmationViewForRAHComponent } from './balance-confirmation-v
 import { RAHEmpDashboardComponent } from './rahemp-dashboard/rahemp-dashboard.component';
 import { BalanceActionLogComponent } from './balance-action-log/balance-action-log.component';
 import { AHEmpDashboardComponent } from './ahemp-dashboard/ahemp-dashboard.component';
+import { ExcelService } from '../services/excel.service';
 @NgModule({
   declarations: [
     EmpProfileEditComponent ,
@@ -129,7 +130,7 @@ import { AHEmpDashboardComponent } from './ahemp-dashboard/ahemp-dashboard.compo
     MatExpansionModule,
     MatSlideToggleModule,
   ],
-  providers: [UserService, DatePipe, {
+  providers: [ExcelService,UserService, DatePipe, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true,

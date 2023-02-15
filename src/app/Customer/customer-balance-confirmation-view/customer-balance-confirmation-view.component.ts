@@ -194,7 +194,8 @@ export class CustomerBalanceConfirmationViewComponent implements OnInit {
 
   }
   Disagree() {
-    this.AgreeDesagree =false;
+    this.showconfirmation=true;
+    this.AgreeDesagree =true;
     this.sendOTP();
   
   }
