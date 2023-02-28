@@ -13,6 +13,8 @@ import { UserConstant } from 'src/app/models/Userconstant';
 import { EmpComponent } from '../Emp.component';
 import { constStorage } from 'src/app/models/Storege';
 import { ExcelService } from 'src/app/services/excel.service';
+import * as Excel from "exceljs/dist/exceljs.min.js";
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-rahemp-dashboard',
@@ -58,7 +60,8 @@ export class RAHEmpDashboardComponent implements OnInit {
   loadedFromDate:boolean;
   LoadedToDate:boolean;
    Performancefor: string;
-   objects: Array<any> = [];
+   objects: any = [];
+   objects1: any = [];
    Indexing: number = 1;
    ngOnInit() {
      debugger
@@ -349,56 +352,111 @@ this.loadedFromDate=false
    }
 
    exportAsXLSX():void {
-    for (let i=-1 ; i< this.Region.length ; i++)
-    {  debugger;
-
-      debugger;
-      console.log(this.Region);
-        if(i==-1)
-        {
-          this.objects.push(['SrNo', 'Branch Name', 'NoOfDealers', 'ActiveDealers','InActiveDealers','BalanceconfirmationsPending','BalanceconfirmationsAgreed','BalanceconfirmationsDisagreed']);
-
-        }
-        else if(i< this.Region.length)
-        {
-          this.objects.push([i+this.Indexing+1, this.Region[i].Name, this.Region[i].NoOfDealers, this.Region[i].ActiveDealers,this.Region[i].InActiveDealers,this.Region[i].BalancePendingCount,this.Region[i].BalanceAgreedCount,this.Region[i].BalanceDisagreedCount]);
-        }
-        else
-        {
-
-        }
-          
+    
+    
+    console.log(this.Region);
+    for (let i=0 ; i< this.Region.length ; i++)
+    {  
+      
+          this.objects1.push([i+1, this.Region[i].Name, this.Region[i].NoOfDealers, this.Region[i].ActiveDealers,this.Region[i].InActiveDealers,this.Region[i].BalancePendingCount,this.Region[i].BalanceAgreedCount,this.Region[i].BalanceDisagreedCount]); 
+       
     }
 
-    this.excelService.exportAsExcelFile(this.objects, 'sample');
+    this.generateExcel(this.objects1);
   }
 
   exportAsXLSX2():void {
-    for (let i=-1 ; i< this.Branch.length ; i++)
+    for (let i=0 ; i< this.Branch.length ; i++)
     {  
 
-  
-      // console.log('Territory');
-      // console.log(this.Region);
-      // console.log('Territory');
-        if(i==-1)
-        {
-          this.objects.push(['SrNo', 'Territory Name', 'NoOfDealers', 'ActiveDealers','InActiveDealers','BalanceconfirmationsPending','BalanceconfirmationsAgreed','BalanceconfirmationsDisagreed']);
-
-        }
-        else if(i< this.Branch.length)
-        {
-          this.objects.push([i, this.Branch[i].Name, this.Branch[i].NoOfDealers, this.Branch[i].ActiveDealers,this.Branch[i].InActiveDealers,this.Branch[i].BalancePendingCount,this.Branch[i].BalanceAgreedCount,this.Branch[i].BalanceDisagreedCount]);
-        }
-        // else
-        // {
-
-        // }
-          
+          this.objects.push([i+1, this.Branch[i].Name, this.Branch[i].NoOfDealers, this.Branch[i].ActiveDealers,this.Branch[i].InActiveDealers,this.Branch[i].BalancePendingCount,this.Branch[i].BalanceAgreedCount,this.Branch[i].BalanceDisagreedCount]);
     }
 
-    this.excelService.exportAsExcelFile(this.objects, 'sample');
+   
+    this.generateExcel(this.objects);
+  
+    
   }
+
+
+  generateExcel(objects): void{
+
+    var options = {
+      filename: './streamed-workbook.xlsx',
+      useStyles: true,
+      useSharedStrings: true
+    };
+    let workbook = new Excel.Workbook(options);
+
+    
+    var worksheet = workbook.addWorksheet('My Sheet', {properties:{tabColor:{argb:''}}});
+    worksheet.columns = [
+      { header: 'SrNo', key: 'SrNo', width: 5 },
+      { header: 'Territory Name', key: 'Territory Name', width: 32, },
+      { header: 'NoOfDealers', key: 'NoOfDealers', width: 32, },
+      { header: 'ActiveDealers', key: 'ActiveDealers', width: 32, },
+      { header: 'InActiveDealers', key: 'InActiveDealers', width: 32, },
+      { header: 'BalanceconfirmationsPending', key: 'BalanceconfirmationsPending', width: 32, },
+      { header: 'BalanceconfirmationsAgreed', key: 'BalanceconfirmationsAgreed', width: 32, },
+      { header: 'BalanceconfirmationsDisagreed', key: 'BalanceconfirmationsDisagreed', width: 32, }
+      
+      
+    ];
+    worksheet.addRows(objects,"n");
+ 
+    let fileName="Balance_Confirmation_Report.xlsx";
+    const excelBuffer: any = workbook.xlsx.writeBuffer();
+    workbook.xlsx.writeBuffer()
+        .then(function(buffer) {
+            // done buffering
+            const data: Blob = new Blob([buffer], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+            FileSaver.saveAs(data, fileName);
+        });
+
+        
+  }
+
+
+  
+  generateExcel2(objects1): void{
+
+        
+
+    var options = {
+      filename: './streamed-workbook.xlsx',
+      useStyles: true,
+      useSharedStrings: true
+    };
+    let workbook = new Excel.Workbook(options);
+
+    
+    var worksheet = workbook.addWorksheet('My Sheet', {properties:{tabColor:{argb:''}}});
+    worksheet.columns = [
+      { header: 'SrNo', key: 'SrNo', width: 5 },
+      { header: 'Branch Name', key: 'Territory Name', width: 32, },
+      { header: 'NoOfDealers', key: 'NoOfDealers', width: 32, },
+      { header: 'ActiveDealers', key: 'ActiveDealers', width: 32, },
+      { header: 'InActiveDealers', key: 'InActiveDealers', width: 32, },
+      { header: 'BalanceconfirmationsPending', key: 'BalanceconfirmationsPending', width: 32, },
+      { header: 'BalanceconfirmationsAgreed', key: 'BalanceconfirmationsAgreed', width: 32, },
+      { header: 'BalanceconfirmationsDisagreed', key: 'BalanceconfirmationsDisagreed', width: 32, }
+      
+      
+    ];
+    worksheet.addRows(objects1,"n");
+ 
+    let fileName="Balance_Confirmation_Report.xlsx";
+    const excelBuffer: any = workbook.xlsx.writeBuffer();
+    workbook.xlsx.writeBuffer()
+        .then(function(buffer) {
+            // done buffering
+            const data: Blob = new Blob([buffer], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+            FileSaver.saveAs(data, fileName);
+        });
+
+        
+  }
+
 
  
  

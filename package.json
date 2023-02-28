@@ -39,6 +39,7 @@
         "core-js": "^3.4.5",
         "cors": "^2.8.5",
         "crypto-js": "^4.0.0",
+        "exceljs": "^4.3.0",
         "file-saver": "^2.0.2",
         "file-server": "^2.1.0",
         "hammerjs": "^2.0.8",

@@ -36,6 +36,8 @@ export class BalanceConfirmationUploadComponent implements OnInit {
   paginationData: number;
   totalCustomersCount: any;
   exactPageList: any;
+  Upload:boolean=false;
+  All:boolean=false;
   // Indexing: number = 1;
   // sortOrder: any = 'CompanyName_ASC';
   // order: any = 'CompanyName';
@@ -58,9 +60,8 @@ export class BalanceConfirmationUploadComponent implements OnInit {
       // ExpiryDatedate: new FormControl('', [Validators.required, Validators.maxLength(256)]),
     });
 
-    this.pageNumber[0] = true;
-    this.paginationService.temppage = 0;
-    this.getAllCustomers(1);
+   
+    this.Alldata();
     // this.currentPage=1;
   }
   public uploadFile = (files) => {
@@ -71,6 +72,24 @@ export class BalanceConfirmationUploadComponent implements OnInit {
 
 
   }
+
+
+  Alldata()
+  {
+    this.All=true;
+    this.Upload=false;
+    this.pageNumber[0] = true;
+    this.paginationService.temppage = 0;
+    this.getAllCustomers(1);
+  }
+  Uploaddata()
+  {
+    this.Upload=true;
+    this.All=false;
+  }
+
+
+
   onTypeChange(value){
     this.Type=value;
   }
@@ -98,7 +117,7 @@ export class BalanceConfirmationUploadComponent implements OnInit {
     //   return;
     // }
     const formData = new FormData();
-    // formData.append('file', this.fileToUpload, this.fileToUpload.name);
+    formData.append('file', this.fileToUpload, this.fileToUpload.name);
     this._BalanceConfirmation.SubmitBalanceConfirmationforRAH(Fromdate, Todate, Todate, localStorage.getItem(constStorage.UserCode),localStorage.getItem(constStorage.UserCode),this.Type, formData)
       .subscribe(
         (res: any) => {
@@ -109,40 +128,40 @@ export class BalanceConfirmationUploadComponent implements OnInit {
         err => {
           let error = err.error.text;
           this._EmpComponent.setLoading(false);
-          // if (error == 'Error in Uploaded File') {
-          //   this.alertService.error(error);
-          //   this._BalanceConfirmation.DownloadBalanceConfirmation(localStorage.getItem(constStorage.UserCode)).subscribe(response => {
-          //     let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
-          //     const url = window.URL.createObjectURL(blob);
-          //     fileSaver.saveAs(blob, 'ErrorLogfileforBalanceConfirmationUpload.xlsx');
-          //   })
-          //   return;
-          // }
-          // else if (error == 'file is  uploaded Successfully.') {
-          //   this._EmpComponent.setLoading(false);
-          //   this.alertService.error(error);
-          // }
-          // else if (err.status == 400)
-          //   this.alertService.error('Failed to upload.');
-          // else
-          //   console.log(err);;
-          // return
+          if (error == 'Error in Uploaded File') {
+            this.alertService.error(error);
+            this._BalanceConfirmation.DownloadBalanceConfirmation(localStorage.getItem(constStorage.UserCode)).subscribe(response => {
+              let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
+              const url = window.URL.createObjectURL(blob);
+              fileSaver.saveAs(blob, 'ErrorLogfileforBalanceConfirmationUpload.xlsx');
+            })
+            return;
+          }
+          else if (error == 'file is  uploaded Successfully.') {
+            this._EmpComponent.setLoading(false);
+            this.alertService.error(error);
+          }
+          else if (err.status == 400)
+            this.alertService.error('Failed to upload.');
+          else
+            console.log(err);;
+          return
         }
       );
   }
-  // download() {
-  //   this._EmpComponent.setLoading(true);
-  //   this._BalanceConfirmation.DownloadSampleBalanceConf().subscribe(response => {
-  //     let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
-  //     const url = window.URL.createObjectURL(blob);
-  //     this._EmpComponent.setLoading(false);
-  //     fileSaver.saveAs(blob, 'SampleBalanceConfirmationUpload.xlsx');
-  //   },
-  //     err => {
-  //       this._EmpComponent.setLoading(false);
-  //       console.log(err);
-  //     })
-  // }
+  download() {
+    this._EmpComponent.setLoading(true);
+    this._BalanceConfirmation.DownloadSampleBalanceConf().subscribe(response => {
+      let blob: any = new Blob([response], { type: 'text/json; charset=utf-8' });
+      const url = window.URL.createObjectURL(blob);
+      this._EmpComponent.setLoading(false);
+      fileSaver.saveAs(blob, 'SampleBalanceConfirmationUpload.xlsx');
+    },
+      err => {
+        this._EmpComponent.setLoading(false);
+        console.log(err);
+      })
+  }
   back() {
     this.router.navigateByUrl('/Emp/dashboard');
   }

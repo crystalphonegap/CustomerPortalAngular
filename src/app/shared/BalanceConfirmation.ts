@@ -110,6 +110,15 @@ export class BalanceConfirmation {
   }
 
 
+  GetBalConfHeaderDataForEmployeesdownload(fromdate,todate,status,usertype,usercode, pageNo, DataPerPage, KeyWord) {
+    if(KeyWord==null || KeyWord==''){
+      KeyWord='NoSearch';
+  }
+    return this.http.get(this.BaseURI + '/BalanceConfirmation/GetBalConfHeaderDataForEmployeesdownload/' + fromdate + ',' + todate+ ',' + status+ ',' + usertype+ ',' + usercode+ ',' + pageNo+ ',' + DataPerPage+ ',' + KeyWord);
+  }
+
+
+
   GetBalConfHeaderDataForEmployeesCount(fromdate,todate,status,usertype,usercode, KeyWord) {
     if(KeyWord==null || KeyWord==''){
       KeyWord='NoSearch';

@@ -11,6 +11,8 @@ import { constStorage } from 'src/app/models/Storege';
 import { DatePipe } from '@angular/common';
 import { EmpComponent } from '../Emp.component';
 import { ExcelService } from 'src/app/services/excel.service';
+import * as Excel from "exceljs/dist/exceljs.min.js";
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-balance-confirmation-list-for-all',
@@ -19,6 +21,7 @@ import { ExcelService } from 'src/app/services/excel.service';
 })
 export class BalanceConfirmationListForAllComponent implements OnInit {
    BalanceConfirmations: any=[];
+   BalanceConfirmationsdownload: any=[];
   action: string;
   constructor(private _EmpComponent:EmpComponent,public datepipe: DatePipe,private router: Router, private _BalanceConfirmation: BalanceConfirmation
     , public paginationService: PaginationService, @Inject(SESSION_STORAGE) private storage: WebStorageService,private excelService:ExcelService) {
@@ -81,6 +84,7 @@ this.loadedFromDate=false
       search: new FormControl('', [Validators.required, Validators.maxLength(256)]),
     });
     this.Search();
+    
    
   }
   Search(){
@@ -89,6 +93,7 @@ this.loadedFromDate=false
     this.UserCode= localStorage.getItem(constStorage.UserCode); 
     
     this.getAllBalanceConfirmation(1);
+    this.getAllBalanceConfirmationdownload(1);
   }
     
   getAllBalanceConfirmation(pageno) {
@@ -180,26 +185,36 @@ this.loadedFromDate=false
   }
 
 
-  exportAsXLSX():void {
-    for (let i=-1 ; i< this.BalanceConfirmations.length ; i++)
-    {  debugger;
+  getAllBalanceConfirmationdownload(pageno) {
+    this._EmpComponent.setLoading(true);
+    this.pageNo=pageno;
+    this._BalanceConfirmation.GetBalConfHeaderDataForEmployeesdownload(this.FromDate,this.Todate,this.status,localStorage.getItem(constStorage.UserType),  this.UserCode, this.pageNo, this.BalanceConfirmationPerPage,this.search).subscribe((data: any) => {
+      this. BalanceConfirmationsdownload = data ;
+      this._EmpComponent.setLoading(false);
+      this.getAllBalanceConfirmationCount();
+    },
+    err => { 
+      this._EmpComponent.setLoading(false);
+        console.log(err);
+    })
+  }
 
-     
-      debugger;
-      console.log(this.BalanceConfirmations);
-        if(i==-1)
-        {
-          this.objects.push(['SrNo', 'Request No', 'Customer Code', 'Customer Name','From Date','To Date','Remark','Action']);
 
-        }
-        else if(i< this.BalanceConfirmations.length)
+
+  exportAsXLSX3():void {
+
+   
+    for (let i=0 ; i< this.BalanceConfirmationsdownload.length ; i++)
+    {  
+
+        if(i< this.BalanceConfirmationsdownload.length)
         {
           this.action="";
-          if(this.BalanceConfirmations[i].BalanceConfirmationAction=="A")
+          if(this.BalanceConfirmationsdownload[i].BalanceConfirmationAction=="A")
           {
              this.action="Agreed";
           }
-          else if(this.BalanceConfirmations[i].BalanceConfirmationAction=="P")
+          else if(this.BalanceConfirmationsdownload[i].BalanceConfirmationAction=="P")
           {
             this.action="Pending";
           }
@@ -207,7 +222,22 @@ this.loadedFromDate=false
           {
             this.action="";
           }
-          this.objects.push([i+this.Indexing+1, this.BalanceConfirmations[i].RequestNovtxt, this.BalanceConfirmations[i].CustomerCodevtxt, this.BalanceConfirmations[i].CustomerNamevtxt,this.BalanceConfirmations[i].FromDatedatetime,this.BalanceConfirmations[i].ToDatedatetime,this.BalanceConfirmations[i].Remarksvtxt,this.action]);
+          this.objects.push([
+             i+1,
+             this.BalanceConfirmationsdownload[i].RequestNovtxt, 
+             this.BalanceConfirmationsdownload[i].RegionCdvtxt,
+             this.BalanceConfirmationsdownload[i].BranchNamevtxt,
+             this.BalanceConfirmationsdownload[i].TerritoryNamevtxt,
+             this.BalanceConfirmationsdownload[i].CustomerCodevtxt,
+             this.BalanceConfirmationsdownload[i].CustomerNamevtxt,
+             this.BalanceConfirmationsdownload[i].SPNamevtxt,
+             this.BalanceConfirmationsdownload[i].FromDatedatetime,
+             this.BalanceConfirmationsdownload[i].ToDatedatetime,
+             this.BalanceConfirmationsdownload[i].OrderBlockvtxt,
+             this.action,
+             this.BalanceConfirmationsdownload[i].Remarksvtxt
+           
+            ]);
         }
         else
         {
@@ -215,8 +245,57 @@ this.loadedFromDate=false
         }
           
     }
+    console.log(this.objects);
+    this.generateExcel3(this.objects);
+  //  this.router.navigateByUrl('/Emp/BalanceConfirmationListA');
+  // this._EmpComponent.setLoading(false);
+  }
 
-    this.excelService.exportAsExcelFile(this.objects, 'sample');
+
+
+
+
+
+
+
+
+  generateExcel3(objects): void{
+    var options = {
+      filename: './streamed-workbook.xlsx',
+      useStyles: true,
+      useSharedStrings: true
+    };
+    let workbook = new Excel.Workbook(options);
+
+    
+    var worksheet = workbook.addWorksheet('My Sheet', {properties:{tabColor:{argb:''}}});
+    worksheet.columns = [
+      { header: 'SrNo', key: 'SrNo', width: 5 },
+      { header: 'Confirmation ID', key: 'Confirmation ID', width: 32, },
+      { header: 'Region', key: 'Region', width: 32, },
+      { header: 'Branch', key: 'Branch', width: 32, },
+      { header: 'Territory', key: 'Territory', width: 32, },
+      { header: 'Customer Code', key: 'Customer Code', width: 32, },
+      { header: 'Customer Name', key: 'Customer Name', width: 32, },
+      { header: 'Sales Promoter Name', key: 'Sales Promoter Name', width: 32, },
+      { header: 'Balance Confirmation From Date', key: 'Balance Confirmation From Date', width: 32, },
+      { header: 'Balance Confirmation ToDate', key: 'Balance Confirmation ToDate', width: 32, },
+      { header: 'Status of the Customer (SAP Current Status)', key: 'Status of the Customer (SAP Current Status)', width: 32, },
+      { header: 'Status of the Balance confirmation ', key: 'Status of the Balance confirmation ', width: 32, },
+      { header: 'Comment added by user', key: 'Comment added by user', width: 32, }
+    ];
+    worksheet.addRows(objects,"n");
+ 
+    let fileName="Balance_Confirmation_List.xlsx";
+    const excelBuffer: any = workbook.xlsx.writeBuffer();
+    workbook.xlsx.writeBuffer()
+        .then(function(buffer) {
+            // done buffering
+            const data: Blob = new Blob([buffer], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+            FileSaver.saveAs(data, fileName);
+        });
+
+    // this.router.navigateByUrl('/Emp/BalanceConfirmationListA');   
   }
 
 }
